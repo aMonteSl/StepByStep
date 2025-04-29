@@ -1,0 +1,73 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme -->
+    <style name="Theme.StepByStep" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/oxford</item>
+        <item name="colorPrimaryVariant">@color/oxford</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/turquoise</item>
+        <item name="colorSecondaryVariant">@color/turquoise</item>
+        <item name="colorOnSecondary">@color/black</item>
+        
+        <!-- Additional colors -->
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
+        <item name="colorError">@color/route_color</item>
+        <item name="colorOnError">@color/white</item>
+        <item name="colorTertiary">@color/moonstone</item>
+        <item name="colorOnTertiary">@color/white</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorOnBackground">@color/black</item>
+        
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">@color/oxford</item>
+        <item name="android:windowLightStatusBar">false</item>
+        
+        <!-- Navigation bar color (Android 8.0+) -->
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        
+        <!-- Customize Material components styles -->
+        <item name="materialCardViewStyle">@style/Widget.StepByStep.CardView</item>
+        <item name="extendedFloatingActionButtonStyle">@style/Widget.StepByStep.FloatingActionButton</item>
+        <item name="toolbarStyle">@style/Widget.StepByStep.Toolbar</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.StepByStep.BodyLarge</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.StepByStep.HeadlineSmall</item>
+    </style>
+    
+    <!-- Custom Material component styles -->
+    <style name="Widget.StepByStep.CardView" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="cardElevation">2dp</item>
+        <item name="cardCornerRadius">8dp</item>
+    </style>
+    
+    <style name="Widget.StepByStep.FloatingActionButton" parent="Widget.Material3.ExtendedFloatingActionButton.Primary">
+        <item name="backgroundTint">@color/turquoise</item>
+        <item name="iconTint">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    
+    <style name="Widget.StepByStep.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="android:background">@color/oxford</item>
+        <item name="titleTextColor">@color/white</item>
+        <item name="subtitleTextColor">@color/white</item>
+        <item name="android:theme">@style/ThemeOverlay.StepByStep.Toolbar</item>
+    </style>
+    
+    <style name="ThemeOverlay.StepByStep.Toolbar" parent="ThemeOverlay.Material3.Toolbar.Surface">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="actionMenuTextColor">@color/white</item>
+    </style>
+    
+    <!-- Custom text styles -->
+    <style name="TextAppearance.StepByStep.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/black</item>
+    </style>
+    
+    <style name="TextAppearance.StepByStep.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textColor">@color/oxford</item>
+    </style>
+</resources>

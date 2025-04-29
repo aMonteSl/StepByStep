@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.stepbystep.ui.routedetail.RouteDetailViewModel" />
+        <import type="com.example.stepbystep.util.StringFormatUtils" />
+        <import type="com.example.stepbystep.util.DateFormatUtils" />
+        <import type="android.view.View" />  <!-- Añadir esta línea -->
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".ui.routedetail.RouteDetailActivity">
+
+        <!-- App Bar with Toolbar -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="@{viewModel.route.name}"
+                app:titleCentered="true"
+                app:navigationIcon="@drawable/ic_back"
+                app:menu="@menu/route_detail_menu" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!-- Main Content in a ScrollView for smaller screens -->
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Route Map Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="16dp"
+                    style="?attr/materialCardViewStyle">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!-- MapView to show the route -->
+                        <com.google.android.gms.maps.MapView
+                            android:id="@+id/mapView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <!-- Overlay with stats summary -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:background="#80000000"
+                            android:padding="12dp"
+                            android:orientation="horizontal">
+
+                            <!-- Distance with icon -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:gravity="center">
+                                
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_marginEnd="4dp"
+                                    app:srcCompat="@drawable/ic_distance"
+                                    app:tint="@android:color/white"
+                                    android:contentDescription="Distance icon" />
+                                    
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@android:color/white"
+                                    android:textStyle="bold"
+                                    android:text="@{StringFormatUtils.formatDistanceKm(viewModel.route.distance)}"
+                                    tools:text="5.2 km" />
+                            </LinearLayout>
+
+                            <!-- Duration with icon -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:gravity="center">
+                                
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_marginEnd="4dp"
+                                    app:srcCompat="@drawable/ic_time"
+                                    app:tint="@android:color/white"
+                                    android:contentDescription="Duration icon" />
+                                    
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@android:color/white"
+                                    android:textStyle="bold"
+                                    android:text="@{StringFormatUtils.formatDuration(viewModel.route.duration)}"
+                                    tools:text="45m 30s" />
+                            </LinearLayout>
+
+                            <!-- Elevation with icon -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:gravity="center">
+                                
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_marginEnd="4dp"
+                                    app:srcCompat="@drawable/ic_elevation"
+                                    app:tint="@android:color/white"
+                                    android:contentDescription="Elevation icon" />
+                                    
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@android:color/white"
+                                    android:textStyle="bold"
+                                    android:text="@{StringFormatUtils.formatElevation(viewModel.route.elevation)}"
+                                    tools:text="698m" />
+                            </LinearLayout>
+
+                            <!-- Elevation Gain with icon -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:gravity="center">
+                                
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_marginEnd="4dp"
+                                    app:srcCompat="@drawable/ic_elevation_gain"
+                                    app:tint="@android:color/white"
+                                    android:contentDescription="Elevation gain icon" />
+                                    
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@android:color/white"
+                                    android:textStyle="bold"
+                                    android:text="@{StringFormatUtils.formatElevationGain(viewModel.route.elevationGain)}"
+                                    tools:text="+120m" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </FrameLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Route Image Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/routeImageCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:visibility="@{viewModel.route.imagePath != null ? View.VISIBLE : View.GONE}"
+                    style="?attr/materialCardViewStyle">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:text="Foto de la ruta"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"/>
+
+                        <ImageView
+                            android:id="@+id/routeImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:scaleType="centerCrop"
+                            android:contentDescription="Foto de la ruta"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Altitude Chart Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="16dp"
+                    style="?attr/materialCardViewStyle">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Perfil de elevación"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:padding="8dp" />
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/chartElevation"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Route Details Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    style="?attr/materialCardViewStyle">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <!-- Route Date -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="8dp">
+                            
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Fecha:"
+                                android:textStyle="bold"
+                                android:layout_marginEnd="8dp" />
+                                
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@{DateFormatUtils.formatDate(viewModel.route.date)}"
+                                tools:text="19 de abril, 2025" />
+                        </LinearLayout>
+
+                        <!-- Route Description -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="8dp">
+                            
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Descripción:"
+                                android:textStyle="bold"
+                                android:layout_marginBottom="4dp" />
+                                
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@{viewModel.route.description}"
+                                tools:text="Esta es una ruta por el parque natural con vistas impresionantes. El terreno es variado con algunas pendientes moderadas." />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

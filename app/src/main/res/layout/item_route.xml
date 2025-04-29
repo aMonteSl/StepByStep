@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="route"
+            type="com.example.stepbystep.domain.model.Route" />
+        <import type="com.example.stepbystep.util.DateFormatUtils"/>
+        <import type="com.example.stepbystep.util.StringFormatUtils"/>
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        style="?attr/materialCardViewStyle">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvRouteName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{route.name}"
+                android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Morning Walk"/>
+
+            <TextView
+                android:id="@+id/tvRouteDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@{DateFormatUtils.formatDate(route.date)}"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                app:layout_constraintStart_toStartOf="@id/tvRouteName"
+                app:layout_constraintEnd_toEndOf="@id/tvRouteName"
+                app:layout_constraintTop_toBottomOf="@id/tvRouteName"
+                tools:text="April 18, 2025"/>
+
+            <!-- Stats section - Improved alignment -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:baselineAligned="false"
+                android:weightSum="4"
+                app:layout_constraintTop_toBottomOf="@id/tvRouteDate">
+
+                <!-- Distance -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="4dp"
+                        app:srcCompat="@drawable/ic_distance"
+                        app:tint="?attr/colorPrimary"
+                        android:contentDescription="Distance icon" />
+                        
+                    <TextView
+                        android:id="@+id/tvRouteDistance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{StringFormatUtils.formatDistanceKm(route.distance)}"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        tools:text="3.2 km"/>
+                </LinearLayout>
+
+                <!-- Duration -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="4dp"
+                        app:srcCompat="@drawable/ic_time"
+                        app:tint="?attr/colorPrimary"
+                        android:contentDescription="Duration icon" />
+                        
+                    <TextView
+                        android:id="@+id/tvRouteDuration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{StringFormatUtils.formatDuration(route.duration)}"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        tools:text="45 min"/>
+                </LinearLayout>
+
+                <!-- Elevation -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="4dp"
+                        app:srcCompat="@drawable/ic_elevation"
+                        app:tint="?attr/colorPrimary"
+                        android:contentDescription="Elevation icon" />
+                        
+                    <TextView
+                        android:id="@+id/tvRouteElevation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{StringFormatUtils.formatElevation(route.elevation)}"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        tools:text="120 m"/>
+                </LinearLayout>
+
+                <!-- Elevation Gain -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="4dp"
+                        app:srcCompat="@drawable/ic_elevation_gain"
+                        app:tint="?attr/colorPrimary"
+                        android:contentDescription="Elevation gain icon" />
+                        
+                    <TextView
+                        android:id="@+id/tvRouteElevationGain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{StringFormatUtils.formatElevationGain(route.elevationGain)}"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        tools:text="+120 m"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

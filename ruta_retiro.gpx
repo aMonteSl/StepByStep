@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="MyApp" xmlns="http://www.topografix.com/GPX/1/1">
+    <metadata>
+        <name>Ruta por Madrid</name>
+        <author>
+            <name>Explorador</name>
+        </author>
+        <desc>Ruta de senderismo por el Parque del Retiro</desc>
+    </metadata>
+
+    <!-- Waypoints (Puntos de interés) -->
+    <wpt lat="40.415363" lon="-3.682424">
+        <name>Entrada al Parque</name>
+        <desc>Punto de inicio de la ruta en la entrada principal.</desc>
+    </wpt>
+    <wpt lat="40.414450" lon="-3.681500">
+        <name>Estanque Grande</name>
+        <desc>Lugar emblemático del parque.</desc>
+    </wpt>
+    <wpt lat="40.413125" lon="-3.679832">
+        <name>Palacio de Cristal</name>
+        <desc>Hermoso edificio de cristal con vistas al lago.</desc>
+    </wpt>
+
+    <!-- Track con 10 puntos -->
+    <trk>
+        <name>Ruta por el Retiro</name>
+        <trkseg>
+            <trkpt lat="40.415363" lon="-3.682424">
+                <ele>650.0</ele>
+                <time>2024-03-31T10:00:00Z</time>
+            </trkpt>
+            <trkpt lat="40.414900" lon="-3.682100">
+                <ele>652.0</ele>
+                <time>2024-03-31T10:05:00Z</time>
+            </trkpt>
+            <trkpt lat="40.414450" lon="-3.681500">
+                <ele>654.0</ele>
+                <time>2024-03-31T10:10:00Z</time>
+            </trkpt>
+            <trkpt lat="40.414000" lon="-3.681000">
+                <ele>655.0</ele>
+                <time>2024-03-31T10:15:00Z</time>
+            </trkpt>
+            <trkpt lat="40.413500" lon="-3.680500">
+                <ele>657.0</ele>
+                <time>2024-03-31T10:20:00Z</time>
+            </trkpt>
+            <trkpt lat="40.413125" lon="-3.679832">
+                <ele>658.0</ele>
+                <time>2024-03-31T10:25:00Z</time>
+            </trkpt>
+            <trkpt lat="40.412800" lon="-3.679200">
+                <ele>659.0</ele>
+                <time>2024-03-31T10:30:00Z</time>
+            </trkpt>
+            <trkpt lat="40.412400" lon="-3.678500">
+                <ele>661.0</ele>
+                <time>2024-03-31T10:35:00Z</time>
+            </trkpt>
+            <trkpt lat="40.412000" lon="-3.677800">
+                <ele>662.0</ele>
+                <time>2024-03-31T10:40:00Z</time>
+            </trkpt>
+            <trkpt lat="40.411500" lon="-3.677200">
+                <ele>663.0</ele>
+                <time>2024-03-31T10:45:00Z</time>
+            </trkpt>
+        </trkseg>
+    </trk>
+</gpx>
+

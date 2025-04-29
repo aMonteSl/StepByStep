@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_toggle_auto_center"
+        android:title="Toggle Auto-Tracking"
+        android:icon="@drawable/ic_my_location"
+        android:checkable="true"
+        android:checked="true"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_settings"
+        android:title="Settings"
+        android:icon="@drawable/ic_settings"
+        app:showAsAction="always">
+        
+        <menu>
+            <item
+                android:id="@+id/menu_toggle_stats"
+                android:title="Hide Route Info"
+                android:checkable="true"
+                android:checked="false" />
+                
+            <item
+                android:id="@+id/menu_toggle_buttons"
+                android:title="Hide Control Buttons"
+                android:checkable="true"
+                android:checked="false" />
+                
+            <item
+                android:id="@+id/menu_toggle_all"
+                android:title="Hide All UI Elements"
+                android:checkable="true"
+                android:checked="false" />
+        </menu>
+    </item>
+</menu>
