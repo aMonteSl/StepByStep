@@ -95,30 +95,38 @@ class ProfileViewModel(context: Context) : ViewModel() {
         val oldestDate = routes.minByOrNull { it.date }?.date ?: ""
         _firstActivityDate.value = DateFormatUtils.formatDate(oldestDate)
         
-        // Distancia total
-        val total = routes.sumOf { it.distance }
-        _totalDistance.value = StringFormatUtils.formatDistanceKm(total)
+        // Distancia total (en km)
+        val totalKm = routes.sumOf { it.distance }
+        _totalDistance.value = StringFormatUtils.formatDistanceKm(totalKm)
         
-        // Distancia media por actividad
-        val avg = total / routes.size
-        _averageDistance.value = StringFormatUtils.formatDistanceKm(avg)
+        // Distancia media por actividad (en km)
+        val avgKm = if (routes.isNotEmpty()) totalKm / routes.size else 0.0
+        _averageDistance.value = StringFormatUtils.formatDistanceKm(avgKm)
         
-        // Distancia máxima
-        val max = routes.maxByOrNull { it.distance }?.distance ?: 0.0
-        _maxDistance.value = StringFormatUtils.formatDistanceKm(max)
+        // Distancia máxima (en km)
+        val maxKm = routes.maxOfOrNull { it.distance } ?: 0.0
+        _maxDistance.value = StringFormatUtils.formatDistanceKm(maxKm)
         
-        // Tiempo total
+        // Tiempo total (en ms)
         val totalTimeMs = routes.sumOf { it.duration }
         _totalDuration.value = formatLongDuration(totalTimeMs)
         
-        // Ritmo medio (minutos por km)
-        val totalMinutes = TimeUnit.MILLISECONDS.toMinutes(totalTimeMs)
-        val paceMinPerKm = if (total > 0) totalMinutes / total else 0.0
-        val paceMinutes = paceMinPerKm.toInt()
-        val paceSeconds = ((paceMinPerKm - paceMinutes) * 60).toInt()
-        _averagePace.value = String.format("%d:%02d min/km", paceMinutes, paceSeconds)
+        // Cálculo de ritmo mejorado: Calculamos ritmo ponderado por distancia
+        if (totalKm > 0) {
+            // Convertir a segundos totales para mayor precisión
+            val totalSeconds = TimeUnit.MILLISECONDS.toSeconds(totalTimeMs)
+            // Ritmo en segundos por km
+            val paceSecsPerKm = totalSeconds / totalKm
+            
+            // Convertir a formato minutos:segundos
+            val paceMinutes = (paceSecsPerKm / 60).toInt()
+            val paceSeconds = (paceSecsPerKm % 60).toInt()
+            _averagePace.value = String.format("%d:%02d min/km", paceMinutes, paceSeconds)
+        } else {
+            _averagePace.value = "0:00 min/km"
+        }
         
-        // Desnivel acumulado
+        // Desnivel acumulado (en metros)
         val totalElevation = routes.sumOf { it.elevationGain }
         _totalElevationGain.value = StringFormatUtils.formatElevationGain(totalElevation)
     }
@@ -126,10 +134,10 @@ class ProfileViewModel(context: Context) : ViewModel() {
     private fun setEmptyStatistics() {
         _totalActivities.value = 0
         _firstActivityDate.value = "No hay actividades"
-        _totalDistance.value = "0 km"
-        _averageDistance.value = "0 km"
-        _maxDistance.value = "0 km"
-        _totalDuration.value = "0h 0m"
+        _totalDistance.value = "0 m"
+        _averageDistance.value = "0 m"
+        _maxDistance.value = "0 m"
+        _totalDuration.value = "0h 0m 0s"  // Añadidos los segundos
         _averagePace.value = "0:00 min/km"
         _totalElevationGain.value = "+0 m"
     }
@@ -137,7 +145,8 @@ class ProfileViewModel(context: Context) : ViewModel() {
     private fun formatLongDuration(durationMs: Long): String {
         val hours = TimeUnit.MILLISECONDS.toHours(durationMs)
         val minutes = TimeUnit.MILLISECONDS.toMinutes(durationMs) % 60
-        return "${hours}h ${minutes}m"
+        val seconds = TimeUnit.MILLISECONDS.toSeconds(durationMs) % 60
+        return "${hours}h ${minutes}m ${seconds}s"
     }
 }
 

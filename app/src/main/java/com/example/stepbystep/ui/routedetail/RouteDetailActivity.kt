@@ -1,6 +1,7 @@
 package com.example.stepbystep.ui.routedetail
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
@@ -15,6 +16,7 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.stepbystep.R
 import com.example.stepbystep.databinding.ActivityRouteDetailBinding
+import com.example.stepbystep.util.MapUtils.configureMapStyle
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.data.Entry
@@ -112,6 +114,9 @@ class RouteDetailActivity : AppCompatActivity() {
         mapView.getMapAsync { map ->
             googleMap = map
             
+            // Usar el parámetro map (que sabemos que no es nulo) en lugar de la propiedad googleMap
+            map.configureMapStyle(this)
+            
             if (points.isNotEmpty()) {
                 // Draw route on map
                 map.addPolyline(
@@ -136,19 +141,62 @@ class RouteDetailActivity : AppCompatActivity() {
     private fun setupChart(chartData: List<Pair<Float, Float>>) {
         val chart = binding.chartElevation
         
+        // Si no hay datos o solo un punto, no hay nada que graficar
+        if (chartData.isEmpty() || chartData.size == 1) {
+            chart.setNoDataText("No hay datos de elevación disponibles")
+            return
+        }
+        
         // Convert data to entries
         val entries = chartData.map { (distance, altitude) ->
             Entry(distance / 1000f, altitude) // Convert distance to km for x-axis
         }
         
-        val dataSet = LineDataSet(entries, "Elevación").apply {
-            color = getColor(R.color.turquoise)
-            valueTextColor = getColor(R.color.turquoise) // Cambiado a turquesa
+        // Calcular la distancia total para determinar la unidad a usar
+        val totalDistanceKm = if (entries.isNotEmpty()) entries.last().x else 0f
+        val useMeters = totalDistanceKm < 0.5f // Si menos de 500m, mostrar en metros
+        
+        // Determinar si estamos en modo oscuro o claro
+        val isNightMode = (resources.configuration.uiMode and 
+                          Configuration.UI_MODE_NIGHT_MASK) == 
+                          Configuration.UI_MODE_NIGHT_YES
+        
+        // Seleccionar los colores según el modo
+        val lineColor = if (isNightMode) {
+            getColor(R.color.turquoise)
+        } else {
+            getColor(R.color.oxford)
+        }
+        
+        val fillColor = if (isNightMode) {
+            getColor(R.color.turquoise_light)
+        } else {
+            getColor(R.color.oxford_light)
+        }
+        
+        // Color con alpha para la cuadrícula (30% de opacidad)
+        var gridColor = Color.argb(76, // 30% de 255 es ~76
+                                  Color.red(lineColor),
+                                  Color.green(lineColor),
+                                  Color.blue(lineColor))
+        
+        // Recrear las entries si necesitamos mostrar en metros
+        val adjustedEntries = if (useMeters) {
+            chartData.map { (distance, altitude) ->
+                Entry(distance, altitude) // Mantener en metros para el eje X
+            }
+        } else {
+            entries // Mantener en kilómetros como ya se calculó
+        }
+        
+        val dataSet = LineDataSet(adjustedEntries, "Elevación").apply {
+            color = lineColor
+            valueTextColor = lineColor
             lineWidth = 2f
             setDrawCircles(false)
             setDrawValues(false)
             setDrawFilled(true)
-            fillColor = getColor(R.color.turquoise_light) // Color más claro para el relleno
+            setFillColor(fillColor)
             fillAlpha = 60 // Semitransparente
             mode = LineDataSet.Mode.CUBIC_BEZIER
         }
@@ -162,42 +210,40 @@ class RouteDetailActivity : AppCompatActivity() {
             setScaleEnabled(true)
             setPinchZoom(true)
             
-            // Configure X axis (distance in km)
+            // Configure X axis (distance in km or m)
             xAxis.apply {
+                textColor = lineColor
                 position = XAxis.XAxisPosition.BOTTOM
-                setDrawGridLines(false)
-                granularity = 0.5f  // 500m intervals
-                axisMinimum = 0f
-                axisLineWidth = 2f
-                textColor = getColor(R.color.turquoise)
-                axisLineColor = getColor(R.color.turquoise)
+                setDrawGridLines(true)
+                axisLineColor = lineColor
+                gridColor = gridColor
+                gridLineWidth = 0.5f
                 
-                // Añadir unidades al eje X
+                // Formatear valores según la unidad seleccionada
                 valueFormatter = object : ValueFormatter() {
                     override fun getFormattedValue(value: Float): String {
-                        return "${value.toInt()} km"
+                        return if (useMeters) {
+                            // Mostrar en metros sin decimales
+                            "${value.toInt()} m"
+                        } else {
+                            // Si la distancia es pequeña pero no tanto como para usar metros, usar 2 decimales
+                            if (totalDistanceKm < 2f) {
+                                String.format("%.2f km", value)
+                            } else {
+                                // Para distancias mayores, usar formato entero o 1 decimal
+                                "${value.toInt()} km"
+                            }
+                        }
                     }
                 }
             }
             
             // Configure Y axis (elevation in m)
             axisLeft.apply {
-                setDrawGridLines(true)
-                val turquoiseColor = getColor(R.color.turquoise)
-                // Crear un color turquesa con transparencia
-                val transparentTurquoise = Color.argb(
-                    (0.3f * 255).toInt(),  // 30% de opacidad
-                    Color.red(turquoiseColor),
-                    Color.green(turquoiseColor),
-                    Color.blue(turquoiseColor)
-                )
-                gridColor = transparentTurquoise
-                axisLineWidth = 2f
-                axisMinimum = chartData.minByOrNull { it.second }?.second?.let { it - 10f } ?: 0f
-                textColor = getColor(R.color.turquoise)
-                axisLineColor = getColor(R.color.turquoise)
-                
-                // Añadir unidades al eje Y
+                textColor = lineColor
+                axisLineColor = lineColor
+                gridColor = gridColor
+                gridLineWidth = 0.5f
                 valueFormatter = object : ValueFormatter() {
                     override fun getFormattedValue(value: Float): String {
                         return "${value.toInt()} m"

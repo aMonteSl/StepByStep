@@ -22,6 +22,7 @@ import com.example.stepbystep.databinding.ActivityNewRouteBinding
 import com.example.stepbystep.util.StringFormatUtils
 import com.example.stepbystep.ui.saveroute.SaveRouteActivity
 import com.example.stepbystep.util.GpxParser
+import com.example.stepbystep.util.MapUtils.configureMapStyle
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -95,6 +96,10 @@ class NewRouteActivity : AppCompatActivity() {
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync { map ->
             googleMap = map
+            
+            // Aplicar estilo del mapa según el modo del sistema
+            googleMap.configureMapStyle(this)
+            
             isMapReady = true
 
             googleMap.uiSettings.apply {

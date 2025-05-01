@@ -25,6 +25,7 @@ import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.example.stepbystep.ui.main.MainActivity
+import com.example.stepbystep.util.MapUtils.configureMapStyle
 import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
@@ -165,13 +166,16 @@ class SaveRouteActivity : AppCompatActivity() {
         mapView.getMapAsync { map ->
             googleMap = map
             
+            // Usar la variable local 'map' en lugar de la propiedad 'googleMap'
+            map.configureMapStyle(this)
+            
             if (points.isNotEmpty()) {
                 // Draw route on map
                 map.addPolyline(
                     PolylineOptions()
                         .addAll(points)
                         .width(8f)
-                        .color(getColor(com.example.stepbystep.R.color.turquoise))
+                        .color(getColor(R.color.turquoise))
                 )
                 
                 // Zoom to fit the entire route
@@ -180,7 +184,7 @@ class SaveRouteActivity : AppCompatActivity() {
                 
                 // Add padding to the bounds
                 val bounds = boundsBuilder.build()
-                val padding = resources.getDimensionPixelSize(com.example.stepbystep.R.dimen.map_padding)
+                val padding = resources.getDimensionPixelSize(R.dimen.map_padding)
                 map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding))
             }
         }

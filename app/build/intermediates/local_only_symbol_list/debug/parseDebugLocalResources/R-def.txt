@@ -3,6 +3,7 @@ local
 color black
 color moonstone
 color oxford
+color oxford_light
 color route_color
 color turquoise
 color turquoise_light

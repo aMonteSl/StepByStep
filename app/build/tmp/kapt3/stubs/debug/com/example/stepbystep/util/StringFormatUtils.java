@@ -30,8 +30,8 @@ public final class StringFormatUtils {
     
     /**
      * Format distance values that are already in kilometers
-     * Shows as meters for distances under 1km
-     * Shows as kilometers for distances of 1km or more
+     * Mostrar metros con precisión decimal para distancias muy cortas
+     * Mostrar kilometraje con 2 decimales para mayor precisión
      */
     @kotlin.jvm.JvmStatic()
     @org.jetbrains.annotations.NotNull()

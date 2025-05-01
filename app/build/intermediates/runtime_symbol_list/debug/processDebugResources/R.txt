@@ -2137,6 +2137,7 @@ int color mtrl_textinput_hovered_box_stroke_color 0x7f0502f9
 int color notification_action_color_filter 0x7f0502fa
 int color notification_icon_bg_color 0x7f0502fb
 int color oxford 0x7f0502fc
+int color oxford_light 0x7f050317
 int color primary_dark_material_dark 0x7f0502fd
 int color primary_dark_material_light 0x7f0502fe
 int color primary_material_dark 0x7f0502ff

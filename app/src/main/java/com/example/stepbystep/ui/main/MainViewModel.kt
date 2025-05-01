@@ -41,4 +41,12 @@ class MainViewModel(context: Context) : ViewModel() {
             repository.addRoute(route)
         }
     }
+
+    fun deleteRoute(route: Route) {
+        viewModelScope.launch {
+            repository.deleteRoute(route)
+            // No necesitamos actualizar la lista de rutas manualmente aquí
+            // porque ya estamos observando el flujo de datos del repositorio
+        }
+    }
 }

@@ -8,7 +8,8 @@ import com.example.stepbystep.domain.model.Route
 
 class RouteAdapter(
     private var routes: List<Route> = emptyList(),
-    private val onClick: (Route) -> Unit
+    private val onClick: (Route) -> Unit,
+    private val onLongClick: (Route) -> Boolean = { _ -> false } // Parámetro opcional con valor por defecto
 ) : RecyclerView.Adapter<RouteAdapter.RouteViewHolder>() {
 
     class RouteViewHolder(val binding: ItemRouteBinding) : RecyclerView.ViewHolder(binding.root)
@@ -27,6 +28,9 @@ class RouteAdapter(
         
         // Set click listener on the whole item
         holder.itemView.setOnClickListener { onClick(route) }
+        
+        // Set long click listener
+        holder.itemView.setOnLongClickListener { onLongClick(route) }
     }
 
     override fun getItemCount(): Int = routes.size

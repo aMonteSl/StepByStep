@@ -16,6 +16,9 @@
     <!-- Add foreground service permission -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+
+        <!-- Opcional: Permiso para evitar que la app entre en modo doze -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     
     <uses-feature android:name="android.hardware.sensor.barometer" 
                   android:required="false" />

@@ -2,6 +2,7 @@ package com.example.stepbystep.util
 
 import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.math.roundToInt
 
 object StringFormatUtils {
 
@@ -36,17 +37,24 @@ object StringFormatUtils {
 
     /**
      * Format distance values that are already in kilometers
-     * Shows as meters for distances under 1km
-     * Shows as kilometers for distances of 1km or more
+     * Mostrar metros con precisión decimal para distancias muy cortas
+     * Mostrar kilometraje con 2 decimales para mayor precisión
      */
     @JvmStatic
     fun formatDistanceKm(distanceKm: Double): String {
         return if (distanceKm < 1.0) {
-            // Distancias menores a 1km, mostrar en metros
-            "${(distanceKm * 1000).toInt()}m"
+            // Mostrar metros con precisión decimal para distancias muy cortas
+            val meters = distanceKm * 1000
+            if (meters < 10) {
+                // Para distancias muy cortas, mostramos 2 decimales
+                String.format(Locale.getDefault(), "%.2f m", meters)
+            } else {
+                // Redondeamos a enteros solo para distancias mayores a 10m
+                "${meters.roundToInt()} m"
+            }
         } else {
-            // Distancias de 1km o más, mostrar en km
-            String.format(Locale.getDefault(), "%.1f km", distanceKm)
+            // Para kilometraje, usar 2 decimales para mayor precisión
+            String.format(Locale.getDefault(), "%.2f km", distanceKm)
         }
     }
 

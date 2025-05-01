@@ -6,12 +6,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.stepbystep.R
 import com.example.stepbystep.databinding.ActivityMainBinding
 import com.example.stepbystep.data.repository.RouteRepository
+import com.example.stepbystep.domain.model.Route
 import com.example.stepbystep.ui.newroute.NewRouteActivity
 import com.example.stepbystep.ui.profile.ProfileActivity
 import com.example.stepbystep.ui.routedetail.RouteDetailActivity
@@ -30,27 +32,35 @@ class MainActivity : AppCompatActivity() {
     setContentView(binding.root)
 
     binding.lifecycleOwner = this
-    binding.viewModel      = viewModel
+    binding.viewModel = viewModel
 
     setSupportActionBar(binding.toolbar)
 
-    val adapter = RouteAdapter { route ->
-        // Abrir la pantalla de detalle al hacer clic en una ruta
-        val intent = Intent(this, RouteDetailActivity::class.java).apply {
-            putExtra(RouteDetailActivity.EXTRA_ROUTE_ID, route.id)
+    val adapter = RouteAdapter(
+        onClick = { route ->
+            // Abrir la pantalla de detalle al hacer clic en una ruta
+            val intent = Intent(this, RouteDetailActivity::class.java).apply {
+                putExtra(RouteDetailActivity.EXTRA_ROUTE_ID, route.id)
+            }
+            startActivity(intent)
+        },
+        onLongClick = { route ->
+            // Mostrar diálogo de confirmación para eliminar
+            showDeleteRouteDialog(route)
+            true // Consumir el evento
         }
-        startActivity(intent)
-    }
+    )
+    
     binding.rvRoutes.layoutManager = LinearLayoutManager(this)
-    binding.rvRoutes.adapter       = adapter
+    binding.rvRoutes.adapter = adapter
 
     viewModel.routes.observe(this) { list ->
-      adapter.updateRoutes(list)
-      binding.layoutEmptyState.isVisible = list.isEmpty()
+        adapter.updateRoutes(list)
+        binding.layoutEmptyState.isVisible = list.isEmpty()
     }
 
     binding.fabAddRoute.setOnClickListener {
-      startActivity(Intent(this, NewRouteActivity::class.java))
+        startActivity(Intent(this, NewRouteActivity::class.java))
     }
   }
 
@@ -67,5 +77,20 @@ class MainActivity : AppCompatActivity() {
       true
     }
     else -> super.onOptionsItemSelected(item)
+  }
+
+  // Añadir este método para mostrar el diálogo de confirmación
+  private fun showDeleteRouteDialog(route: Route) {
+    val alertDialog = AlertDialog.Builder(this)
+        .setTitle("Eliminar ruta")
+        .setMessage("¿Estás seguro de que deseas eliminar la ruta '${route.name}'? Esta acción no se puede deshacer.")
+        .setNegativeButton("Cancelar", null)
+        .setPositiveButton("Eliminar") { _, _ ->
+            viewModel.deleteRoute(route)
+            Toast.makeText(this, "Ruta eliminada", Toast.LENGTH_SHORT).show()
+        }
+        .create()
+    
+    alertDialog.show()
   }
 }
