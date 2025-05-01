@@ -3,6 +3,7 @@ package com.example.stepbystep.ui.saveroute
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -20,6 +21,7 @@ import com.example.stepbystep.databinding.ActivitySaveRouteBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.model.JointType
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.PolylineOptions
@@ -31,6 +33,18 @@ import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Actividad para guardar una ruta finalizada.
+ * 
+ * Permite al usuario:
+ * - Ver una previsualización de la ruta en un mapa
+ * - Introducir un nombre y descripción para la ruta
+ * - Seleccionar una imagen para asociarla con la ruta
+ * - Guardar todos los datos en la base de datos local
+ * 
+ * Recibe los datos de la ruta a través del Intent que la inicia,
+ * ya sea desde NewRouteActivity o ImportRouteActivity.
+ */
 class SaveRouteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySaveRouteBinding
@@ -42,6 +56,11 @@ class SaveRouteActivity : AppCompatActivity() {
     private var googleMap: GoogleMap? = null
     private var selectedImageUri: Uri? = null
 
+    /**
+     * Contrato para solicitar permisos de almacenamiento.
+     * Maneja el resultado de la solicitud y muestra diálogos
+     * explicativos según corresponda.
+     */
     private val storagePermissionRequest = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
@@ -75,7 +94,10 @@ class SaveRouteActivity : AppCompatActivity() {
         }
     }
 
-    // Registra un nuevo ActivityResultLauncher para seleccionar imágenes
+    /**
+     * Contrato para seleccionar imágenes de la galería.
+     * Maneja el resultado de la selección y actualiza la UI.
+     */
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
             selectedImageUri = it
@@ -86,6 +108,10 @@ class SaveRouteActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Inicializa la actividad, configura las vistas y carga los datos
+     * de la ruta desde el intent que la inició.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySaveRouteBinding.inflate(layoutInflater)
@@ -94,16 +120,16 @@ class SaveRouteActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         
-        // Setup toolbar
+        // Configurar la barra de herramientas
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         
-        // Setup map
+        // Configurar el mapa
         mapView = binding.mapPreview
         mapView.onCreate(savedInstanceState)
         
-        // Get route data from intent
+        // Obtener datos de la ruta desde el intent
         intent.extras?.let { bundle ->
             val distance = bundle.getDouble("distance", 0.0)
             val duration = bundle.getLong("duration", 0L)
@@ -112,10 +138,10 @@ class SaveRouteActivity : AppCompatActivity() {
             val points = bundle.getParcelableArrayList<LatLng>("points") ?: emptyList()
             val altitudes = bundle.getDoubleArray("altitudes")
             
-            // Check if this is an imported route
+            // Comprobar si es una ruta importada
             val isImported = bundle.getBoolean("imported", false)
             if (isImported) {
-                // For imported routes, we already have name and description
+                // Para rutas importadas, ya tenemos nombre y descripción
                 val name = bundle.getString("name", "")
                 val description = bundle.getString("description", "")
                 
@@ -134,14 +160,14 @@ class SaveRouteActivity : AppCompatActivity() {
                 elevation, 
                 points, 
                 altitudes,
-                isImported  // Pasar este valor
+                isImported
             )
             
-            // Setup map once we have the data
+            // Configurar el mapa una vez que tenemos los datos
             setupMap(points)
         }
         
-        // Button listeners
+        // Configurar listeners de los botones
         binding.btnSave.setOnClickListener {
             viewModel.saveRoute()
             // Navegar a MainActivity
@@ -162,34 +188,65 @@ class SaveRouteActivity : AppCompatActivity() {
         }
     }
     
+    /**
+     * Configura el mapa con la visualización de la ruta.
+     * Crea una línea que representa el recorrido y ajusta la cámara
+     * para mostrar la ruta completa.
+     * 
+     * @param points Lista de puntos geográficos que componen la ruta
+     */
     private fun setupMap(points: List<LatLng>) {
         mapView.getMapAsync { map ->
             googleMap = map
             
-            // Usar la variable local 'map' en lugar de la propiedad 'googleMap'
-            map.configureMapStyle(this)
+            // Configurar estilo del mapa según modo día/noche
+            googleMap?.configureMapStyle(this)
+            
+            // Deshabilitar interacciones ya que es solo una vista previa
+            googleMap?.uiSettings?.apply {
+                setAllGesturesEnabled(false)
+                isMapToolbarEnabled = false
+            }
             
             if (points.isNotEmpty()) {
-                // Draw route on map
-                map.addPolyline(
+                // Determinar el color de la ruta según el modo del tema
+                val isNightMode = (resources.configuration.uiMode and 
+                                  Configuration.UI_MODE_NIGHT_MASK) == 
+                                  Configuration.UI_MODE_NIGHT_YES
+                
+                // Usar turquesa para modo oscuro, oxford para modo claro
+                val routeColor = if (isNightMode) {
+                    ContextCompat.getColor(this, R.color.turquoise)
+                } else {
+                    ContextCompat.getColor(this, R.color.oxford)
+                }
+                
+                // Añadir la polilínea de la ruta
+                googleMap?.addPolyline(
                     PolylineOptions()
                         .addAll(points)
-                        .width(8f)
-                        .color(getColor(R.color.turquoise))
+                        .width(12f)
+                        .color(routeColor)
+                        .jointType(JointType.ROUND)
                 )
                 
-                // Zoom to fit the entire route
+                // Ajustar zoom para mostrar toda la ruta
                 val boundsBuilder = LatLngBounds.Builder()
                 points.forEach { boundsBuilder.include(it) }
-                
-                // Add padding to the bounds
                 val bounds = boundsBuilder.build()
+                
+                // Añadir padding alrededor de la ruta
                 val padding = resources.getDimensionPixelSize(R.dimen.map_padding)
-                map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding))
+                val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, padding)
+                googleMap?.moveCamera(cameraUpdate)
             }
         }
     }
     
+    /**
+     * Muestra un diálogo de confirmación antes de descartar la ruta.
+     * Previene la pérdida accidental de datos.
+     */
     private fun confirmDiscard() {
         MaterialAlertDialogBuilder(this)
             .setTitle(getString(R.string.discard_route_title))
@@ -204,6 +261,10 @@ class SaveRouteActivity : AppCompatActivity() {
             .show()
     }
     
+    /**
+     * Verifica y solicita el permiso adecuado para acceder a la galería,
+     * según la versión de Android del dispositivo.
+     */
     private fun checkAndRequestStoragePermission() {
         // Determinar qué permiso solicitar basado en la versión de Android
         val permission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -241,10 +302,17 @@ class SaveRouteActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Abre el selector de imágenes del sistema.
+     */
     private fun openImagePicker() {
         pickImage.launch("image/*")
     }
 
+    /**
+     * Guarda la imagen seleccionada en el almacenamiento interno de la aplicación
+     * y actualiza el ViewModel con la ruta del archivo.
+     */
     private fun saveImageToInternalStorage() {
         selectedImageUri?.let { uri ->
             try {
@@ -271,7 +339,7 @@ class SaveRouteActivity : AppCompatActivity() {
                 val imagePath = destinationFile.absolutePath
                 viewModel.setImagePath(imagePath)
                 
-                // Verificar que el path se ha establecido correctamente (nuevo código)
+                // Verificar que el path se ha establecido correctamente
                 Log.d("SaveRoute", "Image path set in ViewModel: ${viewModel.imagePath.value}")
                 
                 // Añadir un log para depuración
@@ -286,6 +354,9 @@ class SaveRouteActivity : AppCompatActivity() {
         }
     }
     
+    /**
+     * Maneja las acciones de los elementos del menú.
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
@@ -296,7 +367,7 @@ class SaveRouteActivity : AppCompatActivity() {
         }
     }
     
-    // Map lifecycle methods
+    // Métodos del ciclo de vida del mapa
     override fun onStart() {
         super.onStart()
         mapView.onStart()
@@ -328,7 +399,7 @@ class SaveRouteActivity : AppCompatActivity() {
     }
     
     override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)  // Pass the Bundle to parent class
+        super.onSaveInstanceState(outState)  // Pasar el Bundle a la clase padre
         mapView.onSaveInstanceState(outState)
     }
 

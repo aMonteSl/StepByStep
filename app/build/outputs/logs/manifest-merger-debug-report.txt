@@ -1,27 +1,27 @@
 -- Merging decision tree log ---
 meta-data#com.google.android.geo.API_KEY
-INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:38:9-40:54
+INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:47:9-49:54
 	android:value
 		INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:40:13-51
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:49:13-51
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:39:13-58
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:48:13-58
 provider#androidx.core.content.FileProvider
-INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:115:9-123:20
+INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:124:9-132:20
 	android:grantUriPermissions
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:119:13-47
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:128:13-47
 	android:authorities
 		INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:117:13-64
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:126:13-64
 	android:exported
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:118:13-37
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:127:13-37
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:116:13-62
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:125:13-62
 manifest
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:2:1-127:12
-INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:2:1-127:12
-INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:2:1-127:12
-INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:2:1-127:12
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:2:1-142:12
+INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:2:1-142:12
+INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:2:1-142:12
+INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:2:1-142:12
 MERGED from [androidx.databinding:databinding-adapters:8.8.2] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/9b34ca9dfa5f9e7908b201393c057d2c/transformed/databinding-adapters-8.8.2/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.databinding:databinding-ktx:8.8.2] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/011cc1336d22660bf2fe43ff1edca413/transformed/databinding-ktx-8.8.2/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.databinding:databinding-runtime:8.8.2] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/baa23299f7a116186e43dc96a2694d3e/transformed/databinding-runtime-8.8.2/AndroidManifest.xml:2:1-7:12
@@ -87,6 +87,7 @@ MERGED from [androidx.print:print:1.0.0] /home/adrian/Escritorio/Android/Practic
 MERGED from [androidx.annotation:annotation-experimental:1.4.1] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/e712d543601194b3682a47c0871b47ce/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.maps.android:android-maps-utils:2.3.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/a845228c26ca6767af96078192a2fb8e/transformed/android-maps-utils-2.3.0/AndroidManifest.xml:2:1-15:12
 	package
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:4:5-37
 		INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml
@@ -97,48 +98,60 @@ MERGED from [com.google.maps.android:android-maps-utils:2.3.0] /home/adrian/Escr
 	xmlns:android
 		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:6:5-7:48
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:7:5-8:48
 	android:required
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:7:22-45
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:8:22-45
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:6:22-76
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:7:22-76
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:10:5-11:49
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:11:5-12:49
 	android:required
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:11:22-46
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:12:22-46
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:10:22-78
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:11:22-78
 uses-permission#android.permission.ACCESS_BACKGROUND_LOCATION
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:14:5-85
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:15:5-85
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:14:22-82
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:15:22-82
 uses-permission#android.permission.FOREGROUND_SERVICE
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:17:5-77
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:18:5-77
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:17:22-74
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:18:22-74
 uses-permission#android.permission.FOREGROUND_SERVICE_LOCATION
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:18:5-86
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:19:5-86
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:18:22-83
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:19:22-83
+uses-permission#android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:22:5-95
+	android:name
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:22:22-92
 uses-feature#android.hardware.sensor.barometer
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:20:5-21:46
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:24:5-25:46
 	android:required
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:21:19-43
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:25:19-43
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:20:19-67
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:24:19-67
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:23:5-24:38
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:27:5-28:38
 	android:maxSdkVersion
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:24:9-35
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:28:9-35
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:23:22-77
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:27:22-77
 uses-permission#android.permission.READ_MEDIA_IMAGES
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:25:5-76
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:29:5-76
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:25:22-73
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:29:22-73
+uses-permission#android.permission.WAKE_LOCK
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:32:5-68
+	android:name
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:32:22-65
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:35:5-77
+	android:name
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:35:22-74
 application
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:28:5-125:19
-INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:28:5-125:19
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:37:5-140:19
+INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:37:5-140:19
 MERGED from [com.google.android.material:material:1.12.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/68084e5fab74ae813011fcc9666805bf/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/68084e5fab74ae813011fcc9666805bf/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/5bcd1830ce9c6eaed893fd81286c9770/transformed/constraintlayout-2.2.1/AndroidManifest.xml:7:5-20
@@ -174,105 +187,115 @@ MERGED from [com.google.maps.android:android-maps-utils:2.3.0] /home/adrian/Escr
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.15.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6ce3084c50cbce6a901767cb76951707/transformed/core-1.15.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:35:9-35
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:44:9-35
 	android:label
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:33:9-41
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:42:9-41
 	android:fullBackupContent
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:31:9-54
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:40:9-54
 	android:roundIcon
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:34:9-54
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:43:9-54
 	tools:targetApi
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:37:9-29
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:46:9-29
 	android:icon
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:32:9-43
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:41:9-43
 	android:allowBackup
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:29:9-35
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:38:9-35
 	android:theme
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:36:9-48
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:45:9-48
 	android:dataExtractionRules
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:30:9-65
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:39:9-65
 activity#com.example.stepbystep.ui.main.MainActivity
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:42:9-49:20
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:51:9-58:20
 	android:exported
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:44:13-36
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:53:13-36
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:43:13-49
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:52:13-49
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:45:13-48:29
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:54:13-57:29
 action#android.intent.action.MAIN
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:46:17-69
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:55:17-69
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:46:25-66
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:55:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:47:17-77
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:56:17-77
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:47:27-74
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:56:27-74
 activity#com.example.stepbystep.ui.newroute.NewRouteActivity
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:51:9-66
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:60:9-66
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:51:19-63
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:60:19-63
 activity#com.example.stepbystep.ui.saveroute.SaveRouteActivity
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:52:9-54:40
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:61:9-63:40
 	android:exported
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:54:13-37
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:63:13-37
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:53:13-59
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:62:13-59
 activity#com.example.stepbystep.ui.routedetail.RouteDetailActivity
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:56:9-58:36
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:65:9-67:36
 	android:exported
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:58:9-33
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:67:9-33
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:57:9-59
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:66:9-59
 activity#com.example.stepbystep.ui.profile.ProfileActivity
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:60:9-62:40
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:69:9-71:40
 	android:exported
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:62:13-37
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:71:13-37
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:61:13-55
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:70:13-55
 activity#com.example.stepbystep.ui.importroute.ImportRouteActivity
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:64:9-113:20
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:73:9-122:20
 	android:exported
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:66:13-36
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:75:13-36
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:65:13-63
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:74:13-63
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:*+data:mimeType:*/*+data:pathPattern:.*\\.gpx+data:scheme:file
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:69:13-78:29
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:78:13-87:29
 action#android.intent.action.VIEW
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:70:17-69
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:79:17-69
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:70:25-66
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:79:25-66
 category#android.intent.category.DEFAULT
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:71:17-76
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:80:17-76
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:71:27-73
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:80:27-73
 category#android.intent.category.BROWSABLE
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:72:17-78
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:81:17-78
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:72:27-75
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:81:27-75
 data
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:73:17-77:46
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:82:17-86:46
 	android:host
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:75:21-37
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:84:21-37
 	android:scheme
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:74:21-42
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:83:21-42
 	android:pathPattern
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:76:21-51
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:85:21-51
 	android:mimeType
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:77:21-43
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:86:21-43
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:mimeType:application/gpx+xml+data:scheme:content
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:81:13-86:29
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:90:13-95:29
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:mimeType:application/xml+data:scheme:content
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:89:13-94:29
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:98:13-103:29
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:mimeType:text/xml+data:scheme:content
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:96:13-101:29
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:105:13-110:29
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:mimeType:*/*+data:pathPattern:.*\\.gpx+data:scheme:content
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:104:13-112:29
-meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:120:13-122:54
-	android:resource
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:122:17-51
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:113:13-121:29
+service#com.example.stepbystep.service.LocationTrackingService
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:134:9-138:56
+	android:enabled
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:136:13-35
+	android:exported
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:137:13-37
+	android:foregroundServiceType
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:138:13-53
 	android:name
-		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:121:17-67
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:135:13-60
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:129:13-131:54
+	android:resource
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:131:17-51
+	android:name
+		ADDED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:130:17-67
 uses-sdk
 INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml

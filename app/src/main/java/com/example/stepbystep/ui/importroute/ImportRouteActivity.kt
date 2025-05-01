@@ -16,16 +16,25 @@ import com.example.stepbystep.util.GpxParser
 import com.google.android.gms.maps.model.LatLng
 import java.util.Locale
 
+/**
+ * Actividad que permite al usuario importar rutas desde archivos GPX.
+ * Maneja tanto la selección de archivos desde la aplicación como la apertura
+ * de archivos GPX desde otras aplicaciones (intent filters).
+ */
 class ImportRouteActivity : AppCompatActivity() {
     
     private lateinit var binding: ActivityImportRouteBinding
-    private var selectedGpxUri: Uri? = null
+    private var selectedGpxUri: Uri? = null // URI del archivo GPX seleccionado
     
+    /**
+     * Registro para la selección de archivos GPX desde el sistema.
+     * Cuando se selecciona un archivo, actualiza la UI y habilita el botón de importación.
+     */
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
             selectedGpxUri = it
             
-            // Show the selected file name
+            // Mostrar el nombre del archivo seleccionado
             val filename = getFileNameFromUri(it)
             binding.tvSelectedFile.text = filename
             binding.btnImport.isEnabled = true
@@ -37,7 +46,7 @@ class ImportRouteActivity : AppCompatActivity() {
         binding = ActivityImportRouteBinding.inflate(layoutInflater)
         setContentView(binding.root)
         
-        // Setup toolbar
+        // Configurar toolbar
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -45,7 +54,7 @@ class ImportRouteActivity : AppCompatActivity() {
         // Verificar si la actividad se abrió desde un intent externo
         handleIncomingIntent(intent)
         
-        // Setup buttons
+        // Configurar botones
         binding.btnSelectFile.setOnClickListener {
             openFilePicker()
         }
@@ -54,15 +63,23 @@ class ImportRouteActivity : AppCompatActivity() {
             importSelectedFile()
         }
         
-        // Initially disable the import button until a file is selected
+        // Inicialmente deshabilitar el botón de importación hasta que se seleccione un archivo
         binding.btnImport.isEnabled = false
     }
     
+    /**
+     * Maneja nuevos intents cuando la actividad ya está creada.
+     * Necesario para manejar archivos compartidos cuando la app ya está en ejecución.
+     */
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         handleIncomingIntent(intent)
     }
     
+    /**
+     * Procesa el intent que inició la actividad, verificando si contiene
+     * un archivo GPX compartido desde otra aplicación.
+     */
     private fun handleIncomingIntent(intent: Intent) {
         // Verificar si el intent tiene la acción VIEW
         if (intent.action == Intent.ACTION_VIEW) {
@@ -101,17 +118,21 @@ class ImportRouteActivity : AppCompatActivity() {
         }
     }
     
+    /**
+     * Procesa un archivo GPX y navega directamente a la pantalla de guardar ruta.
+     * Utilizado principalmente cuando se recibe un archivo desde otra aplicación.
+     */
     private fun processGpxAndNavigate(uri: Uri) {
-        // Parse GPX file
+        // Analizar archivo GPX
         val gpxData = GpxParser.parse(this, uri) ?: run {
             Toast.makeText(this, R.string.gpx_parse_error, Toast.LENGTH_SHORT).show()
             return
         }
         
-        // Calculate route statistics
+        // Calcular estadísticas de la ruta
         val (distance, elevationGain, averageElevation) = GpxParser.calculateRouteStats(gpxData.points)
         
-        // Convert to format SaveRouteActivity expects
+        // Convertir al formato que espera SaveRouteActivity
         val points = gpxData.points.map { LatLng(it.latitude, it.longitude) }
         val altitudes = gpxData.points.map { it.elevation }.toDoubleArray()
         val duration = if (gpxData.points.size >= 2) {
@@ -120,7 +141,7 @@ class ImportRouteActivity : AppCompatActivity() {
             0L
         }
         
-        // Start SaveRouteActivity with imported data
+        // Iniciar SaveRouteActivity con los datos importados
         val intent = Intent(this, SaveRouteActivity::class.java).apply {
             putExtra("distance", distance)
             putExtra("duration", duration)
@@ -137,23 +158,30 @@ class ImportRouteActivity : AppCompatActivity() {
         finish()
     }
     
+    /**
+     * Abre el selector de archivos del sistema para elegir un archivo GPX.
+     */
     private fun openFilePicker() {
         getContent.launch("application/gpx+xml")
     }
     
+    /**
+     * Procesa el archivo GPX seleccionado y navega a la pantalla de guardar ruta.
+     * Realiza validaciones previas para asegurar que el archivo es válido.
+     */
     private fun importSelectedFile() {
         val uri = selectedGpxUri ?: run {
             Toast.makeText(this, R.string.no_gpx_selected, Toast.LENGTH_SHORT).show()
             return
         }
         
-        // Validate GPX file
+        // Validar archivo GPX
         if (!isValidGpxFile(uri)) {
             Toast.makeText(this, R.string.invalid_gpx_file, Toast.LENGTH_SHORT).show()
             return
         }
         
-        // Parse GPX file
+        // Analizar archivo GPX
         val gpxData = GpxParser.parse(this, uri)
         
         if (gpxData == null) {
@@ -161,10 +189,10 @@ class ImportRouteActivity : AppCompatActivity() {
             return
         }
         
-        // Calculate route statistics
+        // Calcular estadísticas de la ruta
         val (distance, elevationGain, averageElevation) = GpxParser.calculateRouteStats(gpxData.points)
         
-        // Convert to format SaveRouteActivity expects
+        // Convertir al formato que espera SaveRouteActivity
         val points = gpxData.points.map { LatLng(it.latitude, it.longitude) }
         val altitudes = gpxData.points.map { it.elevation }.toDoubleArray()
         val duration = if (gpxData.points.size >= 2) {
@@ -173,7 +201,7 @@ class ImportRouteActivity : AppCompatActivity() {
             0L
         }
         
-        // Start SaveRouteActivity with imported data
+        // Iniciar SaveRouteActivity con los datos importados
         val intent = Intent(this, SaveRouteActivity::class.java).apply {
             putExtra("distance", distance)
             putExtra("duration", duration)
@@ -190,6 +218,10 @@ class ImportRouteActivity : AppCompatActivity() {
         finish()
     }
     
+    /**
+     * Obtiene el nombre de archivo a partir de una URI.
+     * Intenta extraer el nombre real del archivo o usa un nombre predeterminado si no es posible.
+     */
     private fun getFileNameFromUri(uri: Uri): String {
         val cursor = contentResolver.query(uri, null, null, null, null)
         
@@ -203,6 +235,10 @@ class ImportRouteActivity : AppCompatActivity() {
         } ?: uri.lastPathSegment ?: "archivo.gpx"
     }
     
+    /**
+     * Valida si un archivo es un GPX válido.
+     * Comprueba el tipo MIME, el contenido y la extensión del archivo.
+     */
     private fun isValidGpxFile(uri: Uri): Boolean {
         try {
             // Primero intentar verificar por tipo MIME
@@ -237,6 +273,9 @@ class ImportRouteActivity : AppCompatActivity() {
         return false
     }
     
+    /**
+     * Maneja los eventos de los elementos del menú, principalmente el botón de retroceso.
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {

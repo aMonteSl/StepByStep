@@ -12,16 +12,30 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * ViewModel para la pantalla de guardado de ruta.
+ * 
+ * Se encarga de:
+ * - Almacenar temporalmente los datos de la ruta a guardar
+ * - Validar el formulario de entrada
+ * - Realizar la operación de guardado en la base de datos
+ * - Gestionar la ruta de la imagen asociada
+ * 
+ * @param context Contexto necesario para acceder a la base de datos local
+ */
 class SaveRouteViewModel(context: Context) : ViewModel() {
     
     private val repository: RouteRepository
     
+    /**
+     * Inicialización del repositorio con acceso a la base de datos.
+     */
     init {
         val database = RouteRoomDatabase.getInstance(context)
         repository = RouteRepository(database.routeDao())
     }
 
-    // Route data to save
+    // Datos de la ruta a guardar
     private val _distance = MutableLiveData<Double>()
     val distance: LiveData<Double> = _distance
 
@@ -42,21 +56,34 @@ class SaveRouteViewModel(context: Context) : ViewModel() {
 
     private val _altitudes = MutableLiveData<DoubleArray>()
 
-    // Form fields
+    // Campos del formulario
     val routeName = MutableLiveData<String>()
     val routeDescription = MutableLiveData<String>()
     
-    // Route points for the map
+    // Puntos de la ruta para el mapa
     private val _routePoints = MutableLiveData<List<LatLng>>()
     val routePoints: LiveData<List<LatLng>> = _routePoints
 
-    // Form validation
+    /**
+     * LiveData que indica si el formulario es válido para guardar.
+     * Se actualiza automáticamente cuando cambian los campos del formulario.
+     */
     val isFormValid = MediatorLiveData<Boolean>().apply {
         addSource(routeName) { validateForm() }
         addSource(routeDescription) { validateForm() }
     }
 
-    // Set the route data from NewRouteActivity
+    /**
+     * Establece los datos de la ruta recibidos de la actividad anterior.
+     * 
+     * @param distance Distancia total de la ruta en km
+     * @param duration Duración total en milisegundos
+     * @param elevationGain Ganancia de elevación total en metros
+     * @param elevation Elevación máxima alcanzada en metros
+     * @param points Lista de coordenadas que forman la ruta
+     * @param altitudes Array con las altitudes de cada punto (opcional)
+     * @param isImported Flag que indica si es una ruta importada de GPX
+     */
     fun setRouteData(
         distance: Double,
         duration: Long,
@@ -64,7 +91,7 @@ class SaveRouteViewModel(context: Context) : ViewModel() {
         elevation: Double,
         points: List<LatLng>,
         altitudes: DoubleArray? = null,
-        isImported: Boolean = false  // Añadir parámetro para rutas importadas
+        isImported: Boolean = false
     ) {
         _distance.value = distance
         _duration.value = duration
@@ -73,7 +100,7 @@ class SaveRouteViewModel(context: Context) : ViewModel() {
         _routePoints.value = points
         _altitudes.value = altitudes
         
-        // Set current date as default
+        // Establecer la fecha actual como predeterminada
         val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         _date.value = formatter.format(Date())
         
@@ -85,27 +112,41 @@ class SaveRouteViewModel(context: Context) : ViewModel() {
         }
     }
 
+    /**
+     * Establece la ruta de la imagen asociada a la ruta.
+     * 
+     * @param path Ruta absoluta al archivo de imagen en el almacenamiento interno
+     */
     fun setImagePath(path: String?) {
         _imagePath.value = path
     }
 
+    /**
+     * Valida que el formulario tenga todos los campos requeridos.
+     * Actualiza el LiveData isFormValid según el resultado.
+     */
     private fun validateForm() {
         val name = routeName.value
         val description = routeDescription.value
         isFormValid.value = !name.isNullOrBlank() && !description.isNullOrBlank()
     }
 
+    /**
+     * Guarda la ruta en la base de datos.
+     * Convierte los datos temporales a un objeto Route y lo guarda
+     * usando el repositorio.
+     */
     fun saveRoute() {
         if (isFormValid.value != true) return
         
         val points = _routePoints.value ?: emptyList()
         val altitudes = _altitudes.value
         
-        // Verificar el valor del path de la imagen antes de crear la ruta (nuevo código)
+        // Verificar el valor del path de la imagen antes de crear la ruta
         Log.d("SaveRoute", "imagePath before creating Route: ${imagePath.value}")
         
         val routePoints = if (altitudes != null && altitudes.size == points.size) {
-            // Use individual altitude for each point
+            // Usar la altitud individual para cada punto
             points.mapIndexed { index, latLng -> 
                 Point(
                     latitude = latLng.latitude,
@@ -115,7 +156,7 @@ class SaveRouteViewModel(context: Context) : ViewModel() {
                 )
             }
         } else {
-            // Fallback in case altitude data is missing
+            // Alternativa si faltan datos de altitud
             points.map { 
                 Point(
                     latitude = it.latitude,
@@ -127,7 +168,7 @@ class SaveRouteViewModel(context: Context) : ViewModel() {
         }
         
         val route = Route(
-            id = 0, // Will be generated by Room
+            id = 0, // Será generado por Room
             name = routeName.value ?: "",
             description = routeDescription.value ?: "",
             date = date.value ?: "",
@@ -135,11 +176,11 @@ class SaveRouteViewModel(context: Context) : ViewModel() {
             duration = duration.value ?: 0L,
             elevation = elevation.value ?: 0.0,
             elevationGain = elevationGain.value ?: 0.0,
-            imagePath = imagePath.value,  // Asegurarnos de que esto no sea null
+            imagePath = imagePath.value,  // Puede ser null
             points = routePoints
         )
         
-        // Log para verificar que la ruta tiene el path de la imagen (nuevo código)
+        // Registro para verificar que la ruta tiene el path de la imagen
         Log.d("SaveRoute", "Route created with imagePath: ${route.imagePath}")
         
         viewModelScope.launch {

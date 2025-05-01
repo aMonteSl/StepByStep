@@ -20,12 +20,12 @@
         "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/layout/activity_save_route.xml"
     },
     {
-        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_play.xml.flat",
-        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_play.xml"
-    },
-    {
         "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_my_location.xml.flat",
         "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_my_location.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_play.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_play.xml"
     },
     {
         "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_empty_routes.xml.flat",
@@ -44,12 +44,12 @@
         "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_time.xml"
     },
     {
-        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_profile.xml.flat",
-        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_profile.xml"
-    },
-    {
         "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_my_location_off.xml.flat",
         "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_my_location_off.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_profile.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_profile.xml"
     },
     {
         "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_show_all.xml.flat",
@@ -72,12 +72,12 @@
         "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_edit.xml.flat",
-        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_edit.xml"
-    },
-    {
         "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
         "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_edit.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_edit.xml"
     },
     {
         "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_instruction_background.xml.flat",
@@ -206,6 +206,10 @@
     {
         "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_save.xml.flat",
         "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_save.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_location_active.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_location_active.xml"
     },
     {
         "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_controls.xml.flat",

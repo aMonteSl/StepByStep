@@ -16,11 +16,24 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 
+/**
+ * ViewModel para la pantalla de perfil del usuario.
+ * 
+ * Gestiona:
+ * 1. Información personal del atleta (nombre, descripción)
+ * 2. Estado de modo edición/visualización
+ * 3. Cálculo y formateo de estadísticas globales de todas las actividades
+ * 
+ * @param context Contexto necesario para acceder a las preferencias y base de datos
+ */
 class ProfileViewModel(context: Context) : ViewModel() {
     
     private val repository: RouteRepository
     private val userPrefs: UserPreferences = UserPreferences(context)
     
+    /**
+     * Inicialización del repositorio y observadores de datos
+     */
     init {
         val database = RouteRoomDatabase.getInstance(context)
         repository = RouteRepository(database.routeDao())
@@ -61,6 +74,10 @@ class ProfileViewModel(context: Context) : ViewModel() {
     private val _totalElevationGain = MutableLiveData<String>()
     val totalElevationGain: LiveData<String> = _totalElevationGain
     
+    /**
+     * Configuración de observadores para actualizar estadísticas cuando
+     * cambian las rutas almacenadas
+     */
     init {
         // Observar las rutas y actualizar estadísticas cuando cambien
         viewModelScope.launch {
@@ -70,10 +87,20 @@ class ProfileViewModel(context: Context) : ViewModel() {
         }
     }
     
+    /**
+     * Alterna entre modo edición y modo visualización
+     */
     fun toggleEditMode() {
         _isEditMode.value = !(_isEditMode.value ?: false)
     }
     
+    /**
+     * Actualiza el perfil del usuario con nuevos datos y guarda
+     * los cambios en las preferencias
+     * 
+     * @param name Nuevo nombre del atleta
+     * @param description Nueva descripción o biografía
+     */
     fun updateProfile(name: String, description: String) {
         userPrefs.athleteName = name
         userPrefs.athleteDescription = description
@@ -82,6 +109,12 @@ class ProfileViewModel(context: Context) : ViewModel() {
         _isEditMode.value = false
     }
     
+    /**
+     * Calcula las estadísticas globales a partir de todas las rutas.
+     * Actualiza los LiveData para que la UI se refresque automáticamente.
+     * 
+     * @param routes Lista de rutas sobre las que calcular estadísticas
+     */
     private fun calculateStatistics(routes: List<Route>) {
         if (routes.isEmpty()) {
             setEmptyStatistics()
@@ -131,6 +164,9 @@ class ProfileViewModel(context: Context) : ViewModel() {
         _totalElevationGain.value = StringFormatUtils.formatElevationGain(totalElevation)
     }
     
+    /**
+     * Establece valores por defecto para las estadísticas cuando no hay rutas
+     */
     private fun setEmptyStatistics() {
         _totalActivities.value = 0
         _firstActivityDate.value = "No hay actividades"
@@ -142,6 +178,12 @@ class ProfileViewModel(context: Context) : ViewModel() {
         _totalElevationGain.value = "+0 m"
     }
     
+    /**
+     * Formatea una duración larga en formato horas, minutos y segundos
+     * 
+     * @param durationMs Duración en milisegundos
+     * @return Cadena formateada (ej: "2h 30m 45s")
+     */
     private fun formatLongDuration(durationMs: Long): String {
         val hours = TimeUnit.MILLISECONDS.toHours(durationMs)
         val minutes = TimeUnit.MILLISECONDS.toMinutes(durationMs) % 60

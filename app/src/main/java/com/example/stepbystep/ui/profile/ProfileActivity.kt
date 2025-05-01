@@ -7,6 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.stepbystep.R
 import com.example.stepbystep.databinding.ActivityProfileBinding
 
+/**
+ * Actividad que muestra y permite editar el perfil del usuario.
+ * 
+ * Presenta información personal del atleta (nombre, descripción) y estadísticas
+ * globales de todas sus actividades (distancia total, tiempo, etc.).
+ * Permite alternar entre modo visualización y modo edición.
+ */
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProfileBinding
@@ -14,6 +21,9 @@ class ProfileActivity : AppCompatActivity() {
         ProfileViewModelFactory(this)
     }
 
+    /**
+     * Inicializa la actividad, configura el binding y los observadores.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
@@ -57,6 +67,10 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Gestiona las acciones de los elementos del menú, principalmente
+     * el botón de retroceso en la barra superior.
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {

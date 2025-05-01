@@ -10,389 +10,415 @@
 10
 11    <!-- Mark fine location as required -->
 12    <uses-permission
-12-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:6:5-7:48
+12-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:7:5-8:48
 13        android:name="android.permission.ACCESS_FINE_LOCATION"
-13-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:6:22-76
+13-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:7:22-76
 14        android:required="true" />
-14-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:7:22-45
+14-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:8:22-45
 15
 16    <!-- Mark coarse location as optional (requested implicitly on some Android versions) -->
 17    <uses-permission
-17-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:10:5-11:49
+17-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:11:5-12:49
 18        android:name="android.permission.ACCESS_COARSE_LOCATION"
-18-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:10:22-78
+18-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:11:22-78
 19        android:required="false" />
-19-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:11:22-46
+19-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:12:22-46
 20
 21    <!-- REQUIRED for background tracking -->
 22    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-22-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:14:5-85
-22-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:14:22-82
+22-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:15:5-85
+22-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:15:22-82
 23
 24    <!-- Add foreground service permission -->
 25    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-25-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:17:5-77
-25-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:17:22-74
+25-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:18:5-77
+25-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:18:22-74
 26    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
-26-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:18:5-86
-26-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:18:22-83
+26-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:19:5-86
+26-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:19:22-83
 27
-28    <uses-feature
-28-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:20:5-21:46
-29        android:name="android.hardware.sensor.barometer"
-29-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:20:19-67
-30        android:required="false" />
-30-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:21:19-43
-31
-32    <uses-permission
-32-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:23:5-24:38
-33        android:name="android.permission.READ_EXTERNAL_STORAGE"
-33-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:23:22-77
-34        android:maxSdkVersion="32" />
-34-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:24:9-35
-35    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-35-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:25:5-76
-35-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:25:22-73
-36
-37    <!-- Include required permissions for Google Maps API to run. -->
-38    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-38-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:20:5-78
-38-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:20:22-76
-39    <uses-permission android:name="android.permission.INTERNET" />
-39-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:21:5-66
-39-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:21:22-64
-40
-41    <uses-feature
-41-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:22:5-24:33
-42        android:glEsVersion="0x00020000"
-42-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:23:8-40
-43        android:required="true" />
-43-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:24:8-31
-44
-45    <queries>
-45-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:27:5-30:15
-46
-47        <!-- Needs to be explicitly declared on Android R+ -->
-48        <package android:name="com.google.android.apps.maps" />
-48-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:29:7-61
-48-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:29:16-59
-49    </queries>
-50
-51    <permission
-51-->[androidx.core:core:1.15.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6ce3084c50cbce6a901767cb76951707/transformed/core-1.15.0/AndroidManifest.xml:22:5-24:47
-52        android:name="com.example.stepbystep.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-52-->[androidx.core:core:1.15.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6ce3084c50cbce6a901767cb76951707/transformed/core-1.15.0/AndroidManifest.xml:23:9-81
-53        android:protectionLevel="signature" />
-53-->[androidx.core:core:1.15.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6ce3084c50cbce6a901767cb76951707/transformed/core-1.15.0/AndroidManifest.xml:24:9-44
-54
-55    <uses-permission android:name="com.example.stepbystep.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-55-->[androidx.core:core:1.15.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6ce3084c50cbce6a901767cb76951707/transformed/core-1.15.0/AndroidManifest.xml:26:5-97
-55-->[androidx.core:core:1.15.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6ce3084c50cbce6a901767cb76951707/transformed/core-1.15.0/AndroidManifest.xml:26:22-94
-56
-57    <application
-57-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:28:5-125:19
-58        android:allowBackup="true"
-58-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:29:9-35
-59        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-59-->[androidx.core:core:1.15.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6ce3084c50cbce6a901767cb76951707/transformed/core-1.15.0/AndroidManifest.xml:28:18-86
-60        android:dataExtractionRules="@xml/data_extraction_rules"
-60-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:30:9-65
-61        android:debuggable="true"
-62        android:extractNativeLibs="false"
-63        android:fullBackupContent="@xml/backup_rules"
-63-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:31:9-54
-64        android:icon="@mipmap/ic_launcher"
-64-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:32:9-43
-65        android:label="@string/app_name"
-65-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:33:9-41
-66        android:roundIcon="@mipmap/ic_launcher_round"
-66-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:34:9-54
-67        android:supportsRtl="true"
-67-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:35:9-35
-68        android:testOnly="true"
-69        android:theme="@style/Theme.StepByStep" >
-69-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:36:9-48
-70        <meta-data
-71            android:name="com.google.android.geo.API_KEY"
-71-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:39:13-58
-72            android:value="AIzaSyC89cI3IlWBK307V_qQ5CIsAr2q2Fm4e_o" />
-72-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:40:13-51
-73
-74        <activity
-74-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:42:9-49:20
-75            android:name="com.example.stepbystep.ui.main.MainActivity"
-75-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:43:13-49
-76            android:exported="true" >
-76-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:44:13-36
-77            <intent-filter>
-77-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:45:13-48:29
-78                <action android:name="android.intent.action.MAIN" />
-78-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:46:17-69
-78-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:46:25-66
-79
-80                <category android:name="android.intent.category.LAUNCHER" />
-80-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:47:17-77
-80-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:47:27-74
-81            </intent-filter>
-82        </activity>
-83        <activity android:name="com.example.stepbystep.ui.newroute.NewRouteActivity" />
-83-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:51:9-66
-83-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:51:19-63
-84        <activity
-84-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:52:9-54:40
-85            android:name="com.example.stepbystep.ui.saveroute.SaveRouteActivity"
-85-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:53:13-59
-86            android:exported="false" />
-86-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:54:13-37
-87        <activity
-87-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:56:9-58:36
-88            android:name="com.example.stepbystep.ui.routedetail.RouteDetailActivity"
-88-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:57:9-59
-89            android:exported="false" />
-89-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:58:9-33
-90        <activity
-90-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:60:9-62:40
-91            android:name="com.example.stepbystep.ui.profile.ProfileActivity"
-91-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:61:13-55
-92            android:exported="false" />
-92-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:62:13-37
+28    <!-- Opcional: Permiso para evitar que la app entre en modo doze -->
+29    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+29-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:22:5-95
+29-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:22:22-92
+30
+31    <uses-feature
+31-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:24:5-25:46
+32        android:name="android.hardware.sensor.barometer"
+32-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:24:19-67
+33        android:required="false" />
+33-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:25:19-43
+34
+35    <uses-permission
+35-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:27:5-28:38
+36        android:name="android.permission.READ_EXTERNAL_STORAGE"
+36-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:27:22-77
+37        android:maxSdkVersion="32" />
+37-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:28:9-35
+38    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+38-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:29:5-76
+38-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:29:22-73
+39
+40    <!-- Añadir este permiso -->
+41    <uses-permission android:name="android.permission.WAKE_LOCK" />
+41-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:32:5-68
+41-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:32:22-65
+42
+43    <!-- Asegúrate de tener estos permisos -->
+44    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+44-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:35:5-77
+44-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:35:22-74
+45
+46    <!-- Include required permissions for Google Maps API to run. -->
+47    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+47-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:20:5-78
+47-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:20:22-76
+48    <uses-permission android:name="android.permission.INTERNET" />
+48-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:21:5-66
+48-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:21:22-64
+49
+50    <uses-feature
+50-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:22:5-24:33
+51        android:glEsVersion="0x00020000"
+51-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:23:8-40
+52        android:required="true" />
+52-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:24:8-31
+53
+54    <queries>
+54-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:27:5-30:15
+55
+56        <!-- Needs to be explicitly declared on Android R+ -->
+57        <package android:name="com.google.android.apps.maps" />
+57-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:29:7-61
+57-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:29:16-59
+58    </queries>
+59
+60    <permission
+60-->[androidx.core:core:1.15.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6ce3084c50cbce6a901767cb76951707/transformed/core-1.15.0/AndroidManifest.xml:22:5-24:47
+61        android:name="com.example.stepbystep.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+61-->[androidx.core:core:1.15.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6ce3084c50cbce6a901767cb76951707/transformed/core-1.15.0/AndroidManifest.xml:23:9-81
+62        android:protectionLevel="signature" />
+62-->[androidx.core:core:1.15.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6ce3084c50cbce6a901767cb76951707/transformed/core-1.15.0/AndroidManifest.xml:24:9-44
+63
+64    <uses-permission android:name="com.example.stepbystep.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+64-->[androidx.core:core:1.15.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6ce3084c50cbce6a901767cb76951707/transformed/core-1.15.0/AndroidManifest.xml:26:5-97
+64-->[androidx.core:core:1.15.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6ce3084c50cbce6a901767cb76951707/transformed/core-1.15.0/AndroidManifest.xml:26:22-94
+65
+66    <application
+66-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:37:5-140:19
+67        android:allowBackup="true"
+67-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:38:9-35
+68        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+68-->[androidx.core:core:1.15.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6ce3084c50cbce6a901767cb76951707/transformed/core-1.15.0/AndroidManifest.xml:28:18-86
+69        android:dataExtractionRules="@xml/data_extraction_rules"
+69-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:39:9-65
+70        android:debuggable="true"
+71        android:extractNativeLibs="false"
+72        android:fullBackupContent="@xml/backup_rules"
+72-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:40:9-54
+73        android:icon="@mipmap/ic_launcher"
+73-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:41:9-43
+74        android:label="@string/app_name"
+74-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:42:9-41
+75        android:roundIcon="@mipmap/ic_launcher_round"
+75-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:43:9-54
+76        android:supportsRtl="true"
+76-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:44:9-35
+77        android:testOnly="true"
+78        android:theme="@style/Theme.StepByStep" >
+78-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:45:9-48
+79        <meta-data
+80            android:name="com.google.android.geo.API_KEY"
+80-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:48:13-58
+81            android:value="AIzaSyC89cI3IlWBK307V_qQ5CIsAr2q2Fm4e_o" />
+81-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:49:13-51
+82
+83        <activity
+83-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:51:9-58:20
+84            android:name="com.example.stepbystep.ui.main.MainActivity"
+84-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:52:13-49
+85            android:exported="true" >
+85-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:53:13-36
+86            <intent-filter>
+86-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:54:13-57:29
+87                <action android:name="android.intent.action.MAIN" />
+87-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:55:17-69
+87-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:55:25-66
+88
+89                <category android:name="android.intent.category.LAUNCHER" />
+89-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:56:17-77
+89-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:56:27-74
+90            </intent-filter>
+91        </activity>
+92        <activity android:name="com.example.stepbystep.ui.newroute.NewRouteActivity" />
+92-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:60:9-66
+92-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:60:19-63
 93        <activity
-93-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:64:9-113:20
-94            android:name="com.example.stepbystep.ui.importroute.ImportRouteActivity"
-94-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:65:13-63
-95            android:exported="true" >
-95-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:66:13-36
-96
-97            <!-- Intent filter para archivos GPX con scheme=file -->
-98            <intent-filter>
-98-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:69:13-78:29
-99                <action android:name="android.intent.action.VIEW" />
-99-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:70:17-69
-99-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:70:25-66
-100
-101                <category android:name="android.intent.category.DEFAULT" />
-101-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:71:17-76
-101-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:71:27-73
-102                <category android:name="android.intent.category.BROWSABLE" />
-102-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:72:17-78
-102-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:72:27-75
-103
-104                <data
-104-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:73:17-77:46
-105                    android:host="*"
-105-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:75:21-37
-106                    android:mimeType="*/*"
-106-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:77:21-43
-107                    android:pathPattern=".*\\.gpx"
-107-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:76:21-51
-108                    android:scheme="file" />
-108-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:74:21-42
-109            </intent-filter>
-110
-111            <!-- Intent filter para archivos GPX con scheme=content y mimeType específico -->
-112            <intent-filter>
-112-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:81:13-86:29
-113                <action android:name="android.intent.action.VIEW" />
-113-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:70:17-69
-113-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:70:25-66
-114
-115                <category android:name="android.intent.category.DEFAULT" />
-115-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:71:17-76
-115-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:71:27-73
-116                <category android:name="android.intent.category.BROWSABLE" />
-116-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:72:17-78
-116-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:72:27-75
-117
-118                <data
-118-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:73:17-77:46
-119                    android:mimeType="application/gpx+xml"
-119-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:77:21-43
-120                    android:scheme="content" />
-120-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:74:21-42
-121            </intent-filter>
-122
-123            <!-- Intent filter para archivos XML que podrían ser GPX -->
-124            <intent-filter>
-124-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:89:13-94:29
-125                <action android:name="android.intent.action.VIEW" />
-125-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:70:17-69
-125-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:70:25-66
+93-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:61:9-63:40
+94            android:name="com.example.stepbystep.ui.saveroute.SaveRouteActivity"
+94-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:62:13-59
+95            android:exported="false" />
+95-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:63:13-37
+96        <activity
+96-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:65:9-67:36
+97            android:name="com.example.stepbystep.ui.routedetail.RouteDetailActivity"
+97-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:66:9-59
+98            android:exported="false" />
+98-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:67:9-33
+99        <activity
+99-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:69:9-71:40
+100            android:name="com.example.stepbystep.ui.profile.ProfileActivity"
+100-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:70:13-55
+101            android:exported="false" />
+101-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:71:13-37
+102        <activity
+102-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:73:9-122:20
+103            android:name="com.example.stepbystep.ui.importroute.ImportRouteActivity"
+103-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:74:13-63
+104            android:exported="true" >
+104-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:75:13-36
+105
+106            <!-- Intent filter para archivos GPX con scheme=file -->
+107            <intent-filter>
+107-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:78:13-87:29
+108                <action android:name="android.intent.action.VIEW" />
+108-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:79:17-69
+108-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:79:25-66
+109
+110                <category android:name="android.intent.category.DEFAULT" />
+110-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:80:17-76
+110-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:80:27-73
+111                <category android:name="android.intent.category.BROWSABLE" />
+111-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:81:17-78
+111-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:81:27-75
+112
+113                <data
+113-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:82:17-86:46
+114                    android:host="*"
+114-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:84:21-37
+115                    android:mimeType="*/*"
+115-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:86:21-43
+116                    android:pathPattern=".*\\.gpx"
+116-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:85:21-51
+117                    android:scheme="file" />
+117-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:83:21-42
+118            </intent-filter>
+119
+120            <!-- Intent filter para archivos GPX con scheme=content y mimeType específico -->
+121            <intent-filter>
+121-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:90:13-95:29
+122                <action android:name="android.intent.action.VIEW" />
+122-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:79:17-69
+122-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:79:25-66
+123
+124                <category android:name="android.intent.category.DEFAULT" />
+124-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:80:17-76
+124-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:80:27-73
+125                <category android:name="android.intent.category.BROWSABLE" />
+125-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:81:17-78
+125-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:81:27-75
 126
-127                <category android:name="android.intent.category.DEFAULT" />
-127-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:71:17-76
-127-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:71:27-73
-128                <category android:name="android.intent.category.BROWSABLE" />
-128-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:72:17-78
-128-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:72:27-75
-129
-130                <data
-130-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:73:17-77:46
-131                    android:mimeType="application/xml"
-131-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:77:21-43
-132                    android:scheme="content" />
-132-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:74:21-42
-133            </intent-filter>
-134            <intent-filter>
-134-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:96:13-101:29
-135                <action android:name="android.intent.action.VIEW" />
-135-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:70:17-69
-135-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:70:25-66
-136
-137                <category android:name="android.intent.category.DEFAULT" />
-137-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:71:17-76
-137-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:71:27-73
-138                <category android:name="android.intent.category.BROWSABLE" />
-138-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:72:17-78
-138-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:72:27-75
-139
-140                <data
-140-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:73:17-77:46
-141                    android:mimeType="text/xml"
-141-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:77:21-43
-142                    android:scheme="content" />
-142-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:74:21-42
-143            </intent-filter>
-144
-145            <!-- Para archivos con extensión .gpx pero sin mimeType conocido -->
-146            <intent-filter>
-146-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:104:13-112:29
-147                <action android:name="android.intent.action.VIEW" />
-147-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:70:17-69
-147-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:70:25-66
+127                <data
+127-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:82:17-86:46
+128                    android:mimeType="application/gpx+xml"
+128-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:86:21-43
+129                    android:scheme="content" />
+129-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:83:21-42
+130            </intent-filter>
+131
+132            <!-- Intent filter para archivos XML que podrían ser GPX -->
+133            <intent-filter>
+133-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:98:13-103:29
+134                <action android:name="android.intent.action.VIEW" />
+134-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:79:17-69
+134-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:79:25-66
+135
+136                <category android:name="android.intent.category.DEFAULT" />
+136-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:80:17-76
+136-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:80:27-73
+137                <category android:name="android.intent.category.BROWSABLE" />
+137-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:81:17-78
+137-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:81:27-75
+138
+139                <data
+139-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:82:17-86:46
+140                    android:mimeType="application/xml"
+140-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:86:21-43
+141                    android:scheme="content" />
+141-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:83:21-42
+142            </intent-filter>
+143            <intent-filter>
+143-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:105:13-110:29
+144                <action android:name="android.intent.action.VIEW" />
+144-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:79:17-69
+144-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:79:25-66
+145
+146                <category android:name="android.intent.category.DEFAULT" />
+146-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:80:17-76
+146-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:80:27-73
+147                <category android:name="android.intent.category.BROWSABLE" />
+147-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:81:17-78
+147-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:81:27-75
 148
-149                <category android:name="android.intent.category.DEFAULT" />
-149-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:71:17-76
-149-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:71:27-73
-150                <category android:name="android.intent.category.BROWSABLE" />
-150-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:72:17-78
-150-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:72:27-75
-151
-152                <data
-152-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:73:17-77:46
-153                    android:mimeType="*/*"
-153-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:77:21-43
-154                    android:pathPattern=".*\\.gpx"
-154-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:76:21-51
-155                    android:scheme="content" />
-155-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:74:21-42
-156            </intent-filter>
-157        </activity>
-158
-159        <provider
-160            android:name="androidx.core.content.FileProvider"
-160-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:116:13-62
-161            android:authorities="com.example.stepbystep.fileprovider"
-161-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:117:13-64
-162            android:exported="false"
-162-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:118:13-37
-163            android:grantUriPermissions="true" >
-163-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:119:13-47
-164            <meta-data
-164-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:120:13-122:54
-165                android:name="android.support.FILE_PROVIDER_PATHS"
-165-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:121:17-67
-166                android:resource="@xml/file_paths" />
-166-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:122:17-51
-167        </provider>
-168
-169        <!-- Needs to be explicitly declared on P+ -->
-170        <uses-library
-170-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:33:7-86
-171            android:name="org.apache.http.legacy"
-171-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:33:21-58
-172            android:required="false" />
-172-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:33:59-83
-173
-174        <activity
-174-->[com.google.android.gms:play-services-base:18.5.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/2b5119b42b06e2bb291c8f6f2975331f/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:9-173
-175            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-175-->[com.google.android.gms:play-services-base:18.5.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/2b5119b42b06e2bb291c8f6f2975331f/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:19-85
-176            android:exported="false"
-176-->[com.google.android.gms:play-services-base:18.5.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/2b5119b42b06e2bb291c8f6f2975331f/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:146-170
-177            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-177-->[com.google.android.gms:play-services-base:18.5.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/2b5119b42b06e2bb291c8f6f2975331f/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:86-145
-178
-179        <meta-data
-179-->[com.google.android.gms:play-services-basement:18.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/31a8fee3c2cf366ed380a4a527799022/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:9-122
-180            android:name="com.google.android.gms.version"
-180-->[com.google.android.gms:play-services-basement:18.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/31a8fee3c2cf366ed380a4a527799022/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:20-65
-181            android:value="@integer/google_play_services_version" />
-181-->[com.google.android.gms:play-services-basement:18.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/31a8fee3c2cf366ed380a4a527799022/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:66-119
-182
-183        <provider
-183-->[androidx.emoji2:emoji2:1.3.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/4a1779b37bab5169822e1fbfc2a7b0f8/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
-184            android:name="androidx.startup.InitializationProvider"
-184-->[androidx.emoji2:emoji2:1.3.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/4a1779b37bab5169822e1fbfc2a7b0f8/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
-185            android:authorities="com.example.stepbystep.androidx-startup"
-185-->[androidx.emoji2:emoji2:1.3.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/4a1779b37bab5169822e1fbfc2a7b0f8/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
-186            android:exported="false" >
-186-->[androidx.emoji2:emoji2:1.3.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/4a1779b37bab5169822e1fbfc2a7b0f8/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
-187            <meta-data
-187-->[androidx.emoji2:emoji2:1.3.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/4a1779b37bab5169822e1fbfc2a7b0f8/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
-188                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-188-->[androidx.emoji2:emoji2:1.3.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/4a1779b37bab5169822e1fbfc2a7b0f8/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
-189                android:value="androidx.startup" />
-189-->[androidx.emoji2:emoji2:1.3.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/4a1779b37bab5169822e1fbfc2a7b0f8/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
-190            <meta-data
-190-->[androidx.lifecycle:lifecycle-process:2.7.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/b59613501855e61a73aab781564ceb1c/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:29:13-31:52
-191                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-191-->[androidx.lifecycle:lifecycle-process:2.7.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/b59613501855e61a73aab781564ceb1c/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:30:17-78
-192                android:value="androidx.startup" />
-192-->[androidx.lifecycle:lifecycle-process:2.7.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/b59613501855e61a73aab781564ceb1c/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:31:17-49
-193            <meta-data
-193-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
-194                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-194-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
-195                android:value="androidx.startup" />
-195-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
-196        </provider>
+149                <data
+149-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:82:17-86:46
+150                    android:mimeType="text/xml"
+150-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:86:21-43
+151                    android:scheme="content" />
+151-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:83:21-42
+152            </intent-filter>
+153
+154            <!-- Para archivos con extensión .gpx pero sin mimeType conocido -->
+155            <intent-filter>
+155-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:113:13-121:29
+156                <action android:name="android.intent.action.VIEW" />
+156-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:79:17-69
+156-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:79:25-66
+157
+158                <category android:name="android.intent.category.DEFAULT" />
+158-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:80:17-76
+158-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:80:27-73
+159                <category android:name="android.intent.category.BROWSABLE" />
+159-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:81:17-78
+159-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:81:27-75
+160
+161                <data
+161-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:82:17-86:46
+162                    android:mimeType="*/*"
+162-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:86:21-43
+163                    android:pathPattern=".*\\.gpx"
+163-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:85:21-51
+164                    android:scheme="content" />
+164-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:83:21-42
+165            </intent-filter>
+166        </activity>
+167
+168        <provider
+169            android:name="androidx.core.content.FileProvider"
+169-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:125:13-62
+170            android:authorities="com.example.stepbystep.fileprovider"
+170-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:126:13-64
+171            android:exported="false"
+171-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:127:13-37
+172            android:grantUriPermissions="true" >
+172-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:128:13-47
+173            <meta-data
+173-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:129:13-131:54
+174                android:name="android.support.FILE_PROVIDER_PATHS"
+174-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:130:17-67
+175                android:resource="@xml/file_paths" />
+175-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:131:17-51
+176        </provider>
+177
+178        <service
+178-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:134:9-138:56
+179            android:name="com.example.stepbystep.service.LocationTrackingService"
+179-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:135:13-60
+180            android:enabled="true"
+180-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:136:13-35
+181            android:exported="false"
+181-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:137:13-37
+182            android:foregroundServiceType="location" />
+182-->/home/adrian/Escritorio/StepByStep/app/src/main/AndroidManifest.xml:138:13-53
+183
+184        <!-- Needs to be explicitly declared on P+ -->
+185        <uses-library
+185-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:33:7-86
+186            android:name="org.apache.http.legacy"
+186-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:33:21-58
+187            android:required="false" />
+187-->[com.google.android.gms:play-services-maps:19.1.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/c84e9c05568c9cb9f6b28a976875f58b/transformed/play-services-maps-19.1.0/AndroidManifest.xml:33:59-83
+188
+189        <activity
+189-->[com.google.android.gms:play-services-base:18.5.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/2b5119b42b06e2bb291c8f6f2975331f/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:9-173
+190            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+190-->[com.google.android.gms:play-services-base:18.5.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/2b5119b42b06e2bb291c8f6f2975331f/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:19-85
+191            android:exported="false"
+191-->[com.google.android.gms:play-services-base:18.5.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/2b5119b42b06e2bb291c8f6f2975331f/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:146-170
+192            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+192-->[com.google.android.gms:play-services-base:18.5.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/2b5119b42b06e2bb291c8f6f2975331f/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:86-145
+193
+194        <meta-data
+194-->[com.google.android.gms:play-services-basement:18.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/31a8fee3c2cf366ed380a4a527799022/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:9-122
+195            android:name="com.google.android.gms.version"
+195-->[com.google.android.gms:play-services-basement:18.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/31a8fee3c2cf366ed380a4a527799022/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:20-65
+196            android:value="@integer/google_play_services_version" />
+196-->[com.google.android.gms:play-services-basement:18.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/31a8fee3c2cf366ed380a4a527799022/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:66-119
 197
-198        <service
-198-->[androidx.room:room-runtime:2.6.1] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6e7ee95b9d52090af00a9f319d3b89cd/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
-199            android:name="androidx.room.MultiInstanceInvalidationService"
-199-->[androidx.room:room-runtime:2.6.1] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6e7ee95b9d52090af00a9f319d3b89cd/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
-200            android:directBootAware="true"
-200-->[androidx.room:room-runtime:2.6.1] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6e7ee95b9d52090af00a9f319d3b89cd/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
-201            android:exported="false" />
-201-->[androidx.room:room-runtime:2.6.1] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6e7ee95b9d52090af00a9f319d3b89cd/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
-202
-203        <receiver
-203-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
-204            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-204-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
-205            android:directBootAware="false"
-205-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
-206            android:enabled="true"
-206-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
-207            android:exported="true"
-207-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
-208            android:permission="android.permission.DUMP" >
-208-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
-209            <intent-filter>
-209-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
-210                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-210-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
-210-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
-211            </intent-filter>
-212            <intent-filter>
-212-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
-213                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-213-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
-213-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
-214            </intent-filter>
-215            <intent-filter>
-215-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
-216                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-216-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
-216-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
-217            </intent-filter>
-218            <intent-filter>
-218-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
-219                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-219-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
-219-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:25-92
-220            </intent-filter>
-221        </receiver>
-222    </application>
-223
-224</manifest>
+198        <provider
+198-->[androidx.emoji2:emoji2:1.3.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/4a1779b37bab5169822e1fbfc2a7b0f8/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+199            android:name="androidx.startup.InitializationProvider"
+199-->[androidx.emoji2:emoji2:1.3.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/4a1779b37bab5169822e1fbfc2a7b0f8/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+200            android:authorities="com.example.stepbystep.androidx-startup"
+200-->[androidx.emoji2:emoji2:1.3.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/4a1779b37bab5169822e1fbfc2a7b0f8/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+201            android:exported="false" >
+201-->[androidx.emoji2:emoji2:1.3.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/4a1779b37bab5169822e1fbfc2a7b0f8/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+202            <meta-data
+202-->[androidx.emoji2:emoji2:1.3.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/4a1779b37bab5169822e1fbfc2a7b0f8/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+203                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+203-->[androidx.emoji2:emoji2:1.3.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/4a1779b37bab5169822e1fbfc2a7b0f8/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+204                android:value="androidx.startup" />
+204-->[androidx.emoji2:emoji2:1.3.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/4a1779b37bab5169822e1fbfc2a7b0f8/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+205            <meta-data
+205-->[androidx.lifecycle:lifecycle-process:2.7.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/b59613501855e61a73aab781564ceb1c/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:29:13-31:52
+206                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+206-->[androidx.lifecycle:lifecycle-process:2.7.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/b59613501855e61a73aab781564ceb1c/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:30:17-78
+207                android:value="androidx.startup" />
+207-->[androidx.lifecycle:lifecycle-process:2.7.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/b59613501855e61a73aab781564ceb1c/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:31:17-49
+208            <meta-data
+208-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
+209                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+209-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
+210                android:value="androidx.startup" />
+210-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
+211        </provider>
+212
+213        <service
+213-->[androidx.room:room-runtime:2.6.1] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6e7ee95b9d52090af00a9f319d3b89cd/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
+214            android:name="androidx.room.MultiInstanceInvalidationService"
+214-->[androidx.room:room-runtime:2.6.1] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6e7ee95b9d52090af00a9f319d3b89cd/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
+215            android:directBootAware="true"
+215-->[androidx.room:room-runtime:2.6.1] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6e7ee95b9d52090af00a9f319d3b89cd/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
+216            android:exported="false" />
+216-->[androidx.room:room-runtime:2.6.1] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6e7ee95b9d52090af00a9f319d3b89cd/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
+217
+218        <receiver
+218-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
+219            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+219-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
+220            android:directBootAware="false"
+220-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
+221            android:enabled="true"
+221-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
+222            android:exported="true"
+222-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
+223            android:permission="android.permission.DUMP" >
+223-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
+224            <intent-filter>
+224-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
+225                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+225-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
+225-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
+226            </intent-filter>
+227            <intent-filter>
+227-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
+228                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+228-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
+228-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
+229            </intent-filter>
+230            <intent-filter>
+230-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
+231                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+231-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
+231-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
+232            </intent-filter>
+233            <intent-filter>
+233-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
+234                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+234-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
+234-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/61fab8dab77b78789158ff9dd4578ae1/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:25-92
+235            </intent-filter>
+236        </receiver>
+237    </application>
+238
+239</manifest>

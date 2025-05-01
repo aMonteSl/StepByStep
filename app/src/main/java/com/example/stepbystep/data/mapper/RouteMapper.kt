@@ -8,9 +8,18 @@ import com.example.stepbystep.domain.model.Route
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+/**
+ * Objeto utilizado para mapear (convertir) entre las entidades de la base de datos
+ * y los modelos de dominio. Facilita la separación entre la capa de datos y la lógica
+ * de negocio de la aplicación.
+ */
 object RouteMapper {
     private val DATE_FMT = DateTimeFormatter.ISO_LOCAL_DATE
 
+    /**
+     * Convierte una entidad RouteWithPoints a un modelo de dominio Route.
+     * @return Un objeto Route con todos los datos de la entidad
+     */
     fun RouteWithPoints.toDomain(): Route {
         return Route(
             id = route.id,
@@ -26,6 +35,10 @@ object RouteMapper {
         )
     }
 
+    /**
+     * Convierte un modelo de dominio Route a entidades para la base de datos.
+     * @return Un par con la entidad ruta y la lista de entidades punto asociadas
+     */
     fun Route.toEntities(): Pair<RouteEntity, List<PointEntity>> {
         val routeEntity = RouteEntity(
             id = id,
@@ -52,6 +65,10 @@ object RouteMapper {
         return Pair(routeEntity, pointEntities)
     }
 
+    /**
+     * Convierte una entidad PointEntity a un modelo de dominio Point.
+     * @return Un objeto Point con los datos de la entidad
+     */
     fun PointEntity.toDomain(): Point {
         return Point(
             latitude = latitude,
@@ -61,7 +78,17 @@ object RouteMapper {
         )
     }
     
+    /**
+     * Método auxiliar para convertir desde entidad a modelo de dominio.
+     * @param rwp La entidad RouteWithPoints a convertir
+     * @return Un objeto Route con todos los datos de la entidad
+     */
     fun fromEntity(rwp: RouteWithPoints): Route = rwp.toDomain()
     
+    /**
+     * Método auxiliar para convertir desde modelo de dominio a entidades.
+     * @param route El modelo de dominio Route a convertir
+     * @return Un par con la entidad ruta y la lista de entidades punto asociadas
+     */
     fun toEntity(route: Route): Pair<RouteEntity, List<PointEntity>> = route.toEntities()
 }

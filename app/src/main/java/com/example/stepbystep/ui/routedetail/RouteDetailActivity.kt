@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.stepbystep.R
@@ -25,15 +26,31 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.model.JointType
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.PolylineOptions
 import kotlinx.coroutines.launch
 import java.io.File
 
+/**
+ * Actividad que muestra el detalle de una ruta seleccionada.
+ * 
+ * Presenta:
+ * - Mapa con la visualización del recorrido
+ * - Gráfica de elevación
+ * - Estadísticas de la ruta (distancia, tiempo, elevación)
+ * - Imagen asociada (si existe)
+ * - Información descriptiva
+ * 
+ * Permite exportar la ruta en formato GPX para compartir.
+ */
 class RouteDetailActivity : AppCompatActivity() {
 
     companion object {
+        /**
+         * Clave para pasar el ID de la ruta a través del Intent
+         */
         const val EXTRA_ROUTE_ID = "extra_route_id"
     }
 
@@ -45,6 +62,9 @@ class RouteDetailActivity : AppCompatActivity() {
     private lateinit var mapView: MapView
     private var googleMap: GoogleMap? = null
 
+    /**
+     * Inicializa la actividad, configura las vistas y carga los datos de la ruta.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRouteDetailBinding.inflate(layoutInflater)
@@ -53,16 +73,16 @@ class RouteDetailActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         
-        // Setup toolbar
+        // Configurar toolbar
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         
-        // Setup map
+        // Configurar mapa
         mapView = binding.mapView
         mapView.onCreate(savedInstanceState)
         
-        // Get route ID from intent
+        // Obtener ID de la ruta desde el intent
         val routeId = intent.getLongExtra(EXTRA_ROUTE_ID, -1)
         if (routeId == -1L) {
             Toast.makeText(this, "Error: No se pudo cargar la ruta", Toast.LENGTH_SHORT).show()
@@ -70,10 +90,10 @@ class RouteDetailActivity : AppCompatActivity() {
             return
         }
         
-        // Load route data
+        // Cargar datos de la ruta
         viewModel.loadRoute(routeId)
         
-        // Setup observers
+        // Configurar observadores
         viewModel.route.observe(this) { route ->
             title = route.name
             setupMap(route.points.map { LatLng(it.latitude, it.longitude) })
@@ -105,39 +125,66 @@ class RouteDetailActivity : AppCompatActivity() {
         }
     }
     
+    /**
+     * Infla el menú de opciones con la opción de exportar GPX.
+     */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.route_detail_menu, menu)
         return true
     }
     
+    /**
+     * Configura el mapa con la ruta a mostrar.
+     * Dibuja la línea de la ruta y ajusta la cámara para mostrar todo el recorrido.
+     * 
+     * @param points Lista de puntos geográficos que componen la ruta
+     */
     private fun setupMap(points: List<LatLng>) {
         mapView.getMapAsync { map ->
             googleMap = map
             
-            // Usar el parámetro map (que sabemos que no es nulo) en lugar de la propiedad googleMap
-            map.configureMapStyle(this)
+            // Aplicar estilo según modo noche/día
+            googleMap?.configureMapStyle(this)
             
             if (points.isNotEmpty()) {
-                // Draw route on map
-                map.addPolyline(
+                // Determinar color de ruta según modo del tema
+                val isNightMode = (resources.configuration.uiMode and 
+                                  Configuration.UI_MODE_NIGHT_MASK) == 
+                                  Configuration.UI_MODE_NIGHT_YES
+                
+                val routeColor = if (isNightMode) {
+                    ContextCompat.getColor(this, R.color.turquoise)
+                } else {
+                    ContextCompat.getColor(this, R.color.oxford)
+                }
+                
+                // Añadir la polilínea para la ruta
+                googleMap?.addPolyline(
                     PolylineOptions()
                         .addAll(points)
-                        .width(8f)
-                        .color(getColor(R.color.turquoise))
+                        .width(12f)
+                        .color(routeColor)
+                        .jointType(JointType.ROUND)
                 )
                 
-                // Zoom to fit the entire route
+                // Crear límites para ajustar la cámara y mostrar todos los puntos
                 val boundsBuilder = LatLngBounds.Builder()
                 points.forEach { boundsBuilder.include(it) }
-                
-                // Add padding to the bounds
                 val bounds = boundsBuilder.build()
+                
+                // Añadir padding alrededor de la ruta
                 val padding = resources.getDimensionPixelSize(R.dimen.map_padding)
-                map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding))
+                val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, padding)
+                googleMap?.moveCamera(cameraUpdate)
             }
         }
     }
     
+    /**
+     * Configura el gráfico de elevación con los datos proporcionados.
+     * 
+     * @param chartData Pares de valores (distancia, elevación) para graficar
+     */
     private fun setupChart(chartData: List<Pair<Float, Float>>) {
         val chart = binding.chartElevation
         
@@ -147,9 +194,9 @@ class RouteDetailActivity : AppCompatActivity() {
             return
         }
         
-        // Convert data to entries
+        // Convertir datos a entradas para el gráfico
         val entries = chartData.map { (distance, altitude) ->
-            Entry(distance / 1000f, altitude) // Convert distance to km for x-axis
+            Entry(distance / 1000f, altitude) // Convertir distancia a km para eje X
         }
         
         // Calcular la distancia total para determinar la unidad a usar
@@ -201,7 +248,7 @@ class RouteDetailActivity : AppCompatActivity() {
             mode = LineDataSet.Mode.CUBIC_BEZIER
         }
         
-        // Configure chart
+        // Configurar gráfico
         chart.apply {
             data = LineData(dataSet)
             description.isEnabled = false
@@ -210,7 +257,7 @@ class RouteDetailActivity : AppCompatActivity() {
             setScaleEnabled(true)
             setPinchZoom(true)
             
-            // Configure X axis (distance in km or m)
+            // Configurar eje X (distancia en km o m)
             xAxis.apply {
                 textColor = lineColor
                 position = XAxis.XAxisPosition.BOTTOM
@@ -238,7 +285,7 @@ class RouteDetailActivity : AppCompatActivity() {
                 }
             }
             
-            // Configure Y axis (elevation in m)
+            // Configurar eje Y (elevación en m)
             axisLeft.apply {
                 textColor = lineColor
                 axisLineColor = lineColor
@@ -253,11 +300,14 @@ class RouteDetailActivity : AppCompatActivity() {
             
             axisRight.isEnabled = false
             
-            // Refresh
+            // Refrescar gráfico
             invalidate()
         }
     }
     
+    /**
+     * Maneja las acciones de los elementos del menú.
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
@@ -272,19 +322,23 @@ class RouteDetailActivity : AppCompatActivity() {
         }
     }
     
+    /**
+     * Exporta la ruta actual a un archivo GPX y lo comparte.
+     * Utiliza el proveedor de archivos para compartir de forma segura.
+     */
     private fun exportGpx() {
         lifecycleScope.launch {
             try {
                 val gpxFile = viewModel.exportGpx()
                 
-                // Create a content URI for the file using FileProvider
+                // Crear un URI de contenido para el archivo usando FileProvider
                 val contentUri = FileProvider.getUriForFile(
                     this@RouteDetailActivity,
                     "${applicationContext.packageName}.fileprovider",
                     gpxFile
                 )
                 
-                // Create an intent to share the file
+                // Crear un intent para compartir el archivo
                 val shareIntent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(Intent.EXTRA_STREAM, contentUri)
@@ -304,7 +358,9 @@ class RouteDetailActivity : AppCompatActivity() {
         }
     }
     
-    // MapView lifecycle methods
+    /**
+     * Métodos del ciclo de vida para gestionar el MapView correctamente
+     */
     override fun onStart() {
         super.onStart()
         mapView.onStart()

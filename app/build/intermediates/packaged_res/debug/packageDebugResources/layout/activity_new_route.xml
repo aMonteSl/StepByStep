@@ -218,7 +218,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:tag="binding_5"                                                                                                    
+            android:tag="binding_5"                                                                                                  
                                                           
             app:closeIconVisible="true"
             style="@style/Widget.Material3.Chip.Filter"

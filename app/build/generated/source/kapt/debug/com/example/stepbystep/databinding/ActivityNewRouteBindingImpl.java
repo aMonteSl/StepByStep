@@ -109,15 +109,15 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
             case 1 :
                 return onChangeViewModelElapsedTimeMs((androidx.lifecycle.LiveData<java.lang.Long>) object, fieldId);
             case 2 :
-                return onChangeViewModelReferencePoints((androidx.lifecycle.LiveData<java.util.List<com.google.android.gms.maps.model.LatLng>>) object, fieldId);
-            case 3 :
                 return onChangeViewModelReferenceRouteName((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
-            case 4 :
+            case 3 :
                 return onChangeViewModelCurrentElevation((androidx.lifecycle.LiveData<java.lang.Double>) object, fieldId);
-            case 5 :
+            case 4 :
                 return onChangeViewModelElevationGain((androidx.lifecycle.LiveData<java.lang.Double>) object, fieldId);
-            case 6 :
+            case 5 :
                 return onChangeViewModelIsRecording((androidx.lifecycle.LiveData<java.lang.Boolean>) object, fieldId);
+            case 6 :
+                return onChangeViewModelReferenceRoute((androidx.lifecycle.LiveData<java.util.List<com.google.android.gms.maps.model.LatLng>>) object, fieldId);
             case 7 :
                 return onChangeViewModelIsPaused((androidx.lifecycle.LiveData<java.lang.Boolean>) object, fieldId);
         }
@@ -141,7 +141,7 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelReferencePoints(androidx.lifecycle.LiveData<java.util.List<com.google.android.gms.maps.model.LatLng>> ViewModelReferencePoints, int fieldId) {
+    private boolean onChangeViewModelReferenceRouteName(androidx.lifecycle.LiveData<java.lang.String> ViewModelReferenceRouteName, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x4L;
@@ -150,7 +150,7 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelReferenceRouteName(androidx.lifecycle.LiveData<java.lang.String> ViewModelReferenceRouteName, int fieldId) {
+    private boolean onChangeViewModelCurrentElevation(androidx.lifecycle.LiveData<java.lang.Double> ViewModelCurrentElevation, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x8L;
@@ -159,7 +159,7 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelCurrentElevation(androidx.lifecycle.LiveData<java.lang.Double> ViewModelCurrentElevation, int fieldId) {
+    private boolean onChangeViewModelElevationGain(androidx.lifecycle.LiveData<java.lang.Double> ViewModelElevationGain, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x10L;
@@ -168,7 +168,7 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelElevationGain(androidx.lifecycle.LiveData<java.lang.Double> ViewModelElevationGain, int fieldId) {
+    private boolean onChangeViewModelIsRecording(androidx.lifecycle.LiveData<java.lang.Boolean> ViewModelIsRecording, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x20L;
@@ -177,7 +177,7 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelIsRecording(androidx.lifecycle.LiveData<java.lang.Boolean> ViewModelIsRecording, int fieldId) {
+    private boolean onChangeViewModelReferenceRoute(androidx.lifecycle.LiveData<java.util.List<com.google.android.gms.maps.model.LatLng>> ViewModelReferenceRoute, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x40L;
@@ -210,16 +210,16 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
         java.lang.String stringFormatUtilsFormatElevationViewModelCurrentElevation = null;
         java.lang.Boolean viewModelIsRecordingGetValue = null;
         java.lang.Boolean viewModelIsPausedGetValue = null;
-        java.util.List<com.google.android.gms.maps.model.LatLng> viewModelReferencePointsGetValue = null;
         long androidxDatabindingViewDataBindingSafeUnboxViewModelElapsedTimeMsGetValue = 0;
         java.lang.Double viewModelElevationGainGetValue = null;
         androidx.lifecycle.LiveData<java.lang.Long> viewModelElapsedTimeMs = null;
         boolean androidxDatabindingViewDataBindingSafeUnboxViewModelIsRecordingGetValue = false;
         java.lang.String stringFormatUtilsFormatElevationGainViewModelElevationGain = null;
         java.lang.Double viewModelCurrentDistanceGetValue = null;
-        boolean viewModelReferencePointsJavaLangObjectNull = false;
+        boolean viewModelReferenceRouteJavaLangObjectNull = false;
         double androidxDatabindingViewDataBindingSafeUnboxViewModelCurrentDistanceGetValue = 0.0;
-        androidx.lifecycle.LiveData<java.util.List<com.google.android.gms.maps.model.LatLng>> viewModelReferencePoints = null;
+        boolean viewModelReferenceRouteJavaLangObjectNullBooleanTrueViewModelReferenceRouteIsEmpty = false;
+        boolean viewModelReferenceRouteIsEmpty = false;
         androidx.lifecycle.LiveData<java.lang.String> viewModelReferenceRouteName = null;
         java.lang.String stringFormatUtilsFormatDistanceKmViewModelCurrentDistance = null;
         int viewModelIsRecordingAndroidViewViewVISIBLEAndroidViewViewGONE = 0;
@@ -228,16 +228,16 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
         double androidxDatabindingViewDataBindingSafeUnboxViewModelCurrentElevationGetValue = 0.0;
         double androidxDatabindingViewDataBindingSafeUnboxViewModelElevationGainGetValue = 0.0;
         java.lang.Double viewModelCurrentElevationGetValue = null;
-        int viewModelReferencePointsJavaLangObjectNullBooleanTrueViewModelReferencePointsIsEmptyViewGONEViewVISIBLE = 0;
         androidx.lifecycle.LiveData<java.lang.Double> viewModelCurrentElevation = null;
         androidx.lifecycle.LiveData<java.lang.Double> viewModelElevationGain = null;
-        boolean viewModelReferencePointsJavaLangObjectNullBooleanTrueViewModelReferencePointsIsEmpty = false;
         androidx.lifecycle.LiveData<java.lang.Boolean> viewModelIsRecording = null;
-        boolean viewModelReferencePointsIsEmpty = false;
+        androidx.lifecycle.LiveData<java.util.List<com.google.android.gms.maps.model.LatLng>> viewModelReferenceRoute = null;
         java.lang.String stringFormatUtilsFormatDurationViewModelElapsedTimeMs = null;
         android.graphics.drawable.Drawable viewModelIsRecordingBtnStartStopAndroidDrawableIcStopBtnStartStopAndroidDrawableIcPlay = null;
+        java.util.List<com.google.android.gms.maps.model.LatLng> viewModelReferenceRouteGetValue = null;
         java.lang.Long viewModelElapsedTimeMsGetValue = null;
         com.example.stepbystep.ui.newroute.NewRouteViewModel viewModel = mViewModel;
+        int viewModelReferenceRouteJavaLangObjectNullBooleanTrueViewModelReferenceRouteIsEmptyViewGONEViewVISIBLE = 0;
         androidx.lifecycle.LiveData<java.lang.Boolean> viewModelIsPaused = null;
 
         if ((dirtyFlags & 0x3ffL) != 0) {
@@ -290,36 +290,10 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
             if ((dirtyFlags & 0x304L) != 0) {
 
                     if (viewModel != null) {
-                        // read viewModel.referencePoints
-                        viewModelReferencePoints = viewModel.getReferencePoints();
-                    }
-                    updateLiveDataRegistration(2, viewModelReferencePoints);
-
-
-                    if (viewModelReferencePoints != null) {
-                        // read viewModel.referencePoints.getValue()
-                        viewModelReferencePointsGetValue = viewModelReferencePoints.getValue();
-                    }
-
-
-                    // read viewModel.referencePoints.getValue() == null
-                    viewModelReferencePointsJavaLangObjectNull = (viewModelReferencePointsGetValue) == (null);
-                if((dirtyFlags & 0x304L) != 0) {
-                    if(viewModelReferencePointsJavaLangObjectNull) {
-                            dirtyFlags |= 0x200000L;
-                    }
-                    else {
-                            dirtyFlags |= 0x100000L;
-                    }
-                }
-            }
-            if ((dirtyFlags & 0x308L) != 0) {
-
-                    if (viewModel != null) {
                         // read viewModel.referenceRouteName
                         viewModelReferenceRouteName = viewModel.getReferenceRouteName();
                     }
-                    updateLiveDataRegistration(3, viewModelReferenceRouteName);
+                    updateLiveDataRegistration(2, viewModelReferenceRouteName);
 
 
                     if (viewModelReferenceRouteName != null) {
@@ -327,13 +301,13 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
                         viewModelReferenceRouteNameGetValue = viewModelReferenceRouteName.getValue();
                     }
             }
-            if ((dirtyFlags & 0x310L) != 0) {
+            if ((dirtyFlags & 0x308L) != 0) {
 
                     if (viewModel != null) {
                         // read viewModel.currentElevation
                         viewModelCurrentElevation = viewModel.getCurrentElevation();
                     }
-                    updateLiveDataRegistration(4, viewModelCurrentElevation);
+                    updateLiveDataRegistration(3, viewModelCurrentElevation);
 
 
                     if (viewModelCurrentElevation != null) {
@@ -349,13 +323,13 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
                     // read StringFormatUtils.formatElevation(androidx.databinding.ViewDataBinding.safeUnbox(viewModel.currentElevation.getValue()))
                     stringFormatUtilsFormatElevationViewModelCurrentElevation = com.example.stepbystep.util.StringFormatUtils.formatElevation(androidxDatabindingViewDataBindingSafeUnboxViewModelCurrentElevationGetValue);
             }
-            if ((dirtyFlags & 0x320L) != 0) {
+            if ((dirtyFlags & 0x310L) != 0) {
 
                     if (viewModel != null) {
                         // read viewModel.elevationGain
                         viewModelElevationGain = viewModel.getElevationGain();
                     }
-                    updateLiveDataRegistration(5, viewModelElevationGain);
+                    updateLiveDataRegistration(4, viewModelElevationGain);
 
 
                     if (viewModelElevationGain != null) {
@@ -371,13 +345,13 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
                     // read StringFormatUtils.formatElevationGain(androidx.databinding.ViewDataBinding.safeUnbox(viewModel.elevationGain.getValue()))
                     stringFormatUtilsFormatElevationGainViewModelElevationGain = com.example.stepbystep.util.StringFormatUtils.formatElevationGain(androidxDatabindingViewDataBindingSafeUnboxViewModelElevationGainGetValue);
             }
-            if ((dirtyFlags & 0x340L) != 0) {
+            if ((dirtyFlags & 0x320L) != 0) {
 
                     if (viewModel != null) {
                         // read viewModel.isRecording
                         viewModelIsRecording = viewModel.isRecording();
                     }
-                    updateLiveDataRegistration(6, viewModelIsRecording);
+                    updateLiveDataRegistration(5, viewModelIsRecording);
 
 
                     if (viewModelIsRecording != null) {
@@ -388,16 +362,16 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
 
                     // read androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isRecording.getValue())
                     androidxDatabindingViewDataBindingSafeUnboxViewModelIsRecordingGetValue = androidx.databinding.ViewDataBinding.safeUnbox(viewModelIsRecordingGetValue);
-                if((dirtyFlags & 0x340L) != 0) {
+                if((dirtyFlags & 0x320L) != 0) {
                     if(androidxDatabindingViewDataBindingSafeUnboxViewModelIsRecordingGetValue) {
                             dirtyFlags |= 0x800L;
-                            dirtyFlags |= 0x8000L;
-                            dirtyFlags |= 0x800000L;
+                            dirtyFlags |= 0x20000L;
+                            dirtyFlags |= 0x200000L;
                     }
                     else {
                             dirtyFlags |= 0x400L;
-                            dirtyFlags |= 0x4000L;
-                            dirtyFlags |= 0x400000L;
+                            dirtyFlags |= 0x10000L;
+                            dirtyFlags |= 0x100000L;
                     }
                 }
 
@@ -408,6 +382,32 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
                     viewModelIsRecordingAndroidViewViewVISIBLEAndroidViewViewGONE = ((androidxDatabindingViewDataBindingSafeUnboxViewModelIsRecordingGetValue) ? (android.view.View.VISIBLE) : (android.view.View.GONE));
                     // read androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isRecording.getValue()) ? @android:drawable/ic_stop : @android:drawable/ic_play
                     viewModelIsRecordingBtnStartStopAndroidDrawableIcStopBtnStartStopAndroidDrawableIcPlay = ((androidxDatabindingViewDataBindingSafeUnboxViewModelIsRecordingGetValue) ? (androidx.appcompat.content.res.AppCompatResources.getDrawable(btnStartStop.getContext(), R.drawable.ic_stop)) : (androidx.appcompat.content.res.AppCompatResources.getDrawable(btnStartStop.getContext(), R.drawable.ic_play)));
+            }
+            if ((dirtyFlags & 0x340L) != 0) {
+
+                    if (viewModel != null) {
+                        // read viewModel.referenceRoute
+                        viewModelReferenceRoute = viewModel.getReferenceRoute();
+                    }
+                    updateLiveDataRegistration(6, viewModelReferenceRoute);
+
+
+                    if (viewModelReferenceRoute != null) {
+                        // read viewModel.referenceRoute.getValue()
+                        viewModelReferenceRouteGetValue = viewModelReferenceRoute.getValue();
+                    }
+
+
+                    // read viewModel.referenceRoute.getValue() == null
+                    viewModelReferenceRouteJavaLangObjectNull = (viewModelReferenceRouteGetValue) == (null);
+                if((dirtyFlags & 0x340L) != 0) {
+                    if(viewModelReferenceRouteJavaLangObjectNull) {
+                            dirtyFlags |= 0x8000L;
+                    }
+                    else {
+                            dirtyFlags |= 0x4000L;
+                    }
+                }
             }
             if ((dirtyFlags & 0x380L) != 0) {
 
@@ -429,11 +429,11 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
                 if((dirtyFlags & 0x380L) != 0) {
                     if(androidxDatabindingViewDataBindingSafeUnboxViewModelIsPausedGetValue) {
                             dirtyFlags |= 0x2000L;
-                            dirtyFlags |= 0x20000L;
+                            dirtyFlags |= 0x80000L;
                     }
                     else {
                             dirtyFlags |= 0x1000L;
-                            dirtyFlags |= 0x10000L;
+                            dirtyFlags |= 0x40000L;
                     }
                 }
 
@@ -446,30 +446,30 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
         }
         // batch finished
 
-        if ((dirtyFlags & 0x100000L) != 0) {
+        if ((dirtyFlags & 0x4000L) != 0) {
 
-                if (viewModelReferencePointsGetValue != null) {
-                    // read viewModel.referencePoints.getValue().isEmpty()
-                    viewModelReferencePointsIsEmpty = viewModelReferencePointsGetValue.isEmpty();
+                if (viewModelReferenceRouteGetValue != null) {
+                    // read viewModel.referenceRoute.getValue().isEmpty()
+                    viewModelReferenceRouteIsEmpty = viewModelReferenceRouteGetValue.isEmpty();
                 }
         }
 
-        if ((dirtyFlags & 0x304L) != 0) {
+        if ((dirtyFlags & 0x340L) != 0) {
 
-                // read viewModel.referencePoints.getValue() == null ? true : viewModel.referencePoints.getValue().isEmpty()
-                viewModelReferencePointsJavaLangObjectNullBooleanTrueViewModelReferencePointsIsEmpty = ((viewModelReferencePointsJavaLangObjectNull) ? (true) : (viewModelReferencePointsIsEmpty));
-            if((dirtyFlags & 0x304L) != 0) {
-                if(viewModelReferencePointsJavaLangObjectNullBooleanTrueViewModelReferencePointsIsEmpty) {
-                        dirtyFlags |= 0x80000L;
+                // read viewModel.referenceRoute.getValue() == null ? true : viewModel.referenceRoute.getValue().isEmpty()
+                viewModelReferenceRouteJavaLangObjectNullBooleanTrueViewModelReferenceRouteIsEmpty = ((viewModelReferenceRouteJavaLangObjectNull) ? (true) : (viewModelReferenceRouteIsEmpty));
+            if((dirtyFlags & 0x340L) != 0) {
+                if(viewModelReferenceRouteJavaLangObjectNullBooleanTrueViewModelReferenceRouteIsEmpty) {
+                        dirtyFlags |= 0x800000L;
                 }
                 else {
-                        dirtyFlags |= 0x40000L;
+                        dirtyFlags |= 0x400000L;
                 }
             }
 
 
-                // read viewModel.referencePoints.getValue() == null ? true : viewModel.referencePoints.getValue().isEmpty() ? View.GONE : View.VISIBLE
-                viewModelReferencePointsJavaLangObjectNullBooleanTrueViewModelReferencePointsIsEmptyViewGONEViewVISIBLE = ((viewModelReferencePointsJavaLangObjectNullBooleanTrueViewModelReferencePointsIsEmpty) ? (android.view.View.GONE) : (android.view.View.VISIBLE));
+                // read viewModel.referenceRoute.getValue() == null ? true : viewModel.referenceRoute.getValue().isEmpty() ? View.GONE : View.VISIBLE
+                viewModelReferenceRouteJavaLangObjectNullBooleanTrueViewModelReferenceRouteIsEmptyViewGONEViewVISIBLE = ((viewModelReferenceRouteJavaLangObjectNullBooleanTrueViewModelReferenceRouteIsEmpty) ? (android.view.View.GONE) : (android.view.View.VISIBLE));
         }
         // batch finished
         if ((dirtyFlags & 0x380L) != 0) {
@@ -478,19 +478,19 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.btnPauseResume, viewModelIsPausedBtnPauseResumeAndroidStringRouteResumeBtnPauseResumeAndroidStringRoutePause);
             this.btnPauseResume.setIcon(viewModelIsPausedBtnPauseResumeAndroidDrawableIcPlayBtnPauseResumeAndroidDrawableIcPause);
         }
-        if ((dirtyFlags & 0x340L) != 0) {
+        if ((dirtyFlags & 0x320L) != 0) {
             // api target 1
 
             this.btnPauseResume.setVisibility(viewModelIsRecordingAndroidViewViewVISIBLEAndroidViewViewGONE);
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.btnStartStop, viewModelIsRecordingBtnStartStopAndroidStringRouteStopBtnStartStopAndroidStringRouteStart);
             this.btnStartStop.setIcon(viewModelIsRecordingBtnStartStopAndroidDrawableIcStopBtnStartStopAndroidDrawableIcPlay);
         }
-        if ((dirtyFlags & 0x304L) != 0) {
+        if ((dirtyFlags & 0x340L) != 0) {
             // api target 1
 
-            this.chipReferenceRoute.setVisibility(viewModelReferencePointsJavaLangObjectNullBooleanTrueViewModelReferencePointsIsEmptyViewGONEViewVISIBLE);
+            this.chipReferenceRoute.setVisibility(viewModelReferenceRouteJavaLangObjectNullBooleanTrueViewModelReferenceRouteIsEmptyViewGONEViewVISIBLE);
         }
-        if ((dirtyFlags & 0x308L) != 0) {
+        if ((dirtyFlags & 0x304L) != 0) {
             // api target 1
 
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.chipReferenceRoute, viewModelReferenceRouteNameGetValue);
@@ -505,12 +505,12 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
 
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvRouteDuration, stringFormatUtilsFormatDurationViewModelElapsedTimeMs);
         }
-        if ((dirtyFlags & 0x310L) != 0) {
+        if ((dirtyFlags & 0x308L) != 0) {
             // api target 1
 
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvRouteElevation, stringFormatUtilsFormatElevationViewModelCurrentElevation);
         }
-        if ((dirtyFlags & 0x320L) != 0) {
+        if ((dirtyFlags & 0x310L) != 0) {
             // api target 1
 
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvRouteElevationGain, stringFormatUtilsFormatElevationGainViewModelElevationGain);
@@ -523,11 +523,11 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
     /* flag mapping
         flag 0 (0x1L): viewModel.currentDistance
         flag 1 (0x2L): viewModel.elapsedTimeMs
-        flag 2 (0x3L): viewModel.referencePoints
-        flag 3 (0x4L): viewModel.referenceRouteName
-        flag 4 (0x5L): viewModel.currentElevation
-        flag 5 (0x6L): viewModel.elevationGain
-        flag 6 (0x7L): viewModel.isRecording
+        flag 2 (0x3L): viewModel.referenceRouteName
+        flag 3 (0x4L): viewModel.currentElevation
+        flag 4 (0x5L): viewModel.elevationGain
+        flag 5 (0x6L): viewModel.isRecording
+        flag 6 (0x7L): viewModel.referenceRoute
         flag 7 (0x8L): viewModel.isPaused
         flag 8 (0x9L): viewModel
         flag 9 (0xaL): null
@@ -535,16 +535,16 @@ public class ActivityNewRouteBindingImpl extends ActivityNewRouteBinding  {
         flag 11 (0xcL): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isRecording.getValue()) ? @android:string/route_stop : @android:string/route_start
         flag 12 (0xdL): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isPaused.getValue()) ? @android:drawable/ic_play : @android:drawable/ic_pause
         flag 13 (0xeL): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isPaused.getValue()) ? @android:drawable/ic_play : @android:drawable/ic_pause
-        flag 14 (0xfL): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isRecording.getValue()) ? android.view.View.VISIBLE : android.view.View.GONE
-        flag 15 (0x10L): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isRecording.getValue()) ? android.view.View.VISIBLE : android.view.View.GONE
-        flag 16 (0x11L): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isPaused.getValue()) ? @android:string/route_resume : @android:string/route_pause
-        flag 17 (0x12L): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isPaused.getValue()) ? @android:string/route_resume : @android:string/route_pause
-        flag 18 (0x13L): viewModel.referencePoints.getValue() == null ? true : viewModel.referencePoints.getValue().isEmpty() ? View.GONE : View.VISIBLE
-        flag 19 (0x14L): viewModel.referencePoints.getValue() == null ? true : viewModel.referencePoints.getValue().isEmpty() ? View.GONE : View.VISIBLE
-        flag 20 (0x15L): viewModel.referencePoints.getValue() == null ? true : viewModel.referencePoints.getValue().isEmpty()
-        flag 21 (0x16L): viewModel.referencePoints.getValue() == null ? true : viewModel.referencePoints.getValue().isEmpty()
-        flag 22 (0x17L): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isRecording.getValue()) ? @android:drawable/ic_stop : @android:drawable/ic_play
-        flag 23 (0x18L): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isRecording.getValue()) ? @android:drawable/ic_stop : @android:drawable/ic_play
+        flag 14 (0xfL): viewModel.referenceRoute.getValue() == null ? true : viewModel.referenceRoute.getValue().isEmpty()
+        flag 15 (0x10L): viewModel.referenceRoute.getValue() == null ? true : viewModel.referenceRoute.getValue().isEmpty()
+        flag 16 (0x11L): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isRecording.getValue()) ? android.view.View.VISIBLE : android.view.View.GONE
+        flag 17 (0x12L): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isRecording.getValue()) ? android.view.View.VISIBLE : android.view.View.GONE
+        flag 18 (0x13L): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isPaused.getValue()) ? @android:string/route_resume : @android:string/route_pause
+        flag 19 (0x14L): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isPaused.getValue()) ? @android:string/route_resume : @android:string/route_pause
+        flag 20 (0x15L): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isRecording.getValue()) ? @android:drawable/ic_stop : @android:drawable/ic_play
+        flag 21 (0x16L): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isRecording.getValue()) ? @android:drawable/ic_stop : @android:drawable/ic_play
+        flag 22 (0x17L): viewModel.referenceRoute.getValue() == null ? true : viewModel.referenceRoute.getValue().isEmpty() ? View.GONE : View.VISIBLE
+        flag 23 (0x18L): viewModel.referenceRoute.getValue() == null ? true : viewModel.referenceRoute.getValue().isEmpty() ? View.GONE : View.VISIBLE
     flag mapping end*/
     //end
 }

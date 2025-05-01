@@ -10,12 +10,27 @@ import org.xml.sax.InputSource
 import java.io.InputStream
 import javax.xml.parsers.DocumentBuilderFactory
 
+/**
+ * Clase que representa los datos extraídos de un archivo GPX.
+ * 
+ * @property name Nombre de la ruta
+ * @property description Descripción de la ruta
+ * @property points Lista de puntos geográficos con elevación y timestamp
+ */
 data class GpxData(
     val name: String,
     val description: String,
     val points: List<GpxPoint>
 )
 
+/**
+ * Clase que representa un punto geográfico en un archivo GPX.
+ * 
+ * @property latitude Latitud en grados decimales
+ * @property longitude Longitud en grados decimales
+ * @property elevation Elevación en metros
+ * @property timestamp Marca de tiempo en milisegundos
+ */
 data class GpxPoint(
     val latitude: Double,
     val longitude: Double,
@@ -23,8 +38,22 @@ data class GpxPoint(
     val timestamp: Long
 )
 
+/**
+ * Utilidad para analizar (parsear) archivos GPX e importar rutas.
+ * 
+ * GPX (GPS Exchange Format) es un formato XML para intercambiar datos GPS
+ * entre aplicaciones. Esta clase extrae puntos de ruta, elevación,
+ * y metadatos como nombre y descripción de los archivos GPX.
+ */
 object GpxParser {
     
+    /**
+     * Analiza un archivo GPX a partir de un URI.
+     * 
+     * @param context Contexto para acceder al contentResolver
+     * @param uri URI del archivo GPX a analizar
+     * @return Datos extraídos del GPX o null si ocurre un error
+     */
     fun parse(context: Context, uri: Uri): GpxData? {
         try {
             val inputStream = context.contentResolver.openInputStream(uri) ?: return null
@@ -35,6 +64,12 @@ object GpxParser {
         }
     }
     
+    /**
+     * Analiza un archivo GPX a partir de un flujo de entrada (InputStream).
+     * 
+     * @param inputStream Flujo de entrada del archivo GPX
+     * @return Datos extraídos del GPX
+     */
     private fun parse(inputStream: InputStream): GpxData {
         inputStream.use { stream ->
             val docBuilderFactory = DocumentBuilderFactory.newInstance()
@@ -44,7 +79,7 @@ object GpxParser {
             val doc = docBuilder.parse(InputSource(stream))
             doc.documentElement.normalize()
             
-            // Extract name and desc from metadata
+            // Extraer nombre y descripción del metadata
             val metadata = doc.getElementsByTagName("metadata").item(0) as? Element
             var name = "Ruta importada"
             var description = ""
@@ -65,7 +100,7 @@ object GpxParser {
                 }
             }
             
-            // If name/desc not in metadata, try track
+            // Si nombre/descripción no está en metadata, intentar buscar en track
             if (name == "Ruta importada") {
                 val trkElements = doc.getElementsByTagName("trk")
                 if (trkElements.length > 0) {
@@ -76,7 +111,7 @@ object GpxParser {
                         Log.d("GpxParser", "Found name in track: $name")
                     }
                     
-                    // Try to get description from track if not found earlier
+                    // Intentar obtener descripción del track si no se encontró antes
                     if (description.isEmpty()) {
                         val trkDescNodes = trk.getElementsByTagName("desc")
                         if (trkDescNodes.length > 0) {
@@ -87,7 +122,7 @@ object GpxParser {
                 }
             }
             
-            // Get track points
+            // Obtener puntos de la ruta
             val trackPoints = doc.getElementsByTagName("trkpt")
             val points = parseTrackPoints(trackPoints)
             
@@ -95,6 +130,13 @@ object GpxParser {
         }
     }
     
+    /**
+     * Analiza la lista de nodos de puntos de ruta para extraer
+     * coordenadas, elevación y timestamps.
+     * 
+     * @param trackPoints Lista de nodos XML con puntos de ruta
+     * @return Lista de puntos geográficos procesados
+     */
     private fun parseTrackPoints(trackPoints: NodeList): List<GpxPoint> {
         val points = mutableListOf<GpxPoint>()
         
@@ -112,7 +154,7 @@ object GpxParser {
             val timeNodes = trkpt.getElementsByTagName("time")
             var timestamp = System.currentTimeMillis()
             if (timeNodes.length > 0) {
-                // Parse ISO 8601 time format, simplifying for this example
+                // Analizar formato de tiempo ISO 8601, simplificando para este ejemplo
                 val timeText = timeNodes.item(0).textContent
                 timestamp = parseTimeToMillis(timeText)
             }
@@ -123,10 +165,16 @@ object GpxParser {
         return points
     }
     
+    /**
+     * Convierte una cadena de tiempo en formato ISO 8601 a milisegundos.
+     * 
+     * @param timeText Tiempo en formato "yyyy-MM-dd'T'HH:mm:ssZ"
+     * @return Tiempo en milisegundos desde epoch
+     */
     private fun parseTimeToMillis(timeText: String): Long {
-        // Simplified timestamp parsing - in a real app, use proper date parsing
+        // Análisis simplificado de timestamp - en una app real, usar análisis de fecha apropiado
         return try {
-            // Remove Z suffix and parse as ISO format
+            // Eliminar sufijo Z y analizar como formato ISO
             val time = timeText.replace("Z", "")
             val format = java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", java.util.Locale.US)
             format.parse(time)?.time ?: System.currentTimeMillis()
@@ -135,7 +183,13 @@ object GpxParser {
         }
     }
     
-    // Helper function to calculate distance, elevation gain, etc.
+    /**
+     * Calcula estadísticas de la ruta: distancia total, ganancia de elevación,
+     * y elevación media.
+     * 
+     * @param points Lista de puntos geográficos de la ruta
+     * @return Triple con (distancia en km, ganancia de elevación en m, elevación media en m)
+     */
     fun calculateRouteStats(points: List<GpxPoint>): Triple<Double, Double, Double> {
         if (points.isEmpty()) return Triple(0.0, 0.0, 0.0)
         
@@ -146,20 +200,20 @@ object GpxParser {
             val prev = points[i-1]
             val curr = points[i]
             
-            // Calculate distance between consecutive points using Google Maps utility
+            // Calcular distancia entre puntos consecutivos usando utilidad de Google Maps
             val prevLatLng = LatLng(prev.latitude, prev.longitude)
             val currLatLng = LatLng(curr.latitude, curr.longitude)
             distance += com.google.maps.android.SphericalUtil.computeDistanceBetween(
-                prevLatLng, currLatLng) / 1000 // Convert to km
+                prevLatLng, currLatLng) / 1000 // Convertir a km
             
-            // Calculate elevation gain (only positive changes)
+            // Calcular ganancia de elevación (solo cambios positivos)
             val elevDiff = curr.elevation - prev.elevation
             if (elevDiff > 0) {
                 elevationGain += elevDiff
             }
         }
         
-        // Average elevation is just the average of all point elevations
+        // La elevación media es simplemente el promedio de todas las elevaciones de puntos
         val averageElevation = points.map { it.elevation }.average()
         
         return Triple(distance, elevationGain, averageElevation)

@@ -3088,7 +3088,6 @@ int drawable googleg_standard_color_18 0x7f07009c
 int drawable ic_add 0x7f07009d
 int drawable ic_arrow_back_black_24 0x7f07009e
 int drawable ic_back 0x7f07009f
-int drawable ic_baseline_person_24 0x7f0700a0
 int drawable ic_call_answer 0x7f0700a1
 int drawable ic_call_answer_low 0x7f0700a2
 int drawable ic_call_answer_video 0x7f0700a3
@@ -3097,7 +3096,6 @@ int drawable ic_call_decline 0x7f0700a5
 int drawable ic_call_decline_low 0x7f0700a6
 int drawable ic_clear_black_24 0x7f0700a7
 int drawable ic_clock_black_24dp 0x7f0700a8
-int drawable ic_controls 0x7f0700a9
 int drawable ic_distance 0x7f0700aa
 int drawable ic_edit 0x7f0700ab
 int drawable ic_elevation 0x7f0700ac
@@ -3107,13 +3105,12 @@ int drawable ic_export 0x7f0700af
 int drawable ic_file 0x7f070115
 int drawable ic_gpx_file 0x7f070116
 int drawable ic_import 0x7f070117
-int drawable ic_info 0x7f0700b0
 int drawable ic_keyboard_black_24dp 0x7f0700b1
 int drawable ic_launcher_background 0x7f0700b2
+int drawable ic_location_active 0x7f070118
 int drawable ic_m3_chip_check 0x7f0700b3
 int drawable ic_m3_chip_checked_circle 0x7f0700b4
 int drawable ic_m3_chip_close 0x7f0700b5
-int drawable ic_minimal 0x7f0700b6
 int drawable ic_mtrl_checked_circle 0x7f0700b7
 int drawable ic_mtrl_chip_checked_black 0x7f0700b8
 int drawable ic_mtrl_chip_checked_circle 0x7f0700b9
@@ -3127,12 +3124,9 @@ int drawable ic_profile 0x7f0700bf
 int drawable ic_save 0x7f0700c0
 int drawable ic_search_black_24 0x7f0700c1
 int drawable ic_settings 0x7f0700c2
-int drawable ic_show_all 0x7f0700c3
 int drawable ic_stop 0x7f0700c4
 int drawable ic_time 0x7f0700c5
-int drawable ic_view_controls 0x7f0700c6
 int drawable indeterminate_static 0x7f0700c7
-int drawable instruction_background 0x7f0700c8
 int drawable m3_avd_hide_password 0x7f0700c9
 int drawable m3_avd_show_password 0x7f0700ca
 int drawable m3_bottom_sheet_drag_handle 0x7f0700cb
@@ -4063,7 +4057,6 @@ int string discard_route_title 0x7f110046
 int string edit 0x7f110047
 int string error_a11y_label 0x7f110048
 int string error_icon_content_description 0x7f110049
-int string error_loading_gpx 0x7f1100d7
 int string exposed_dropdown_menu_content_description 0x7f11004a
 int string fab_transformation_scrim_behavior 0x7f11004b
 int string fab_transformation_sheet_behavior 0x7f11004c
@@ -4092,7 +4085,6 @@ int string m3_sys_motion_easing_linear 0x7f11005c
 int string m3_sys_motion_easing_standard 0x7f11005d
 int string m3_sys_motion_easing_standard_accelerate 0x7f11005e
 int string m3_sys_motion_easing_standard_decelerate 0x7f11005f
-int string map_padding 0x7f110060
 int string material_clock_display_divider 0x7f110061
 int string material_clock_toggle_content_description 0x7f110062
 int string material_hour_24h_suffix 0x7f110063
@@ -4178,7 +4170,6 @@ int string mtrl_switch_track_path 0x7f1100b2
 int string mtrl_timepicker_cancel 0x7f1100b3
 int string mtrl_timepicker_confirm 0x7f1100b4
 int string no_gpx_selected 0x7f1100d5
-int string no_reference_route 0x7f1100d8
 int string no_routes_image_description 0x7f1100b5
 int string no_routes_recorded_yet 0x7f1100b6
 int string password_toggle_content_description 0x7f1100b7
@@ -4186,18 +4177,11 @@ int string path_password_eye 0x7f1100b8
 int string path_password_eye_mask_strike_through 0x7f1100b9
 int string path_password_eye_mask_visible 0x7f1100ba
 int string path_password_strike_through 0x7f1100bb
-int string profile 0x7f1100bc
-int string profile_description 0x7f1100bd
-int string reference_route_loaded 0x7f1100d9
-int string route_date 0x7f1100be
-int string route_description_hint 0x7f1100bf
-int string route_name_hint 0x7f1100c0
 int string route_pause 0x7f1100c1
 int string route_resume 0x7f1100c2
 int string route_start 0x7f1100c3
 int string route_stop 0x7f1100c4
 int string save 0x7f1100c5
-int string save_route 0x7f1100c6
 int string search_menu_title 0x7f1100c7
 int string searchbar_scrolling_view_behavior 0x7f1100c8
 int string searchview_clear_text_content_description 0x7f1100c9

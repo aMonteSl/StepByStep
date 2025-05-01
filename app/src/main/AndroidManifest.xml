@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.stepbystep">
 
     <!-- Mark fine location as required -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" 
@@ -10,14 +11,14 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" 
                      android:required="false" />
 
-                     <!-- REQUIRED for background tracking -->
+    <!-- REQUIRED for background tracking -->
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <!-- Add foreground service permission -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
 
-        <!-- Opcional: Permiso para evitar que la app entre en modo doze -->
+    <!-- Opcional: Permiso para evitar que la app entre en modo doze -->
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     
     <uses-feature android:name="android.hardware.sensor.barometer" 
@@ -27,6 +28,11 @@
         android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
+    <!-- Añadir este permiso -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Asegúrate de tener estos permisos -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -124,6 +130,12 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <service
+            android:name=".service.LocationTrackingService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="location" />
 
     </application>
 

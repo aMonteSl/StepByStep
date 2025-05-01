@@ -1,239 +1,253 @@
 package com.example.stepbystep.ui.newroute
 
 import android.Manifest
-import android.content.Intent
+import android.content.*
 import android.content.pm.PackageManager
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.os.Looper
+import android.os.Handler
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.stepbystep.R
 import com.example.stepbystep.databinding.ActivityNewRouteBinding
-import com.example.stepbystep.util.StringFormatUtils
 import com.example.stepbystep.ui.saveroute.SaveRouteActivity
 import com.example.stepbystep.util.GpxParser
-import com.example.stepbystep.util.MapUtils.configureMapStyle
+import com.example.stepbystep.util.LocationPermissionManager
+import com.example.stepbystep.util.LocationPermissionManager.PermissionCallback
 import com.google.android.gms.location.*
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
-import com.google.android.gms.maps.model.Polyline
-import com.google.android.gms.maps.model.PolylineOptions
+import androidx.activity.result.contract.ActivityResultContracts
 
-class NewRouteActivity : AppCompatActivity() {
+/**
+ * Actividad principal para la creación y grabación de nuevas rutas.
+ * 
+ * Esta actividad permite al usuario:
+ * - Iniciar/pausar/detener la grabación de una ruta
+ * - Visualizar en tiempo real el trazado en un mapa
+ * - Ver estadísticas de la ruta (distancia, tiempo, elevación)
+ * - Cargar una ruta GPX de referencia
+ * 
+ * Gestiona permisos de ubicación, comunicación con el servicio de rastreo,
+ * y la actualización en tiempo real del mapa y estadísticas.
+ */
+class NewRouteActivity : AppCompatActivity(), 
+    PermissionCallback, 
+    RouteMapController.MapCallback,
+    LocationServiceConnection.LocationCallback {
 
     private val TAG = "RouteTracking"
 
+    // Componentes de UI y estado
     private lateinit var binding: ActivityNewRouteBinding
     private val viewModel: NewRouteViewModel by viewModels()
 
-    private lateinit var mapView: MapView
-    private lateinit var googleMap: GoogleMap
-    private var routeLine = mutableListOf<LatLng>()
-    private var polyline: Polyline? = null
-    private var referencePolyline: Polyline? = null
-    private var isMapReady = false
-    private var hasInitialLocation = false
-    private var autoTrackLocation = true
+    // Componentes auxiliares extraídos
+    private lateinit var permissionManager: LocationPermissionManager
+    private lateinit var mapController: RouteMapController
+    private lateinit var serviceConnection: LocationServiceConnection
 
+    // Cliente de ubicación para actualizaciones en primer plano
     private lateinit var fusedClient: FusedLocationProviderClient
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
 
-    private var statsVisible = true
-    private var buttonsVisible = true
-
-    private val selectGpxLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-        uri?.let {
-            loadReferenceGpx(it)
-        }
+    /**
+     * Launcher para seleccionar archivos GPX como ruta de referencia
+     */
+    private val selectGpxLauncher = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        uri?.let { loadReferenceGpx(it) }
     }
 
+    /**
+     * Inicialización de la actividad
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNewRouteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Configuración de la barra de herramientas
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
+        // Configuración de data binding
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        checkLocationPermission()
+        // Inicializar componentes auxiliares
+        permissionManager = LocationPermissionManager(this)
+        permissionManager.setPermissionCallback(this)
 
+        mapController = RouteMapController(binding.mapView, this, viewModel, this)
+        mapController.setMapCallback(this)
+        mapController.initialize(savedInstanceState)
+
+        serviceConnection = LocationServiceConnection(this, viewModel)
+        serviceConnection.setLocationCallback(this)
+        serviceConnection.registerReceiver()
+        
+        // Inicializar cliente de ubicación para actualizaciones en primer plano
+        setupLocationComponents()
+        
+        // Configurar la interfaz de usuario
+        setupButtons()
+        setupObservers()
+        
+        // Verificar permisos
+        permissionManager.checkAndRequestNotificationPermission()
+        permissionManager.checkAndRequestLocationPermissions()
+    }
+    
+    /**
+     * Configura los componentes de ubicación para actualizaciones en primer plano
+     */
+    private fun setupLocationComponents() {
         fusedClient = LocationServices.getFusedLocationProviderClient(this)
-        locationRequest = LocationRequest.Builder(
-            Priority.PRIORITY_HIGH_ACCURACY,
-            1000L
-        ).setMinUpdateIntervalMillis(500L)
+        
+        Log.d(TAG, "[ACTIVITY] Configurando componentes de ubicación...")
+        
+        // Configurar la solicitud de ubicación
+        locationRequest = LocationRequest.Builder(1000L) // Intervalo en milisegundos
+            .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
+            .setMinUpdateIntervalMillis(500L)
             .build()
-
+        
+        // Configurar el callback de ubicación
         locationCallback = object : LocationCallback() {
-            override fun onLocationResult(result: LocationResult) {
-                result.lastLocation?.let { loc ->
-                    viewModel.onLocationUpdated(loc)
-                    updateMapWithLocation(loc)
-                    logLocationUpdate(loc)
+            override fun onLocationResult(locationResult: LocationResult) {
+                super.onLocationResult(locationResult)
+                locationResult.lastLocation?.let { loc ->
+                    Log.d(TAG, "[ACTIVITY] LocationCallback - Ubicación recibida: ${loc.latitude}, ${loc.longitude}, alt=${loc.altitude}")
+                    
+                    // Solo actualizar el mapa, NO el viewModel
+                    Log.d(TAG, "[ACTIVITY] Actualizando SOLO el mapa (no viewModel)")
+                    onLocationUpdated(loc)
                 }
             }
         }
+        
+        // Configurar el receptor de actualizaciones del servicio
+        serviceConnection.setLocationCallback(this)
+        Log.d(TAG, "[ACTIVITY] ✓ Componentes de ubicación configurados")
+    }
 
-        mapView = binding.mapView
-        mapView.onCreate(savedInstanceState)
-        mapView.getMapAsync { map ->
-            googleMap = map
-            
-            // Aplicar estilo del mapa según el modo del sistema
-            googleMap.configureMapStyle(this)
-            
-            isMapReady = true
-
-            googleMap.uiSettings.apply {
-                isZoomControlsEnabled = true
-                isCompassEnabled = true
-                isMyLocationButtonEnabled = true
-                isMapToolbarEnabled = true
-            }
-
-            if (ActivityCompat.checkSelfPermission(
-                    this, Manifest.permission.ACCESS_FINE_LOCATION
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                googleMap.isMyLocationEnabled = true
-
-                fusedClient.lastLocation.addOnSuccessListener { location ->
-                    location?.let {
-                        val latLng = LatLng(location.latitude, location.longitude)
-                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16f))
-                        hasInitialLocation = true
-                    }
-                }
-
-                startLocationUpdates()
-            }
-
-            polyline = googleMap.addPolyline(
-                PolylineOptions()
-                    .width(8f)
-                    .color(getColor(R.color.turquoise))
-            )
-        }
-
+    /**
+     * Configura los listeners para los botones de la UI
+     */
+    private fun setupButtons() {
+        // Botón iniciar/detener
         binding.btnStartStop.setOnClickListener {
-            if (viewModel.isRecording.value == true) stopRecording()
-            else startRecording()
-        }
-        binding.btnPauseResume.setOnClickListener {
-            if (viewModel.isPaused.value == true) viewModel.resumeRecording()
-            else viewModel.pauseRecording()
+            if (!permissionManager.hasForegroundLocationPermissions()) {
+                permissionManager.requestLocationPermissions()
+            } else {
+                toggleTrackingState()
+            }
         }
 
+        // Botón pausar/reanudar
+        binding.btnPauseResume.setOnClickListener {
+            if (viewModel.isPaused.value == true) {
+                viewModel.resumeRecording()
+                serviceConnection.resumeTracking()
+            } else {
+                viewModel.pauseRecording()
+                serviceConnection.pauseTracking()
+            }
+        }
+
+        // Botón para seleccionar ruta de referencia
         binding.fabSelectReference.setOnClickListener {
             openGpxFilePicker()
         }
 
+        // Chip de ruta de referencia
         binding.chipReferenceRoute.setOnClickListener {
             viewModel.toggleReferenceRouteVisibility()
         }
 
+        // Eliminar ruta de referencia
         binding.chipReferenceRoute.setOnCloseIconClickListener {
             viewModel.clearReferenceRoute()
-            referencePolyline?.remove()
-            referencePolyline = null
-        }
-
-        viewModel.referencePoints.observe(this) { points ->
-            updateReferenceRouteOnMap(points)
-        }
-
-        viewModel.referenceRouteVisible.observe(this) { visible ->
-            referencePolyline?.isVisible = visible
+            mapController.clearReferenceRoute()
         }
     }
 
-    private fun checkLocationPermission() {
-        if (ActivityCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                LOCATION_PERMISSION_REQUEST_CODE
+    /**
+     * Configura los observers para los LiveData del ViewModel
+     */
+    private fun setupObservers() {
+        // Estado de grabación
+        viewModel.isRecording.observe(this) { isRecording ->
+            binding.btnStartStop.text = if (isRecording) "DETENER" else "INICIAR"
+            binding.btnStartStop.icon = getDrawable(
+                if (isRecording) R.drawable.ic_stop
+                else R.drawable.ic_play
+            )
+            updateButtonVisibility()
+        }
+
+        // Estado de pausa
+        viewModel.isPaused.observe(this) { isPaused ->
+            binding.btnPauseResume.text = if (isPaused) "REANUDAR" else "PAUSAR"
+            binding.btnPauseResume.icon = getDrawable(
+                if (isPaused) R.drawable.ic_play
+                else R.drawable.ic_pause
             )
         }
-    }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                if (isMapReady && ActivityCompat.checkSelfPermission(
-                        this, Manifest.permission.ACCESS_FINE_LOCATION
-                    ) == PackageManager.PERMISSION_GRANTED
-                ) {
-                    googleMap.isMyLocationEnabled = true
-                    fusedClient.lastLocation.addOnSuccessListener { location ->
-                        location?.let {
-                            val latLng = LatLng(location.latitude, location.longitude)
-                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16f))
-                            hasInitialLocation = true
-                        }
-                    }
-
-                    startLocationUpdates()
-                }
+        // Cambios en la ruta de referencia
+        viewModel.referenceRoute.observe(this) { route ->
+            if (route.isEmpty()) {
+                binding.chipReferenceRoute.visibility = View.GONE
             } else {
-                // TODO: Show a message about why location is needed
+                binding.chipReferenceRoute.visibility = View.VISIBLE
+                binding.chipReferenceRoute.text = viewModel.referenceRouteName.value ?: "Ruta de referencia"
             }
         }
-    }
 
-    private fun updateMapWithLocation(location: Location) {
-        if (!isMapReady) return
-
-        val latLng = LatLng(location.latitude, location.longitude)
-
-        if ((!hasInitialLocation || viewModel.isRecording.value == true) && autoTrackLocation) {
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16f))
-            hasInitialLocation = true
+        // Autocentrado del mapa
+        viewModel.autoTrackLocation.observe(this) { autoTrack ->
+            // Actualizar el ícono del menú si se hace necesario
+            invalidateOptionsMenu()
         }
 
-        if (viewModel.isRecording.value == true && viewModel.isPaused.value != true) {
-            routeLine.add(latLng)
+        // Visibilidad de estadísticas y botones
+        viewModel.statsVisible.observe(this) { visible ->
+            binding.statsCard.visibility = if (visible) View.VISIBLE else View.GONE
+            invalidateOptionsMenu()
+        }
 
-            if (polyline == null) {
-                polyline = googleMap.addPolyline(
-                    PolylineOptions()
-                        .addAll(routeLine)
-                        .color(android.graphics.Color.RED)
-                        .width(10f)
-                )
-            } else {
-                polyline?.points = routeLine
-            }
+        viewModel.buttonsVisible.observe(this) { visible ->
+            val buttonsContainer = binding.root.findViewById<LinearLayout>(R.id.buttonsContainer)
+            buttonsContainer.visibility = if (visible) View.VISIBLE else View.GONE
+            invalidateOptionsMenu()
+        }
+
+        updateButtonVisibility()
+
+        // Observador para la elevación
+        viewModel.currentElevation.observe(this) { elevation ->
+            Log.d(TAG, "[OBSERVE] Elevación LiveData cambió a: $elevation")
+            logViewModelState()
         }
     }
 
+    /**
+     * Inicia las actualizaciones periódicas de ubicación en primer plano
+     */
     private fun startLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(
                 this, Manifest.permission.ACCESS_FINE_LOCATION
@@ -247,62 +261,77 @@ class NewRouteActivity : AppCompatActivity() {
         )
     }
 
-    private fun startRecording() {
-        if (ActivityCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            return
+    /**
+     * Alterna entre iniciar y detener la grabación de la ruta
+     */
+    private fun toggleTrackingState() {
+        if (viewModel.isRecording.value == true) {
+            // Detener grabación
+            fusedClient.removeLocationUpdates(locationCallback)
+            viewModel.stopRecording()
+
+            // Detener servicio
+            serviceConnection.stopLocationTracking()
+
+            // Preparar datos para la siguiente pantalla
+            navigateToSaveScreen()
+        } else {
+            // Iniciar grabación
+            // Reiniciar el estado del mapa
+            mapController.clearRoute()
+            
+            // Iniciar grabación en el ViewModel
+            viewModel.startRecording()
+
+            // Iniciar servicio de rastreo
+            if (permissionManager.hasForegroundLocationPermissions()) {
+                val useBackgroundTracking = permissionManager.hasBackgroundLocationPermission()
+                serviceConnection.startLocationTracking(backgroundEnabled = useBackgroundTracking)
+                
+                // Si no tenemos permiso de segundo plano, mostrar mensaje informativo
+                if (!useBackgroundTracking) {
+                    Toast.makeText(
+                        this,
+                        "La grabación se detendrá si la app pasa a segundo plano",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            } else {
+                permissionManager.requestLocationPermissions()
+            }
         }
 
-        routeLine.clear()
-        polyline?.points = routeLine
-
-        viewModel.startRecording()
+        updateButtonVisibility()
     }
 
-    private fun stopRecording() {
-        fusedClient.removeLocationUpdates(locationCallback)
-        viewModel.stopRecording()
-
-        val intent = Intent(this, SaveRouteActivity::class.java).apply {
-            putExtra("distance", viewModel.currentDistance.value ?: 0.0)
-            putExtra("duration", viewModel.elapsedTimeMs.value ?: 0L)
-            putExtra("elevationGain", viewModel.elevationGain.value ?: 0.0)
-            putExtra("elevation", viewModel.currentElevation.value ?: 0.0)
-
-            val pointsList = ArrayList<LatLng>(routeLine)
-            putParcelableArrayListExtra("points", pointsList)
-
-            val altitudes = viewModel.points.map { it.altitude }.toDoubleArray()
-            putExtra("altitudes", altitudes)
-        }
-
+    /**
+     * Navega a la pantalla de guardar ruta
+     */
+    private fun navigateToSaveScreen() {
+        val bundle = viewModel.prepareRouteDataForSave()
+        val intent = Intent(this, SaveRouteActivity::class.java)
+        intent.putExtras(bundle)  // Ahora no hay ambigüedad al especificar el tipo
         startActivity(intent)
     }
 
-    private fun logLocationUpdate(location: Location) {
-        val distance = StringFormatUtils.formatDistanceKm(viewModel.currentDistance.value ?: 0.0)
-        val time = StringFormatUtils.formatDuration(viewModel.elapsedTimeMs.value ?: 0L)
-        val elevation = StringFormatUtils.formatElevation(viewModel.currentElevation.value ?: 0.0)
-        val elevationGain = StringFormatUtils.formatElevationGain(viewModel.elevationGain.value ?: 0.0)
-
-        val recordingStatus = when {
-            viewModel.isRecording.value != true -> "Not recording"
-            viewModel.isPaused.value == true -> "Recording (PAUSED)"
-            else -> "Recording"
-        }
-
-        Log.d(TAG, "Location Update: lat=${location.latitude}, lng=${location.longitude}")
-        Log.d(TAG, "Tracking Status: $recordingStatus")
-        Log.d(TAG, "Route Stats: Distance=$distance, Time=$time, Elevation=$elevation, Gain=$elevationGain")
-        Log.d(TAG, "--------------------------------")
+    /**
+     * Actualiza la visibilidad del botón de pausar/reanudar
+     */
+    private fun updateButtonVisibility() {
+        binding.btnPauseResume.visibility =
+            if (viewModel.isRecording.value == true) View.VISIBLE else View.GONE
     }
 
+    /**
+     * Abre el selector de archivos para elegir un GPX de referencia
+     */
     private fun openGpxFilePicker() {
         selectGpxLauncher.launch("application/gpx+xml")
     }
 
+    /**
+     * Carga un archivo GPX como ruta de referencia
+     */
     private fun loadReferenceGpx(uri: Uri) {
         try {
             val gpxData = GpxParser.parse(this, uri) ?: run {
@@ -320,33 +349,59 @@ class NewRouteActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateReferenceRouteOnMap(points: List<LatLng>) {
-        if (!isMapReady) return
+    /**
+     * Inicia el rastreo en primer plano sin persistencia en segundo plano
+     */
+    private fun startForegroundTrackingOnly() {
+        Toast.makeText(
+            this,
+            "Rastreando sólo en primer plano. El rastreo se detendrá si cambias de app.",
+            Toast.LENGTH_LONG
+        ).show()
 
-        referencePolyline?.remove()
+        serviceConnection.startLocationTracking(backgroundEnabled = false)
+    }
 
-        if (points.isEmpty()) return
+    // Implementación de callbacks de permisos
 
-        val polylineOptions = PolylineOptions()
-            .addAll(points)
-            .color(android.graphics.Color.BLUE)
-            .width(8f)
+    override fun onForegroundLocationPermissionGranted() {
+        mapController.enableMyLocation(fusedClient)
+        startLocationUpdates()
+    }
 
-        referencePolyline = googleMap.addPolyline(polylineOptions)
+    override fun onBackgroundLocationPermissionGranted() {
+        serviceConnection.startLocationTracking(backgroundEnabled = true)
+    }
 
-        val builder = LatLngBounds.Builder()
-        points.forEach { builder.include(it) }
+    override fun onBackgroundLocationPermissionDenied() {
+        startForegroundTrackingOnly()
+    }
 
-        if (points.size > 1) {
-            try {
-                val bounds = builder.build()
-                val padding = resources.getDimensionPixelSize(R.dimen.map_padding)
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding))
-            } catch (e: Exception) {
-                Log.e(TAG, "Error adjusting camera for reference route", e)
-            }
+    override fun onPermissionDenied() {
+        // No hacer nada especial, el diálogo ya informó al usuario
+    }
+
+    // Implementación de callbacks del mapa
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        if (permissionManager.hasForegroundLocationPermissions()) {
+            mapController.enableMyLocation(fusedClient)
         }
     }
+
+    // Implementación de callbacks de ubicación
+
+    override fun onLocationUpdated(location: Location) {
+        Log.d(TAG, "[ACTIVITY] onLocationUpdated(): ${location.latitude}, ${location.longitude}, alt=${location.altitude}")
+        
+        mapController.updateWithLocation(location)
+        
+        // Traza adicional sobre la elevación que se está procesando
+        Log.d(TAG, "[ACTIVITY] Elevación en la ubicación: ${location.altitude}")
+        Log.d(TAG, "[ACTIVITY] Elevación actual en viewModel: ${viewModel.currentElevation.value}")
+    }
+
+    // Métodos para el manejo del menú
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.toolbar_route_menu, menu)
@@ -360,80 +415,46 @@ class NewRouteActivity : AppCompatActivity() {
                 true
             }
             R.id.menu_toggle_auto_center -> {
-                autoTrackLocation = !autoTrackLocation
-                item.isChecked = autoTrackLocation
-                item.icon = getDrawable(
-                    if (autoTrackLocation) R.drawable.ic_my_location
-                    else R.drawable.ic_my_location_off
-                )
+                viewModel.toggleAutoTrackLocation()
                 true
             }
             R.id.menu_toggle_stats -> {
-                toggleStatsVisibility(item)
+                viewModel.toggleStatsVisibility()
                 true
             }
             R.id.menu_toggle_buttons -> {
-                toggleButtonsVisibility(item)
+                viewModel.toggleButtonsVisibility()
                 true
             }
             R.id.menu_toggle_all -> {
-                toggleAllVisibility(item)
+                viewModel.toggleAllVisibility()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun toggleStatsVisibility(item: MenuItem) {
-        statsVisible = !statsVisible
-        binding.statsCard.visibility = if (statsVisible) View.VISIBLE else View.GONE
-
-        item.title = if (statsVisible) "Hide Route Info" else "Show Route Info"
-        item.isChecked = !statsVisible
-
-        invalidateOptionsMenu()
-    }
-
-    private fun toggleButtonsVisibility(item: MenuItem) {
-        buttonsVisible = !buttonsVisible
-        val buttonsContainer = binding.root.findViewById<LinearLayout>(R.id.buttonsContainer)
-        buttonsContainer.visibility = if (buttonsVisible) View.VISIBLE else View.GONE
-
-        item.title = if (buttonsVisible) "Hide Control Buttons" else "Show Control Buttons"
-        item.isChecked = !buttonsVisible
-
-        invalidateOptionsMenu()
-    }
-
-    private fun toggleAllVisibility(item: MenuItem) {
-        val shouldHideAll = statsVisible || buttonsVisible
-
-        statsVisible = !shouldHideAll
-        buttonsVisible = !shouldHideAll
-
-        binding.statsCard.visibility = if (statsVisible) View.VISIBLE else View.GONE
-        val buttonsContainer = binding.root.findViewById<LinearLayout>(R.id.buttonsContainer)
-        buttonsContainer.visibility = if (buttonsVisible) View.VISIBLE else View.GONE
-
-        item.title = if (shouldHideAll) "Show All UI Elements" else "Hide All UI Elements"
-        item.isChecked = shouldHideAll
-
-        invalidateOptionsMenu()
-    }
-
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        menu.findItem(R.id.menu_toggle_auto_center)?.apply {
+            isChecked = viewModel.autoTrackLocation.value == true
+            icon = getDrawable(
+                if (viewModel.autoTrackLocation.value == true) R.drawable.ic_my_location
+                else R.drawable.ic_my_location_off
+            )
+        }
+
         menu.findItem(R.id.menu_toggle_stats)?.apply {
-            title = if (statsVisible) "Hide Route Info" else "Show Route Info"
-            isChecked = !statsVisible
+            title = if (viewModel.statsVisible.value == true) "Hide Route Info" else "Show Route Info"
+            isChecked = viewModel.statsVisible.value != true
         }
 
         menu.findItem(R.id.menu_toggle_buttons)?.apply {
-            title = if (buttonsVisible) "Hide Control Buttons" else "Show Control Buttons"
-            isChecked = !buttonsVisible
+            title = if (viewModel.buttonsVisible.value == true) "Hide Control Buttons" else "Show Control Buttons"
+            isChecked = viewModel.buttonsVisible.value != true
         }
 
         menu.findItem(R.id.menu_toggle_all)?.apply {
-            val allHidden = !statsVisible && !buttonsVisible
+            val allHidden = viewModel.statsVisible.value != true && viewModel.buttonsVisible.value != true
             title = if (allHidden) "Show All UI Elements" else "Hide All UI Elements"
             isChecked = allHidden
         }
@@ -441,42 +462,61 @@ class NewRouteActivity : AppCompatActivity() {
         return super.onPrepareOptionsMenu(menu)
     }
 
+    // Métodos para el manejo del ciclo de vida
+
     override fun onStart() {
         super.onStart()
-        mapView.onStart()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        mapView.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        mapView.onPause()
+        Log.d(TAG, "[ACTIVITY] onStart()")
+        mapController.onStart()
+        serviceConnection.registerReceiver() // Registrar aquí
+        serviceConnection.bindService()
     }
 
     override fun onStop() {
         super.onStop()
-        mapView.onStop()
+        Log.d(TAG, "[ACTIVITY] onStop()")
+        mapController.onStop()
+        serviceConnection.unregisterReceiver() // Desregistrar aquí
+        serviceConnection.unbindService()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mapView.onDestroy()
+        mapController.onDestroy()
+        serviceConnection.unregisterReceiver()
     }
 
     override fun onLowMemory() {
         super.onLowMemory()
-        mapView.onLowMemory()
+        mapController.onLowMemory()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        mapView.onSaveInstanceState(outState)
+        mapController.onSaveInstanceState(outState)
     }
 
-    companion object {
-        private const val LOCATION_PERMISSION_REQUEST_CODE = 100
+    /**
+     * Registra el estado actual del ViewModel en el log.
+     */
+    private fun logViewModelState() {
+        Log.d(TAG, "╔═════════════════════════════════════════════╗")
+        Log.d(TAG, "║         ESTADO ACTUAL DEL VIEWMODEL         ║")
+        Log.d(TAG, "╠═════════════════════════════════════════════╣")
+        Log.d(TAG, "║ Grabando:           ${viewModel.isRecording.value}") 
+        Log.d(TAG, "║ Pausado:            ${viewModel.isPaused.value}")
+        Log.d(TAG, "║ Distancia:          ${viewModel.currentDistance.value} km")
+        Log.d(TAG, "║ Tiempo:             ${viewModel.elapsedTimeMs.value} ms")
+        Log.d(TAG, "║ Elevación:          ${viewModel.currentElevation.value} m")
+        Log.d(TAG, "║ Ganancia Elevación: ${viewModel.elevationGain.value} m")
+        Log.d(TAG, "║ Puntos Registrados: ${viewModel.routePoints.value?.size}")
+        Log.d(TAG, "╚═════════════════════════════════════════════╝")
+        
+        // Verificar si la vinculación de datos está activa
+        Log.d(TAG, "Estado de Data Binding:")
+        Log.d(TAG, " - binding.lifecycleOwner: ${binding.lifecycleOwner != null}")
+        Log.d(TAG, " - binding.viewModel: ${binding.viewModel != null}")
+        Log.d(TAG, " - XML tvRouteElevation: ${binding.tvRouteElevation.text}")
+        Log.d(TAG, " - XML tvRouteDistance: ${binding.tvRouteDistance.text}")
     }
 }

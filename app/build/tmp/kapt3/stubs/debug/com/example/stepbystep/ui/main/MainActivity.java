@@ -1,5 +1,10 @@
 package com.example.stepbystep.ui.main;
 
+/**
+ * Actividad principal de la aplicación. Muestra la lista de rutas guardadas
+ * y permite al usuario navegar a las diferentes funcionalidades de la app:
+ * crear nuevas rutas, ver detalles, importar GPX o acceder al perfil.
+ */
 @kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u0000B\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000b\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\u0018\u00002\u00020\u0001B\u0005\u00a2\u0006\u0002\u0010\u0002J\u0012\u0010\u000b\u001a\u00020\f2\b\u0010\r\u001a\u0004\u0018\u00010\u000eH\u0014J\u0010\u0010\u000f\u001a\u00020\u00102\u0006\u0010\u0011\u001a\u00020\u0012H\u0016J\u0010\u0010\u0013\u001a\u00020\u00102\u0006\u0010\u0014\u001a\u00020\u0015H\u0016J\u0010\u0010\u0016\u001a\u00020\f2\u0006\u0010\u0017\u001a\u00020\u0018H\u0002R\u000e\u0010\u0003\u001a\u00020\u0004X\u0082.\u00a2\u0006\u0002\n\u0000R\u001b\u0010\u0005\u001a\u00020\u00068BX\u0082\u0084\u0002\u00a2\u0006\f\n\u0004\b\t\u0010\n\u001a\u0004\b\u0007\u0010\b\u00a8\u0006\u0019"}, d2 = {"Lcom/example/stepbystep/ui/main/MainActivity;", "Landroidx/appcompat/app/AppCompatActivity;", "()V", "binding", "Lcom/example/stepbystep/databinding/ActivityMainBinding;", "viewModel", "Lcom/example/stepbystep/ui/main/MainViewModel;", "getViewModel", "()Lcom/example/stepbystep/ui/main/MainViewModel;", "viewModel$delegate", "Lkotlin/Lazy;", "onCreate", "", "savedInstanceState", "Landroid/os/Bundle;", "onCreateOptionsMenu", "", "menu", "Landroid/view/Menu;", "onOptionsItemSelected", "item", "Landroid/view/MenuItem;", "showDeleteRouteDialog", "route", "Lcom/example/stepbystep/domain/model/Route;", "app_debug"})
 public final class MainActivity extends androidx.appcompat.app.AppCompatActivity {
     private com.example.stepbystep.databinding.ActivityMainBinding binding;
@@ -19,18 +24,28 @@ public final class MainActivity extends androidx.appcompat.app.AppCompatActivity
     android.os.Bundle savedInstanceState) {
     }
     
+    /**
+     * Infla el menú de la barra de herramientas con las opciones disponibles
+     */
     @java.lang.Override()
     public boolean onCreateOptionsMenu(@org.jetbrains.annotations.NotNull()
     android.view.Menu menu) {
         return false;
     }
     
+    /**
+     * Maneja las selecciones de elementos del menú de la barra de herramientas
+     */
     @java.lang.Override()
     public boolean onOptionsItemSelected(@org.jetbrains.annotations.NotNull()
     android.view.MenuItem item) {
         return false;
     }
     
+    /**
+     * Muestra un diálogo de confirmación antes de eliminar una ruta
+     * para evitar eliminaciones accidentales
+     */
     private final void showDeleteRouteDialog(com.example.stepbystep.domain.model.Route route) {
     }
 }

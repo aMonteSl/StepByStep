@@ -11,17 +11,28 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * ViewModel para la actividad principal.
+ * Gestiona la lógica de negocio y el acceso a datos para la pantalla principal,
+ * manteniendo el estado de la UI durante cambios de configuración.
+ */
 class MainViewModel(context: Context) : ViewModel() {
     private val repository: RouteRepository
     
+    // Inicialización del repositorio a partir de la base de datos
     init {
         val database = RouteRoomDatabase.getInstance(context)
         repository = RouteRepository(database.routeDao())
     }
 
+    // LiveData observable que contiene la lista de rutas
     val routes: LiveData<List<Route>> = repository.routes
     private var nextId = 1L
 
+    /**
+     * Método para añadir una ruta de prueba con datos aleatorios.
+     * Útil para propósitos de desarrollo y demostración.
+     */
     fun addDummyRoute() {
         val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val date = formatter.format(Date())
@@ -36,12 +47,18 @@ class MainViewModel(context: Context) : ViewModel() {
         )
         nextId++
         
-        // Launch in viewModelScope since addRoute is a suspend function
+        // Lanzar en viewModelScope ya que addRoute es una función suspendida
         viewModelScope.launch {
             repository.addRoute(route)
         }
     }
 
+    /**
+     * Elimina una ruta específica de la base de datos.
+     * Los cambios se reflejarán automáticamente en la UI gracias a LiveData.
+     *
+     * @param route La ruta que se desea eliminar
+     */
     fun deleteRoute(route: Route) {
         viewModelScope.launch {
             repository.deleteRoute(route)

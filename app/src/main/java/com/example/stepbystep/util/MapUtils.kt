@@ -7,10 +7,21 @@ import com.example.stepbystep.R
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.MapStyleOptions
 
+/**
+ * Utilidades para manejar y configurar mapas de Google Maps.
+ * 
+ * Proporciona funciones de extensión para Google Maps que facilitan
+ * tareas comunes como aplicar estilos según el modo oscuro/claro.
+ */
 object MapUtils {
     /**
-     * Configures the map style based on the device's UI mode (day/night)
-     * Applies the dark style if in night mode
+     * Configura el estilo del mapa según el modo de interfaz del dispositivo (día/noche).
+     * Aplica el estilo oscuro si está en modo noche.
+     * 
+     * Esta función es una extensión de GoogleMap, por lo que se puede llamar
+     * directamente desde una instancia de GoogleMap.
+     * 
+     * @param context Contexto necesario para acceder a los recursos y configuración
      */
     fun GoogleMap.configureMapStyle(context: Context) {
         val isNightMode = (context.resources.configuration.uiMode and 
@@ -23,13 +34,13 @@ object MapUtils {
                     MapStyleOptions.loadRawResourceStyle(context, R.raw.map_style_dark)
                 )
                 if (!success) {
-                    Log.e("MapStyle", "Style parsing failed.")
+                    Log.e("MapStyle", "Error al aplicar el estilo del mapa.")
                 }
             } catch (e: Exception) {
-                Log.e("MapStyle", "Can't find style. Error: ", e)
+                Log.e("MapStyle", "No se puede encontrar el estilo. Error: ", e)
             }
         } else {
-            // Reset to default style if not in night mode
+            // Restablecer al estilo predeterminado si no está en modo noche
             setMapStyle(null)
         }
     }

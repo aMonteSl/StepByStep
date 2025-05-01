@@ -4,41 +4,58 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 
+/**
+ * Utilidad para formatear valores numéricos como distancias, tiempos y elevaciones.
+ * 
+ * Provee métodos para convertir valores numéricos a cadenas de texto formateadas
+ * con la unidad apropiada y nivel de precisión según el contexto de uso.
+ */
 object StringFormatUtils {
 
     /**
-     * Format distance values in meters to appropriate units
-     * - Shows as "Xm" for distances under 1km
-     * - Shows as "X.X km" for distances 1km or more
+     * Formatea valores de distancia en metros a las unidades apropiadas
+     * - Muestra "Xm" para distancias menores a 1km
+     * - Muestra "X.X km" para distancias de 1km o más
+     * 
+     * @param distanceInMeters Distancia en metros
+     * @return Cadena formateada con la unidad apropiada
      */
+    @JvmStatic
     fun formatDistance(distanceInMeters: Float): String {
+        // Siempre usar 2 decimales para mayor precisión y consistencia
         return if (distanceInMeters < 1000) {
-            // Show as meters for distances less than 1km
-            "${distanceInMeters.toInt()}m"
+            // Para distancias menores a 1km, mostrar en metros con 2 decimales
+            String.format(Locale.getDefault(), "%.2f m", distanceInMeters)
         } else {
-            // Show as kilometers with 1 decimal place for distances 1km or more
-            String.format(Locale.getDefault(), "%.1f km", distanceInMeters / 1000)
+            // Para distancias mayores o iguales a 1km, mostrar en kilómetros
+            String.format(Locale.getDefault(), "%.2f km", distanceInMeters / 1000)
         }
     }
     
     /**
-     * Overloaded version for Double type distance values in meters
+     * Versión sobrecargada para valores de distancia en metros de tipo Double
+     * 
+     * @param distanceInMeters Distancia en metros
+     * @return Cadena formateada con la unidad apropiada
      */
     @JvmStatic
     fun formatDistance(distanceInMeters: Double): String {
         return if (distanceInMeters < 1000) {
-            // Show as meters for distances less than 1km
+            // Mostrar como metros para distancias menores a 1km
             "${distanceInMeters.toInt()}m"
         } else {
-            // Show as kilometers with 1 decimal place for distances 1km or more
+            // Mostrar como kilómetros con 1 decimal para distancias de 1km o más
             String.format(Locale.getDefault(), "%.1f km", distanceInMeters / 1000)
         }
     }
 
     /**
-     * Format distance values that are already in kilometers
-     * Mostrar metros con precisión decimal para distancias muy cortas
-     * Mostrar kilometraje con 2 decimales para mayor precisión
+     * Formatea valores de distancia que ya están en kilómetros
+     * - Muestra metros con precisión decimal para distancias muy cortas
+     * - Muestra kilómetros con 2 decimales para mayor precisión
+     * 
+     * @param distanceKm Distancia en kilómetros
+     * @return Cadena formateada con la unidad apropiada
      */
     @JvmStatic
     fun formatDistanceKm(distanceKm: Double): String {
@@ -59,10 +76,13 @@ object StringFormatUtils {
     }
 
     /**
-     * Format time in milliseconds to a human-readable duration
-     * - Shows "Xh" for whole hours
-     * - Shows "Xh Ym" for hours with minutes
-     * - Shows "Xm Ys" for times under 1 hour
+     * Formatea tiempo en milisegundos a una duración legible para humanos
+     * - Muestra "Xh" para horas completas
+     * - Muestra "Xh Ym" para horas con minutos
+     * - Muestra "Xm Ys" para tiempos menores a 1 hora
+     * 
+     * @param timeMs Tiempo en milisegundos
+     * @return Cadena con la duración formateada
      */
     @JvmStatic
     fun formatDuration(timeMs: Long): String {
@@ -72,51 +92,65 @@ object StringFormatUtils {
         
         return when {
             hours > 0 && minutes == 0L && seconds == 0L -> 
-                // Just hours: "1h"
+                // Solo horas: "1h"
                 String.format(Locale.getDefault(), "%dh", hours)
                 
             hours > 0 && seconds == 0L -> 
-                // Hours and minutes: "1h 30m"
+                // Horas y minutos: "1h 30m"
                 String.format(Locale.getDefault(), "%dh %dm", hours, minutes)
                 
             hours > 0 -> 
-                // Full format with seconds: "1h 30m 45s"
+                // Formato completo con segundos: "1h 30m 45s"
                 String.format(Locale.getDefault(), "%dh %dm %ds", hours, minutes, seconds)
                 
             minutes > 0 && seconds == 0L -> 
-                // Just minutes: "30m"
+                // Solo minutos: "30m"
                 String.format(Locale.getDefault(), "%dm", minutes)
                 
             else -> 
-                // Minutes and seconds: "30m 45s"
+                // Minutos y segundos: "30m 45s"
                 String.format(Locale.getDefault(), "%dm %ds", minutes, seconds)
         }
     }
 
     /**
-     * Format elevation in meters with appropriate unit
+     * Formatea elevación en metros con la unidad apropiada
+     * 
+     * @param elevationMeters Elevación en metros
+     * @return Cadena formateada (ej: "125 m")
      */
+    @JvmStatic
     fun formatElevation(elevationMeters: Float): String {
         return "${elevationMeters.toInt()} m"
     }
     
     /**
-     * Overloaded version for Double type elevation values
+     * Versión sobrecargada para valores de elevación de tipo Double
+     * 
+     * @param elevationMeters Elevación en metros
+     * @return Cadena formateada (ej: "125 m")
      */
     @JvmStatic
     fun formatElevation(elevationMeters: Double): String {
-        return "${elevationMeters.toInt()} m"
+        return "${elevationMeters.roundToInt()} m"
     }
 
     /**
-     * Format elevation gain with plus sign to indicate gain
+     * Formatea ganancia de elevación con signo positivo para indicar ganancia
+     * 
+     * @param elevationGainMeters Ganancia de elevación en metros
+     * @return Cadena formateada (ej: "+125 m")
      */
+    @JvmStatic
     fun formatElevationGain(elevationGainMeters: Float): String {
         return "+${elevationGainMeters.toInt()} m"
     }
     
     /**
-     * Overloaded version for Double type elevation gain values
+     * Versión sobrecargada para valores de ganancia de elevación de tipo Double
+     * 
+     * @param elevationGainMeters Ganancia de elevación en metros
+     * @return Cadena formateada (ej: "+125 m")
      */
     @JvmStatic
     fun formatElevationGain(elevationGainMeters: Double): String {

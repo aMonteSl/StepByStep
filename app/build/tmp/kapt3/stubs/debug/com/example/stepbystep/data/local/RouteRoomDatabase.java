@@ -1,5 +1,10 @@
 package com.example.stepbystep.data.local;
 
+/**
+ * Clase que define la base de datos Room para la aplicación StepByStep.
+ * Gestiona las entidades RouteEntity y PointEntity, con versión 1 del schema.
+ * Implementa el patrón Singleton para garantizar una única instancia en toda la app.
+ */
 @kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u0000\u0014\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\b\'\u0018\u0000 \u00052\u00020\u0001:\u0001\u0005B\u0005\u00a2\u0006\u0002\u0010\u0002J\b\u0010\u0003\u001a\u00020\u0004H&\u00a8\u0006\u0006"}, d2 = {"Lcom/example/stepbystep/data/local/RouteRoomDatabase;", "Landroidx/room/RoomDatabase;", "()V", "routeDao", "Lcom/example/stepbystep/data/local/RouteDao;", "Companion", "app_debug"})
 @androidx.room.Database(entities = {com.example.stepbystep.data.local.RouteEntity.class, com.example.stepbystep.data.local.PointEntity.class}, version = 1, exportSchema = false)
 public abstract class RouteRoomDatabase extends androidx.room.RoomDatabase {
@@ -23,6 +28,13 @@ public abstract class RouteRoomDatabase extends androidx.room.RoomDatabase {
             super();
         }
         
+        /**
+         * Método que devuelve la instancia única de la base de datos, creándola si no existe.
+         * Utiliza el patrón Singleton con sincronización para evitar problemas en entornos multihilo.
+         *
+         * @param context Contexto de la aplicación necesario para crear la BD
+         * @return Instancia única de RouteRoomDatabase
+         */
         @org.jetbrains.annotations.NotNull()
         public final com.example.stepbystep.data.local.RouteRoomDatabase getInstance(@org.jetbrains.annotations.NotNull()
         android.content.Context context) {
