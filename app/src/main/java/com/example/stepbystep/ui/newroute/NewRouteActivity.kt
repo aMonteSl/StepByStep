@@ -401,6 +401,49 @@ class NewRouteActivity : AppCompatActivity(),
         Log.d(TAG, "[ACTIVITY] Elevación actual en viewModel: ${viewModel.currentElevation.value}")
     }
 
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        
+        if (intent.action == "com.example.stepbystep.NOTIFICATION_CLICK") {
+            Log.d(TAG, "[ACTIVITY] Restaurando desde notificación")
+            
+            // Asegurarnos de registrar el receptor de broadcast si no lo está
+            serviceConnection.registerReceiver()
+            
+            // Vincular o sincronizar con el servicio
+            if (!serviceConnection.isServiceBound()) {
+                serviceConnection.bindService()
+                // La sincronización ocurrirá en el callback onServiceConnected
+            } else {
+                // Sincronización inmediata si ya está vinculado
+                serviceConnection.syncServiceStateWithViewModel()
+            }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mapController.onPause()
+        
+        // Notificar al servicio que la app está pasando a segundo plano
+        if (serviceConnection.isServiceBound() && serviceConnection.isTracking()) {
+            serviceConnection.getService()?.adjustForBackgroundMode(true)
+            Log.d(TAG, "[ACTIVITY] Notificado paso a segundo plano al servicio")
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mapController.onResume()
+        
+        // Notificar al servicio que la app está volviendo a primer plano
+        if (serviceConnection.isServiceBound() && serviceConnection.isTracking()) {
+            serviceConnection.getService()?.adjustForBackgroundMode(false)
+            Log.d(TAG, "[ACTIVITY] Notificado regreso a primer plano al servicio")
+        }
+    }
+
     // Métodos para el manejo del menú
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

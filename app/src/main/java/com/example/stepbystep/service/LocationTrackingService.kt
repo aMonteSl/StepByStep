@@ -12,6 +12,7 @@ import com.example.stepbystep.R
 import com.example.stepbystep.ui.newroute.NewRouteActivity
 import com.example.stepbystep.util.StringFormatUtils
 import com.google.android.gms.location.*
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -48,6 +49,9 @@ class LocationTrackingService : Service() {
     private var currentElevation = 0.0      // Elevación actual en metros
     private var elevationGain = 0.0         // Ganancia acumulada de elevación en metros
     private var lastProcessedElevation = 0.0  // Última elevación procesada para calcular ganancia
+
+    // Añadir lista para almacenar todos los puntos procesados
+    private val routePoints = mutableListOf<LatLng>()
 
     // Handler para actualización periódica de tiempo en segundo plano
     private val handler = Handler(Looper.getMainLooper())
@@ -99,13 +103,7 @@ class LocationTrackingService : Service() {
         
         createNotificationChannel()
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        
-        // Configurar solicitud de ubicación optimizada para seguimiento de ruta
-        locationRequest = LocationRequest.Builder(1000L) // 1 segundo
-            .setMinUpdateIntervalMillis(500L) // 0.5 segundos mínimo
-            .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
-            .setMinUpdateDistanceMeters(1f) // 1 metro mínimo
-            .build()
+        createLocationRequest()
         
         // Configuración del callback que procesará las actualizaciones de ubicación
         locationCallback = object : LocationCallback() {
@@ -153,8 +151,7 @@ class LocationTrackingService : Service() {
             }
         }
         
-        // Si el sistema mata el servicio, queremos que se reinicie
-        return START_STICKY
+        return START_STICKY // Esto hace que el sistema recree el servicio si es terminado
     }
     
     /**
@@ -180,11 +177,16 @@ class LocationTrackingService : Service() {
      * Adquiere el WakeLock para mantener la CPU activa durante el rastreo.
      */
     private fun acquireWakeLock() {
-        wakeLock?.apply {
-            if (!isHeld) {
-                acquire()
-                Log.d(TAG, "WakeLock acquired")
+        if (wakeLock == null) {
+            val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
+            wakeLock = powerManager.newWakeLock(
+                PowerManager.PARTIAL_WAKE_LOCK,
+                "StepByStep:LocationTrackingWakeLock"
+            ).apply {
+                setReferenceCounted(false)
+                acquire(TimeUnit.HOURS.toMillis(3)) // Máximo 3 horas o ajustar según caso de uso
             }
+            Log.d(TAG, "WakeLock acquired")
         }
     }
     
@@ -253,6 +255,18 @@ class LocationTrackingService : Service() {
     }
     
     /**
+     * Genera el texto para la notificación basado en el estado actual del tracking.
+     */
+    private fun getNotificationText(): String {
+        val distanceStr = StringFormatUtils.formatDistance(distanceInMeters / 1000.0) // Convertir a km
+        val timeStr = StringFormatUtils.formatTime(elapsedTimeMillis)
+        
+        val status = if (isPaused) "Pausado" else "Activo"
+        
+        return "$status | Distancia: $distanceStr | Tiempo: $timeStr"
+    }
+    
+    /**
      * Inicia el rastreo de ubicación y prepara el estado inicial.
      */
     fun startLocationTracking() {
@@ -273,6 +287,7 @@ class LocationTrackingService : Service() {
         currentElevation = 0.0
         elevationGain = 0.0
         lastProcessedElevation = 0.0
+        routePoints.clear()
         
         Log.d(TAG, "[SERVICE] Variables reiniciadas: dist=0, elev=0, gain=0, tiempo=0")
         
@@ -312,8 +327,10 @@ class LocationTrackingService : Service() {
             Log.d(TAG, "[TRACKING] Segmento calculado: $segmentDistance m (umbral: 0.2m)")
             
             // Reducir el umbral de 1.0f a 0.2f metros para capturar movimientos más pequeños
-            if (segmentDistance > 0.2f) { // Más de 20 centímetros
+            if (segmentDistance > 0.0f) { // Más de 20 centímetros
                 distanceInMeters += segmentDistance
+                // Añadir a la lista de puntos
+                routePoints.add(LatLng(location.latitude, location.longitude))
                 Log.d(TAG, "[TRACKING] ✓ Punto aceptado! Distancia total acumulada: $distanceInMeters m (${distanceInMeters/1000} km)")
                 
                 // Procesar cambios en elevación
@@ -463,11 +480,63 @@ class LocationTrackingService : Service() {
     }
     
     /**
+     * Ajusta los parámetros de rastreo cuando la app cambia entre primer plano y segundo plano.
+     *
+     * @param inBackground true si la app está en segundo plano, false si está en primer plano
+     */
+    fun adjustForBackgroundMode(inBackground: Boolean) {
+        if (!isTracking) return
+
+        Log.d(TAG, "[SERVICE] Ajustando modo de rastreo: ${if (inBackground) "segundo plano" else "primer plano"}")
+        
+        // Actualizar flag de modo
+        backgroundEnabled = inBackground
+        
+        // Si estamos en segundo plano, asegurar que el WakeLock está adquirido
+        if (inBackground) {
+            acquireWakeLock()
+        }
+        
+        // Ajustar la frecuencia de actualizaciones según el modo
+        val updateInterval = if (inBackground) 15000L else 5000L  // 15s en segundo plano, 5s en primer plano
+        val minUpdateInterval = updateInterval / 2
+        
+        try {
+            // Cancelar solicitud actual
+            fusedLocationClient.removeLocationUpdates(locationCallback)
+            
+            // Crear nueva solicitud con intervalos ajustados
+            locationRequest = LocationRequest.Builder(updateInterval)
+                .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
+                .setMinUpdateIntervalMillis(minUpdateInterval)
+                .build()
+            
+            // Solicitar actualizaciones con la nueva configuración
+            fusedLocationClient.requestLocationUpdates(
+                locationRequest,
+                locationCallback,
+                Looper.getMainLooper()
+            )
+            
+            // Actualizar la notificación para mostrar el estado actual
+            updateNotification()
+            
+            Log.d(TAG, "[SERVICE] ✓ Ajustado a modo ${if (inBackground) "SEGUNDO PLANO" else "PRIMER PLANO"}: " +
+                  "intervalo=${updateInterval}ms, min=${minUpdateInterval}ms")
+        } catch (e: SecurityException) {
+            Log.e(TAG, "[SERVICE] ❌ Error al solicitar actualizaciones ajustadas: ${e.message}")
+        }
+    }
+
+    /**
      * Actualiza la notificación con la información actual.
      */
     private fun updateNotification() {
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.notify(NOTIFICATION_ID, createNotification())
+        if (isTracking) {
+            val notification = createNotification()
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.notify(NOTIFICATION_ID, notification)
+        }
     }
     
     // Métodos de acceso para que la actividad obtenga datos del servicio
@@ -477,4 +546,17 @@ class LocationTrackingService : Service() {
     fun getElapsedTime(): Long = elapsedTimeMillis
     fun getCurrentElevation(): Double = currentElevation
     fun getElevationGain(): Double = elevationGain
+    fun getRoutePoints(): List<LatLng> = routePoints.toList()
+
+    /**
+     * Crea la solicitud de ubicación optimizada para seguimiento de ruta.
+     */
+    private fun createLocationRequest() {
+        // Usar el constructor con intervalo en milisegundos
+        locationRequest = LocationRequest.Builder(5000) // 5 segundos como intervalo base
+            .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
+            .setMinUpdateIntervalMillis(3000) // Mínimo 3 segundos entre actualizaciones
+            .setMaxUpdateDelayMillis(10000)   // Máximo 10 segundos de retraso
+            .build()
+    }
 }

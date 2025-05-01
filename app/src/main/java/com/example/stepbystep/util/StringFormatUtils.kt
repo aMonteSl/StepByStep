@@ -114,6 +114,25 @@ object StringFormatUtils {
     }
 
     /**
+     * Formatea tiempo en milisegundos a un formato de reloj (hh:mm:ss o mm:ss)
+     * 
+     * @param timeMillis Tiempo en milisegundos
+     * @return Cadena con el tiempo formateado
+     */
+    @JvmStatic
+    fun formatTime(timeMillis: Long): String {
+        val hours = timeMillis / (1000 * 60 * 60)
+        val minutes = (timeMillis % (1000 * 60 * 60)) / (1000 * 60)
+        val seconds = (timeMillis % (1000 * 60)) / 1000
+        
+        return if (hours > 0) {
+            String.format("%d:%02d:%02d", hours, minutes, seconds)
+        } else {
+            String.format("%02d:%02d", minutes, seconds)
+        }
+    }
+
+    /**
      * Formatea elevación en metros con la unidad apropiada
      * 
      * @param elevationMeters Elevación en metros

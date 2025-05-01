@@ -351,7 +351,7 @@ public final class RouteDao_Impl implements RouteDao {
 
   @Override
   public LiveData<List<RouteWithPoints>> getAllRoutesWithPoints() {
-    final String _sql = "SELECT * FROM routes";
+    final String _sql = "SELECT * FROM routes ORDER BY date DESC, distance DESC";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     return __db.getInvalidationTracker().createLiveData(new String[] {"points",
         "routes"}, true, new Callable<List<RouteWithPoints>>() {

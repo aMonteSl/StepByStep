@@ -73,11 +73,12 @@ interface RouteDao {
     // Operaciones de consulta
     
     /**
-     * Obtiene todas las rutas junto con sus puntos.
+     * Obtiene todas las rutas junto con sus puntos, ordenadas primero por fecha más reciente 
+     * y luego por mayor distancia recorrida.
      * @return LiveData con la lista de rutas y sus puntos
      */
     @Transaction
-    @Query("SELECT * FROM routes")
+    @Query("SELECT * FROM routes ORDER BY date DESC, distance DESC")
     fun getAllRoutesWithPoints(): LiveData<List<RouteWithPoints>>
 
     /**

@@ -70,11 +70,12 @@ public abstract interface RouteDao {
     kotlin.coroutines.Continuation<? super kotlin.Unit> $completion);
     
     /**
-     * Obtiene todas las rutas junto con sus puntos.
+     * Obtiene todas las rutas junto con sus puntos, ordenadas primero por fecha más reciente 
+     * y luego por mayor distancia recorrida.
      * @return LiveData con la lista de rutas y sus puntos
      */
     @androidx.room.Transaction()
-    @androidx.room.Query(value = "SELECT * FROM routes")
+    @androidx.room.Query(value = "SELECT * FROM routes ORDER BY date DESC, distance DESC")
     @org.jetbrains.annotations.NotNull()
     public abstract androidx.lifecycle.LiveData<java.util.List<com.example.stepbystep.data.local.RouteWithPoints>> getAllRoutesWithPoints();
     

@@ -59,13 +59,36 @@ class LocationServiceConnection(
     }
     
     /**
-     * Sincroniza el estado del servicio con el ViewModel al conectar
+     * Sincroniza completamente el estado del servicio con el ViewModel
      */
-    private fun syncServiceStateWithViewModel() {
+    fun syncServiceStateWithViewModel() {
         trackingService?.let { service ->
             if (service.isTracking()) {
-                // Si el servicio ya está rastreando, actualizar el estado del ViewModel
-                viewModel.startRecording()
+                // Recopilar todos los datos acumulados del servicio
+                val distance = service.getDistance() / 1000.0  // Convertir a km
+                val elapsedTime = service.getElapsedTime()
+                val elevation = service.getCurrentElevation()
+                val elevationGain = service.getElevationGain()
+                val routePoints = service.getRoutePoints()  // Recuperar todos los puntos de la ruta
+                
+                Log.d(TAG, "[SYNC] Recuperando estado del servicio: " +
+                      "dist=${distance}km, tiempo=${elapsedTime}ms, " +
+                      "elev=${elevation}m, gain=${elevationGain}m, " +
+                      "puntos=${routePoints.size}")
+                
+                // Actualizar el ViewModel con todos los datos acumulados
+                viewModel.restoreTrackingState(
+                    distance,
+                    elapsedTime,
+                    elevation,
+                    elevationGain,
+                    routePoints
+                )
+                
+                // Actualizar estado de grabación
+                if (!viewModel.isRecording.value!!) {
+                    viewModel.startRecording(forceReset = false)  // No reiniciar contadores
+                }
                 
                 if (service.isPaused()) {
                     viewModel.pauseRecording()
@@ -269,4 +292,9 @@ class LocationServiceConnection(
     fun getCurrentElevation(): Double {
         return trackingService?.getCurrentElevation() ?: 0.0
     }
+    
+    /**
+     * Obtiene el servicio de rastreo, si está vinculado
+     */
+    fun getService(): LocationTrackingService? = trackingService
 }

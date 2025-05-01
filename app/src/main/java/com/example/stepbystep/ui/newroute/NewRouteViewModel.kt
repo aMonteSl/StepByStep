@@ -92,30 +92,59 @@ class NewRouteViewModel : ViewModel() {
     private var pauseStart = 0L                 // Tiempo cuando se pausó
 
     /**
+     * Restaura completamente el estado de tracking con datos del servicio
+     */
+    fun restoreTrackingState(
+        distance: Double,
+        timeMs: Long,
+        elevation: Double,
+        elevationGain: Double,
+        routePoints: List<LatLng>
+    ) {
+        // Actualizar datos básicos
+        _currentDistance.value = distance
+        _elapsedTimeMs.value = timeMs
+        _currentElevation.value = elevation
+        _elevationGain.value = elevationGain
+        
+        // Restaurar puntos de la ruta en el mapa
+        _routePoints.value = routePoints
+        
+        // Reconstruir lista de puntos con elevación
+        points.clear()
+        routePoints.forEach { latLng ->
+            points.add(LocationPoint(latLng, elevation))
+        }
+        
+        Log.d(TAG, "[VM] ✓ Estado restaurado completamente: " +
+              "${routePoints.size} puntos, ${distance}km, " +
+              "tiempo=${timeMs}ms")
+    }
+
+    /**
      * Inicia la grabación de una nueva ruta.
      * Reinicia todas las métricas y comienza el temporizador.
      */
-    fun startRecording() {
-        // Reiniciar métricas
-        _currentDistance.value = 0.0
-        _elapsedTimeMs.value   = 0L
-        _currentElevation.value= 0.0
-        _elevationGain.value   = 0.0
-        points.clear()
-        clearRoutePoints() // Limpiamos los puntos del mapa también
-        lastElevation     = 0.0
-        pausedAccumulated = 0L
-        _isPaused.value   = false
-        _isRecording.value= true
-
-        startTime = SystemClock.elapsedRealtime()
-        timerJob?.cancel()
-        timerJob = viewModelScope.launch(Dispatchers.Main) {
-            while (_isRecording.value == true && _isPaused.value == false) {
-                val elapsed = SystemClock.elapsedRealtime() - startTime - pausedAccumulated
-                _elapsedTimeMs.value = elapsed
-                delay(500L)
-            }
+    fun startRecording(forceReset: Boolean = true) {
+        if (forceReset) {
+            // Código original de reset
+            _currentDistance.value = 0.0
+            _elapsedTimeMs.value = 0L
+            _currentElevation.value = 0.0
+            _elevationGain.value = 0.0
+            points.clear()
+            clearRoutePoints()
+        }
+        
+        // Resto del código para iniciar grabación...
+        _isRecording.value = true
+        _isPaused.value = false
+        
+        // Solo iniciar el timer si no hay uno en curso
+        if (timerJob == null || timerJob?.isActive != true) {
+            startTime = SystemClock.elapsedRealtime() - (_elapsedTimeMs.value ?: 0L)
+            pausedAccumulated = 0L
+            startTimer()
         }
     }
 
@@ -344,6 +373,20 @@ class NewRouteViewModel : ViewModel() {
                   "Precisión: ${location.accuracy}m, " +
                   "Velocidad: ${location.speed}m/s, " +
                   "Altitud: ${location.altitude}m")
+        }
+    }
+
+    /**
+     * Inicia el temporizador para actualizar el tiempo transcurrido
+     */
+    private fun startTimer() {
+        timerJob?.cancel()
+        timerJob = viewModelScope.launch(Dispatchers.Main) {
+            while (_isRecording.value == true && _isPaused.value == false) {
+                val elapsed = SystemClock.elapsedRealtime() - startTime - pausedAccumulated
+                _elapsedTimeMs.value = elapsed
+                delay(500L)
+            }
         }
     }
 }
