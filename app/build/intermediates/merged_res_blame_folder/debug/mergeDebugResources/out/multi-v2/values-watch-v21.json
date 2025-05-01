@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.stepbystep.app-mergeDebugResources-48:/values-watch-v21/values-watch-v21.xml",
+            "map": [
+                {
+                    "source": "/home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6e948fa6abd1a57e7bf7465701299d87/transformed/appcompat-1.7.0/res/values-watch-v21/values-watch-v21.xml",
+                    "from": {
+                        "startLines": "2,6,10",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,271,499",
+                        "endLines": "5,9,13",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "266,494,724"
+                    }
+                }
+            ]
+        }
+    ]
+}

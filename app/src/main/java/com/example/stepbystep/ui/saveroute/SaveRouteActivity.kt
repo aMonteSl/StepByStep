@@ -7,13 +7,13 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.stepbystep.R
 import com.example.stepbystep.databinding.ActivitySaveRouteBinding
@@ -41,23 +41,47 @@ class SaveRouteActivity : AppCompatActivity() {
     private var googleMap: GoogleMap? = null
     private var selectedImageUri: Uri? = null
 
-    private val imagePicker = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+    private val storagePermissionRequest = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            // Permiso concedido, abrir selector de imágenes
+            openImagePicker()
+        } else {
+            // Determinar qué permiso se denegó basado en la versión de Android
+            val permission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                Manifest.permission.READ_MEDIA_IMAGES
+            } else {
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            }
+            
+            // Permiso denegado
+            if (!shouldShowRequestPermissionRationale(permission)) {
+                // El usuario marcó "No preguntar de nuevo"
+                MaterialAlertDialogBuilder(this)
+                    .setTitle("Permiso requerido")
+                    .setMessage("Has denegado permanentemente el acceso a la galería. Necesitas habilitarlo manualmente en la configuración de la aplicación.")
+                    .setPositiveButton("Ir a Configuración") { _, _ ->
+                        val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                        val uri = Uri.fromParts("package", packageName, null)
+                        intent.data = uri
+                        startActivity(intent)
+                    }
+                    .setNegativeButton("Cancelar", null)
+                    .show()
+            }
+            // No mostrar Toast aquí, ya que puede interferir con la experiencia del usuario
+        }
+    }
+
+    // Registra un nuevo ActivityResultLauncher para seleccionar imágenes
+    private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
             selectedImageUri = it
             binding.routeImagePreview.setImageURI(selectedImageUri)
             binding.routeImagePreview.visibility = View.VISIBLE
             binding.btnSelectImage.text = "Cambiar foto"
             saveImageToInternalStorage()
-        }
-    }
-
-    private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted ->
-        if (isGranted) {
-            openImagePicker()
-        } else {
-            Toast.makeText(this, "Se necesita permiso para acceder a las imágenes", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -87,7 +111,30 @@ class SaveRouteActivity : AppCompatActivity() {
             val points = bundle.getParcelableArrayList<LatLng>("points") ?: emptyList()
             val altitudes = bundle.getDoubleArray("altitudes")
             
-            viewModel.setRouteData(distance, duration, elevationGain, elevation, points, altitudes)
+            // Check if this is an imported route
+            val isImported = bundle.getBoolean("imported", false)
+            if (isImported) {
+                // For imported routes, we already have name and description
+                val name = bundle.getString("name", "")
+                val description = bundle.getString("description", "")
+                
+                // Añadir log para verificar los valores
+                Log.d("SaveRoute", "Imported route name: '$name', description: '$description'")
+                
+                // Establecer nombre y descripción en el ViewModel
+                viewModel.routeName.value = name
+                viewModel.routeDescription.value = description
+            }
+            
+            viewModel.setRouteData(
+                distance, 
+                duration, 
+                elevationGain, 
+                elevation, 
+                points, 
+                altitudes,
+                isImported  // Pasar este valor
+            )
             
             // Setup map once we have the data
             setupMap(points)
@@ -154,62 +201,44 @@ class SaveRouteActivity : AppCompatActivity() {
     }
     
     private fun checkAndRequestStoragePermission() {
+        // Determinar qué permiso solicitar basado en la versión de Android
+        val permission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            Manifest.permission.READ_MEDIA_IMAGES
+        } else {
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             when {
-                ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ) == PackageManager.PERMISSION_GRANTED -> {
+                ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED -> {
                     openImagePicker()
                 }
-                ActivityCompat.shouldShowRequestPermissionRationale(
-                    this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ) -> {
-                    // Mostrar diálogo explicativo y luego solicitar permiso
+                shouldShowRequestPermissionRationale(permission) -> {
+                    // Mostrar explicación de por qué se necesita el permiso
                     MaterialAlertDialogBuilder(this)
                         .setTitle("Permiso necesario")
                         .setMessage("Se necesita acceso a la galería para seleccionar fotos para tus rutas.")
-                        .setPositiveButton("Conceder") { _, _ ->
-                            // Solicita el permiso DIRECTAMENTE usando ActivityCompat
-                            ActivityCompat.requestPermissions(
-                                this,
-                                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                                STORAGE_PERMISSION_CODE
-                            )
+                        .setPositiveButton("Solicitar permiso") { _, _ ->
+                            // Lanzar solicitud de permiso con el permiso adecuado
+                            storagePermissionRequest.launch(permission)
                         }
                         .setNegativeButton("Cancelar", null)
                         .show()
                 }
                 else -> {
-                    // Solicita el permiso DIRECTAMENTE usando ActivityCompat
-                    ActivityCompat.requestPermissions(
-                        this,
-                        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                        STORAGE_PERMISSION_CODE
-                    )
+                    // Primera vez que se solicita el permiso o "No preguntar de nuevo" marcado
+                    // Esto debería mostrar el diálogo del sistema
+                    storagePermissionRequest.launch(permission)
                 }
             }
         } else {
+            // En versiones anteriores a Marshmallow, no se necesita permiso en tiempo de ejecución
             openImagePicker()
         }
     }
 
     private fun openImagePicker() {
-        try {
-            // Intenta usar un intent explícito para abrir la galería
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(intent, PICK_IMAGE_REQUEST_CODE)
-        } catch (e: Exception) {
-            // Si falla, intenta con un intent más genérico
-            try {
-                val intent = Intent(Intent.ACTION_GET_CONTENT)
-                intent.type = "image/*"
-                startActivityForResult(intent, PICK_IMAGE_REQUEST_CODE)
-            } catch (e: Exception) {
-                Toast.makeText(this, "No se pudo abrir el selector de imágenes: ${e.message}", Toast.LENGTH_SHORT).show()
-            }
-        }
+        pickImage.launch("image/*")
     }
 
     private fun saveImageToInternalStorage() {
@@ -238,9 +267,16 @@ class SaveRouteActivity : AppCompatActivity() {
                 val imagePath = destinationFile.absolutePath
                 viewModel.setImagePath(imagePath)
                 
+                // Verificar que el path se ha establecido correctamente (nuevo código)
+                Log.d("SaveRoute", "Image path set in ViewModel: ${viewModel.imagePath.value}")
+                
+                // Añadir un log para depuración
+                Log.d("SaveRoute", "Image saved to: $imagePath")
+                
                 Toast.makeText(this, "Imagen guardada correctamente", Toast.LENGTH_SHORT).show()
                 
             } catch (e: Exception) {
+                Log.e("SaveRoute", "Error saving image: ${e.message}", e)
                 Toast.makeText(this, "Error al guardar la imagen: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
@@ -253,39 +289,6 @@ class SaveRouteActivity : AppCompatActivity() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
-        }
-    }
-    
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        
-        if (requestCode == STORAGE_PERMISSION_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                openImagePicker()
-            } else {
-                Toast.makeText(
-                    this,
-                    "Permiso denegado. No se puede seleccionar una foto.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
-            data?.data?.let { uri ->
-                selectedImageUri = uri
-                binding.routeImagePreview.setImageURI(selectedImageUri)
-                binding.routeImagePreview.visibility = View.VISIBLE
-                binding.btnSelectImage.text = "Cambiar foto"
-                saveImageToInternalStorage()
-            }
         }
     }
     

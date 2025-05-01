@@ -1,0 +1,6 @@
+com.example.stepbystep.test.app-core-1.6.1-0 /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/7e4c5524e73c022a9de99d7350be26ec/transformed/core-1.6.1/res
+com.example.stepbystep.test.app-tracing-1.2.0-1 /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/862213f1a7f56c27b945ed83e8674a84/transformed/tracing-1.2.0/res
+com.example.stepbystep.test.app-androidTest-2 /home/adrian/Escritorio/StepByStep/app/build/generated/res/resValues/androidTest/debug
+com.example.stepbystep.test.app-mergeDebugAndroidTestResources-3 /home/adrian/Escritorio/StepByStep/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
+com.example.stepbystep.test.app-mergeDebugAndroidTestResources-4 /home/adrian/Escritorio/StepByStep/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
+com.example.stepbystep.test.app-debugAndroidTest-5 /home/adrian/Escritorio/StepByStep/app/build/intermediates/merged_res/debugAndroidTest/mergeDebugAndroidTestResources

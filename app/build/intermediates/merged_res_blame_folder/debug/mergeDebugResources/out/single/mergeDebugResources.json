@@ -1,0 +1,246 @@
+[
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/layout_activity_main.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_info.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_info.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-mdpi_ic_launcher_foreground.webp.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-mdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/layout_activity_save_route.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/layout/activity_save_route.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_play.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_play.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_my_location.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_my_location.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_empty_routes.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_empty_routes.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_elevation_gain.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_elevation_gain.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_time.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_time.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_profile.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_profile.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_my_location_off.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_my_location_off.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_show_all.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_show_all.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/layout_activity_route_detail.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/layout/activity_route_detail.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-hdpi_ic_launcher_foreground.webp.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-hdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_distance.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_distance.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_edit.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_edit.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_instruction_background.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/instruction_background.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/xml_data_extraction_rules.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.stepbystep.app-debug-50:/layout_activity_new_route.xml.flat",
+        "source": "com.example.stepbystep.app-main-52:/layout/activity_new_route.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_view_controls.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_view_controls.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/xml_backup_rules.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_add.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_add.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_pause.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_pause.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/xml_file_paths.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/xml/file_paths.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_settings.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_settings.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_launcher_background.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/layout_activity_new_route.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/layout/activity_new_route.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/raw_map_style_dark.json.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/raw/map_style_dark.json"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_file.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_file.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/layout_activity_profile.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/layout/activity_profile.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-xxxhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/menu_toolbar_route_menu.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/menu/toolbar_route_menu.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_elevation.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_elevation.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-xxhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_back.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_back.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_minimal.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_minimal.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_photo.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_photo.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_import.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_import.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/menu_route_detail_menu.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/menu/route_detail_menu.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_save.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_save.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_controls.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_controls.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_baseline_person_24.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_baseline_person_24.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_export.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_export.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/mipmap-xhdpi_ic_launcher_foreground.webp.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/mipmap-xhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_gpx_file.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_gpx_file.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/menu_toolbar_menu.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/menu/toolbar_menu.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/layout_activity_import_route.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/layout/activity_import_route.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/layout_item_route.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/layout/item_route.xml"
+    },
+    {
+        "merged": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-debug-50:/drawable_ic_stop.xml.flat",
+        "source": "/home/adrian/Escritorio/Android/Practica5/daemon/8.10.2/com.example.stepbystep.app-main-52:/drawable/ic_stop.xml"
+    }
+]

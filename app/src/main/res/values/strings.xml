@@ -28,4 +28,17 @@
     <string name="map_padding">16dp</string>
     <string name="total_activities">Total actividades: %1$d</string>
     <string name="active_since">Activo desde: %1$s</string>
+
+    <!-- Import GPX -->
+    <string name="import_gpx">Importar GPX</string>
+    <string name="import_gpx_title">Importar ruta GPX</string>
+    <string name="import_gpx_description">Selecciona un archivo GPX para importar como ruta</string>
+    <string name="gpx_parse_error">Error al procesar el archivo GPX</string>
+    <string name="import_route">Importar ruta</string>
+    <string name="no_gpx_selected">Ningún archivo GPX seleccionado</string>
+    <string name="invalid_gpx_file">El archivo seleccionado no es un GPX válido</string>
+    <string name="select_reference_route">Seleccionar ruta de referencia</string>
+    <string name="reference_route_loaded">Ruta de referencia cargada</string>
+    <string name="error_loading_gpx">Error al cargar el archivo GPX</string>
+    <string name="no_reference_route">Sin ruta de referencia</string>
 </resources>

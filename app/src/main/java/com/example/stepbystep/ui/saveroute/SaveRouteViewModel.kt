@@ -1,6 +1,7 @@
 package com.example.stepbystep.ui.saveroute
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.stepbystep.data.local.RouteRoomDatabase
 import com.example.stepbystep.data.repository.RouteRepository
@@ -62,7 +63,8 @@ class SaveRouteViewModel(context: Context) : ViewModel() {
         elevationGain: Double,
         elevation: Double,
         points: List<LatLng>,
-        altitudes: DoubleArray? = null
+        altitudes: DoubleArray? = null,
+        isImported: Boolean = false  // Añadir parámetro para rutas importadas
     ) {
         _distance.value = distance
         _duration.value = duration
@@ -75,9 +77,12 @@ class SaveRouteViewModel(context: Context) : ViewModel() {
         val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         _date.value = formatter.format(Date())
         
-        // Set a default name based on date and time
-        val timeFormatter = SimpleDateFormat("HH:mm", Locale.getDefault())
-        routeName.value = "Ruta ${timeFormatter.format(Date())}"
+        // Solo establecer un nombre predeterminado si no es una ruta importada
+        // o si el nombre actual está vacío
+        if (!isImported && (routeName.value.isNullOrEmpty())) {
+            val timeFormatter = SimpleDateFormat("HH:mm", Locale.getDefault())
+            routeName.value = "Ruta ${timeFormatter.format(Date())}"
+        }
     }
 
     fun setImagePath(path: String?) {
@@ -95,6 +100,9 @@ class SaveRouteViewModel(context: Context) : ViewModel() {
         
         val points = _routePoints.value ?: emptyList()
         val altitudes = _altitudes.value
+        
+        // Verificar el valor del path de la imagen antes de crear la ruta (nuevo código)
+        Log.d("SaveRoute", "imagePath before creating Route: ${imagePath.value}")
         
         val routePoints = if (altitudes != null && altitudes.size == points.size) {
             // Use individual altitude for each point
@@ -127,9 +135,12 @@ class SaveRouteViewModel(context: Context) : ViewModel() {
             duration = duration.value ?: 0L,
             elevation = elevation.value ?: 0.0,
             elevationGain = elevationGain.value ?: 0.0,
-            imagePath = imagePath.value,
+            imagePath = imagePath.value,  // Asegurarnos de que esto no sea null
             points = routePoints
         )
+        
+        // Log para verificar que la ruta tiene el path de la imagen (nuevo código)
+        Log.d("SaveRoute", "Route created with imagePath: ${route.imagePath}")
         
         viewModelScope.launch {
             repository.addRoute(route)

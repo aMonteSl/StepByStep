@@ -15,6 +15,7 @@ import com.example.stepbystep.data.repository.RouteRepository
 import com.example.stepbystep.ui.newroute.NewRouteActivity
 import com.example.stepbystep.ui.profile.ProfileActivity
 import com.example.stepbystep.ui.routedetail.RouteDetailActivity
+import com.example.stepbystep.ui.importroute.ImportRouteActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -59,6 +60,10 @@ class MainActivity : AppCompatActivity() {
   override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
     R.id.menu_profile -> {
       startActivity(Intent(this, ProfileActivity::class.java))
+      true
+    }
+    R.id.menu_import_gpx -> {
+      startActivity(Intent(this, ImportRouteActivity::class.java))
       true
     }
     else -> super.onOptionsItemSelected(item)

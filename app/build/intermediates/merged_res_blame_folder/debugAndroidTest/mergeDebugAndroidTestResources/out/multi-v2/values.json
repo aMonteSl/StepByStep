@@ -1,0 +1,28 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.stepbystep.test.app-mergeDebugAndroidTestResources-3:/values/values.xml",
+            "map": [
+                {
+                    "source": "/home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/7e4c5524e73c022a9de99d7350be26ec/transformed/core-1.6.1/res/values/values.xml",
+                    "from": {
+                        "startLines": "4,11",
+                        "startColumns": "0,0",
+                        "startOffsets": "142,510",
+                        "endLines": "10,17",
+                        "endColumns": "8,8",
+                        "endOffsets": "509,875"
+                    },
+                    "to": {
+                        "startLines": "2,9",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,427",
+                        "endLines": "8,15",
+                        "endColumns": "8,8",
+                        "endOffsets": "422,792"
+                    }
+                }
+            ]
+        }
+    ]
+}

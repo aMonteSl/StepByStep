@@ -20,7 +20,10 @@
     <uses-feature android:name="android.hardware.sensor.barometer" 
                   android:required="false" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
 
     <application
         android:allowBackup="true"
@@ -57,6 +60,57 @@
         <activity 
             android:name=".ui.profile.ProfileActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".ui.importroute.ImportRouteActivity"
+            android:exported="true">
+            
+            <!-- Intent filter para archivos GPX con scheme=file -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data 
+                    android:scheme="file" 
+                    android:host="*" 
+                    android:pathPattern=".*\\.gpx" 
+                    android:mimeType="*/*" />
+            </intent-filter>
+            
+            <!-- Intent filter para archivos GPX con scheme=content y mimeType específico -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="content" android:mimeType="application/gpx+xml" />
+            </intent-filter>
+            
+            <!-- Intent filter para archivos XML que podrían ser GPX -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="content" android:mimeType="application/xml" />
+            </intent-filter>
+            
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="content" android:mimeType="text/xml" />
+            </intent-filter>
+            
+            <!-- Para archivos con extensión .gpx pero sin mimeType conocido -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data 
+                    android:scheme="content" 
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\.gpx" />
+            </intent-filter>
+        </activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -80,15 +81,19 @@ class RouteDetailActivity : AppCompatActivity() {
                 try {
                     val imageFile = File(path)
                     if (imageFile.exists()) {
+                        Log.d("RouteDetail", "Image file exists at path: $path")
                         binding.routeImage.setImageURI(Uri.fromFile(imageFile))
                         binding.routeImageCard.visibility = View.VISIBLE
                     } else {
+                        Log.e("RouteDetail", "Image file doesn't exist at path: $path")
                         binding.routeImageCard.visibility = View.GONE
                     }
                 } catch (e: Exception) {
+                    Log.e("RouteDetail", "Error loading image: ${e.message}", e)
                     binding.routeImageCard.visibility = View.GONE
                 }
             } ?: run {
+                Log.d("RouteDetail", "No image path available for this route")
                 binding.routeImageCard.visibility = View.GONE
             }
         }

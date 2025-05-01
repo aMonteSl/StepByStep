@@ -8,6 +8,7 @@
             name="viewModel"
             type="com.example.stepbystep.ui.newroute.NewRouteViewModel" />
         <import type="com.example.stepbystep.util.StringFormatUtils" />
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,6 +47,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Modificación del FAB para seleccionar ruta - Ahora en esquina inferior izquierda -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabSelectReference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/select_reference_route"
+            android:layout_margin="24dp"
+            app:srcCompat="@drawable/ic_gpx_file"
+            app:tint="@color/white"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <!-- Stats Card with evenly spaced items -->
         <com.google.android.material.card.MaterialCardView
@@ -197,6 +211,19 @@
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+
+        <!-- Chip reposicionado para mostrar la ruta de referencia -->
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipReferenceRoute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:visibility="@{viewModel.referencePoints == null || viewModel.referencePoints.isEmpty() ? View.GONE : View.VISIBLE}"
+            android:text="@{viewModel.referenceRouteName}"
+            app:closeIconVisible="true"
+            style="@style/Widget.Material3.Chip.Filter"
+            app:layout_constraintTop_toBottomOf="@id/statsCard"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <!-- Control Buttons Container - Add an ID here -->
         <LinearLayout

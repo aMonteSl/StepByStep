@@ -36,6 +36,16 @@ class NewRouteViewModel : ViewModel() {
     private val _elevationGain   = MutableLiveData(0.0)
     val elevationGain: LiveData<Double>    = _elevationGain
 
+    // Añadir para la ruta de referencia
+    private val _referencePoints = MutableLiveData<List<LatLng>>()
+    val referencePoints: LiveData<List<LatLng>> = _referencePoints
+
+    private val _referenceRouteVisible = MutableLiveData(true)
+    val referenceRouteVisible: LiveData<Boolean> = _referenceRouteVisible
+
+    private val _referenceRouteName = MutableLiveData<String>()
+    val referenceRouteName: LiveData<String> = _referenceRouteName
+
     // Datos internos
     val points = mutableListOf<LocationPoint>()
     private var lastElevation = 0.0
@@ -125,5 +135,22 @@ class NewRouteViewModel : ViewModel() {
             }
             lastElevation = location.altitude
         }
+    }
+
+    // Método para establecer los datos de la ruta de referencia
+    fun setReferenceRoute(points: List<LatLng>, name: String = "Ruta de referencia") {
+        _referencePoints.value = points
+        _referenceRouteName.value = name
+    }
+    
+    // Método para alternar la visibilidad de la ruta de referencia
+    fun toggleReferenceRouteVisibility() {
+        _referenceRouteVisible.value = !(_referenceRouteVisible.value ?: true)
+    }
+    
+    // Método para limpiar la ruta de referencia
+    fun clearReferenceRoute() {
+        _referencePoints.value = emptyList()
+        _referenceRouteName.value = null
     }
 }

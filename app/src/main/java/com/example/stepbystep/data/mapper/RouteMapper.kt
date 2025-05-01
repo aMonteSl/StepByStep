@@ -9,60 +9,13 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 object RouteMapper {
-
     private val DATE_FMT = DateTimeFormatter.ISO_LOCAL_DATE
-
-    /** De Room (RouteWithPoints) a dominio (Route) */
-    fun fromEntity(rwp: RouteWithPoints): Route {
-        val entity = rwp.route
-        val pts = rwp.points.map { pe -> Point(
-            latitude  = pe.latitude,
-            longitude = pe.longitude,
-            altitude  = pe.altitude,
-            timestamp = pe.timestamp
-        )}
-        return Route(
-            id           = entity.id,
-            name         = entity.name,
-            description  = entity.description ?: "",  // Handle nullable description
-            date         = entity.date,  
-            distance     = entity.distance,
-            duration     = entity.duration,
-            elevation    = entity.elevation,
-            elevationGain = entity.elevationGain,
-            points       = pts
-        )
-    }
-
-    /** De dominio (Route) a Room (RouteEntity + PointEntity) */
-    fun toEntity(route: Route): Pair<RouteEntity, List<PointEntity>> {
-        val re = RouteEntity(
-            id           = route.id,
-            name         = route.name,
-            description  = route.description,
-            date         = route.date,  // Keep as string, no conversion needed
-            distance     = route.distance,
-            duration     = route.duration,
-            elevation    = route.elevation,
-            elevationGain = route.elevationGain
-        )
-        val peList = route.points.map { pt ->
-            PointEntity(
-                routeId   = re.id,
-                latitude  = pt.latitude,
-                longitude = pt.longitude,
-                altitude  = pt.altitude,
-                timestamp = pt.timestamp
-            )
-        }
-        return re to peList
-    }
 
     fun RouteWithPoints.toDomain(): Route {
         return Route(
             id = route.id,
             name = route.name,
-            description = route.description,
+            description = route.description ?: "",  // Mantener el manejo de nulos
             date = route.date,
             distance = route.distance,
             duration = route.duration,
@@ -83,7 +36,7 @@ object RouteMapper {
             duration = duration,
             elevation = elevation,
             elevationGain = elevationGain,
-            imagePath = imagePath
+            imagePath = imagePath  
         )
         
         val pointEntities = points.map { 
@@ -98,4 +51,17 @@ object RouteMapper {
         
         return Pair(routeEntity, pointEntities)
     }
+
+    fun PointEntity.toDomain(): Point {
+        return Point(
+            latitude = latitude,
+            longitude = longitude,
+            altitude = altitude,
+            timestamp = timestamp
+        )
+    }
+    
+    fun fromEntity(rwp: RouteWithPoints): Route = rwp.toDomain()
+    
+    fun toEntity(route: Route): Pair<RouteEntity, List<PointEntity>> = route.toEntities()
 }
