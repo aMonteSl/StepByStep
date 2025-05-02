@@ -2,11 +2,14 @@ package com.example.stepbystep.ui.saveroute
 
 import android.content.Context
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.*
 import com.example.stepbystep.data.local.RouteRoomDatabase
 import com.example.stepbystep.data.repository.RouteRepository
 import com.example.stepbystep.domain.model.Route
 import com.example.stepbystep.domain.model.Point
+import com.example.stepbystep.util.DateFormatUtils
+import com.example.stepbystep.util.StringFormatUtils
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -71,6 +74,36 @@ class SaveRouteViewModel(context: Context) : ViewModel() {
     val isFormValid = MediatorLiveData<Boolean>().apply {
         addSource(routeName) { validateForm() }
         addSource(routeDescription) { validateForm() }
+    }
+
+    // Propiedades formateadas para la UI - convertidas a extensiones map()
+    val formattedDistance: LiveData<String> = distance.map { distance ->
+        StringFormatUtils.formatDistanceKm(distance)
+    }
+
+    val formattedDuration: LiveData<String> = duration.map { duration ->
+        StringFormatUtils.formatDuration(duration)
+    }
+
+    val formattedElevation: LiveData<String> = elevation.map { elevation ->
+        StringFormatUtils.formatElevation(elevation)
+    }
+
+    val formattedElevationGain: LiveData<String> = elevationGain.map { gain ->
+        StringFormatUtils.formatElevationGain(gain)
+    }
+
+    val formattedDate: LiveData<String> = date.map { dateString ->
+        DateFormatUtils.formatDate(dateString)
+    }
+
+    // Propiedades de visibilidad - corregidas para manejar valores nulos correctamente
+    val imagePreviewVisible: LiveData<Int> = imagePath.map { path ->
+        if (path == null || path.isEmpty()) View.GONE else View.VISIBLE
+    }
+
+    val selectImageButtonVisible: LiveData<Int> = imagePath.map { path ->
+        if (path == null || path.isEmpty()) View.VISIBLE else View.GONE
     }
 
     /**

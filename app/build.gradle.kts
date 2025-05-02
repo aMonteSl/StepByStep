@@ -75,4 +75,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Añade esta línea con tus otras dependencias
+    implementation(libs.androidx.lifecycle.livedata.ktx) // Usa la versión más reciente
 }

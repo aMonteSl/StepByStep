@@ -9,7 +9,7 @@
             type="com.example.stepbystep.ui.routedetail.RouteDetailViewModel" />
         <import type="com.example.stepbystep.util.StringFormatUtils" />
         <import type="com.example.stepbystep.util.DateFormatUtils" />
-        <import type="android.view.View" />  <!-- Añadir esta línea -->
+        <import type="android.view.View" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -95,7 +95,7 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@android:color/white"
                                     android:textStyle="bold"
-                                    android:text="@{StringFormatUtils.formatDistanceKm(viewModel.route.distance)}"
+                                    android:text="@{viewModel.formattedDistance}"
                                     tools:text="5.2 km" />
                             </LinearLayout>
 
@@ -120,7 +120,7 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@android:color/white"
                                     android:textStyle="bold"
-                                    android:text="@{StringFormatUtils.formatDuration(viewModel.route.duration)}"
+                                    android:text="@{viewModel.formattedDuration}"
                                     tools:text="45m 30s" />
                             </LinearLayout>
 
@@ -145,7 +145,7 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@android:color/white"
                                     android:textStyle="bold"
-                                    android:text="@{StringFormatUtils.formatElevation(viewModel.route.elevation)}"
+                                    android:text="@{viewModel.formattedElevation}"
                                     tools:text="698m" />
                             </LinearLayout>
 
@@ -170,7 +170,7 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@android:color/white"
                                     android:textStyle="bold"
-                                    android:text="@{StringFormatUtils.formatElevationGain(viewModel.route.elevationGain)}"
+                                    android:text="@{viewModel.formattedElevationGain}"
                                     tools:text="+120m" />
                             </LinearLayout>
                         </LinearLayout>
@@ -183,7 +183,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:visibility="@{viewModel.route.imagePath != null ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{viewModel.routeImageVisibility}"
                     style="?attr/materialCardViewStyle">
 
                     <LinearLayout
@@ -264,7 +264,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@{DateFormatUtils.formatDate(viewModel.route.date)}"
+                                android:text="@{viewModel.formattedDate}"
                                 tools:text="19 de abril, 2025" />
                         </LinearLayout>
 

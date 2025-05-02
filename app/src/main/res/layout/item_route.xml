@@ -5,10 +5,8 @@
 
     <data>
         <variable
-            name="route"
-            type="com.example.stepbystep.domain.model.Route" />
-        <import type="com.example.stepbystep.util.DateFormatUtils"/>
-        <import type="com.example.stepbystep.util.StringFormatUtils"/>
+            name="displayModel"
+            type="com.example.stepbystep.ui.main.RouteDisplayModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -26,7 +24,7 @@
                 android:id="@+id/tvRouteName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{route.name}"
+                android:text="@{displayModel.name}"
                 android:textAppearance="?attr/textAppearanceHeadlineSmall"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +36,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@{DateFormatUtils.formatDate(route.date)}"
+                android:text="@{displayModel.formattedDate}"
                 android:textAppearance="?attr/textAppearanceBodySmall"
                 android:textColor="?attr/colorOnSurfaceVariant"
                 app:layout_constraintStart_toStartOf="@id/tvRouteName"
@@ -77,7 +75,7 @@
                         android:id="@+id/tvRouteDistance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{StringFormatUtils.formatDistanceKm(route.distance)}"
+                        android:text="@{displayModel.formattedDistance}"
                         android:textAppearance="?attr/textAppearanceBodyLarge"
                         tools:text="3.2 km"/>
                 </LinearLayout>
@@ -102,7 +100,7 @@
                         android:id="@+id/tvRouteDuration"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{StringFormatUtils.formatDuration(route.duration)}"
+                        android:text="@{displayModel.formattedDuration}"
                         android:textAppearance="?attr/textAppearanceBodyLarge"
                         tools:text="45 min"/>
                 </LinearLayout>
@@ -127,7 +125,7 @@
                         android:id="@+id/tvRouteElevation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{StringFormatUtils.formatElevation(route.elevation)}"
+                        android:text="@{displayModel.formattedElevation}"
                         android:textAppearance="?attr/textAppearanceBodyLarge"
                         tools:text="120 m"/>
                 </LinearLayout>
@@ -152,7 +150,7 @@
                         android:id="@+id/tvRouteElevationGain"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{StringFormatUtils.formatElevationGain(route.elevationGain)}"
+                        android:text="@{displayModel.formattedElevationGain}"
                         android:textAppearance="?attr/textAppearanceBodyLarge"
                         tools:text="+120 m"/>
                 </LinearLayout>

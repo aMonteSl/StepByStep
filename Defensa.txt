@@ -1,0 +1,49 @@
+🧩 1. ¿Por qué usas un servicio en primer plano (ForegroundService) en vez de un JobScheduler o WorkManager?
+Respuesta recomendada:
+
+Porque necesito registrar ubicaciones en tiempo real y sin interrupciones, incluso si la app está en segundo plano. Solo un ForegroundService garantiza que el sistema no lo pause ni lo elimine, especialmente en Android 8+ con restricciones de batería. Además, me permite mostrar una notificación persistente con el estado de la grabación.
+
+🧭 2. ¿Cómo estás obteniendo la ubicación y con qué frecuencia?
+Respuesta:
+
+Utilizo FusedLocationProviderClient con una LocationRequest.Builder. En primer plano, solicito actualizaciones cada 5 segundos; en segundo plano, cada 15. Esto se ajusta dinámicamente con adjustForBackgroundMode(). Además, uso PRIORITY_HIGH_ACCURACY para rutas más precisas.
+
+🔌 3. ¿Por qué usas un WakeLock y cómo evitas que consuma batería innecesariamente?
+Respuesta:
+
+Uso WakeLock de tipo PARTIAL_WAKE_LOCK para mantener la CPU activa cuando la app está en segundo plano y se graba una ruta. Lo libero siempre que se detiene el servicio o se pausa. Además, limito su duración a 3 horas por seguridad. Esto me asegura que el GPS sigue funcionando sin agotar la batería más de lo necesario.
+
+🛑 4. ¿Qué pasa si el usuario fuerza el cierre de la app? ¿Se pierde la grabación?
+Respuesta:
+
+No, si la app se cierra pero el servicio sigue activo, la grabación continúa porque es un servicio en primer plano (START_STICKY). Además, la notificación le permite volver a la pantalla de grabación. Solo se pierde si el sistema termina el proceso y el usuario no lo reinicia.
+
+📡 5. ¿Cómo calculas la distancia recorrida y la ganancia de elevación?
+Respuesta:
+
+Uso Location.distanceTo() entre cada par de ubicaciones sucesivas, descartando cambios menores a 20cm para evitar ruido. Para la elevación, solo acumulo valores si hay un aumento real (> 0.2m). Así, evito falsas ganancias por variación natural del GPS.
+
+💬 6. ¿Cómo se comunica el servicio con la actividad?
+Respuesta:
+
+Uso un Broadcast explícito (sendBroadcast) que envía cada nueva ubicación y las estadísticas calculadas como extras (EXTRA_LOCATION, EXTRA_DISTANCE, etc.). La actividad registra un BroadcastReceiver y actualiza la UI con esos valores.
+
+🧼 7. ¿Qué haces al destruir el servicio? ¿Limpias todos los recursos?
+Respuesta:
+
+Sí. En onDestroy():
+
+Detengo las actualizaciones de ubicación.
+
+Cancelo el Handler que actualiza el tiempo.
+
+Libero el WakeLock.
+
+Cancelo el CoroutineScope.
+
+🎛 8. ¿Cómo podrías mejorar el servicio para producción?
+Respuesta sugerida:
+
+Añadiría persistencia temporal de los puntos (en una base de datos o archivo) para recuperar una grabación si el sistema mata el proceso. También permitiría reanudar rutas guardadas parcialmente, y modularizaría la lógica de cálculos en clases separadas para testabilidad.
+
+

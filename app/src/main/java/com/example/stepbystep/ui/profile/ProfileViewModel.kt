@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map  // Importar la extensión map en lugar de Transformations
 import androidx.lifecycle.viewModelScope
+import com.example.stepbystep.R
 import com.example.stepbystep.data.local.RouteRoomDatabase
 import com.example.stepbystep.data.local.UserPreferences
 import com.example.stepbystep.data.repository.RouteRepository
@@ -48,6 +50,17 @@ class ProfileViewModel(context: Context) : ViewModel() {
     
     private val _isEditMode = MutableLiveData<Boolean>(false)  // Inicializado con false
     val isEditMode: LiveData<Boolean> = _isEditMode
+
+    // Para el modo de edición - ya se tienen las básicas
+    val editFieldBackground = MutableLiveData(android.R.color.transparent)
+
+    // Texto del botón según modo de edición
+    private val _editButtonText = MutableLiveData<Int>(R.string.edit)
+    val editButtonText: LiveData<Int> = _editButtonText
+
+    // Icono del botón según modo de edición
+    private val _editButtonIcon = MutableLiveData<Int>(R.drawable.ic_edit)
+    val editButtonIcon: LiveData<Int> = _editButtonIcon
     
     // Estadísticas en vivo que se actualizarán cuando cambien las rutas
     private val _totalActivities = MutableLiveData(0)
@@ -73,6 +86,15 @@ class ProfileViewModel(context: Context) : ViewModel() {
     
     private val _totalElevationGain = MutableLiveData<String>()
     val totalElevationGain: LiveData<String> = _totalElevationGain
+
+    // Para textos formateados con parámetros - usando la extensión map() en lugar de Transformations.map
+    val formattedTotalActivities: LiveData<String> = _totalActivities.map { count ->
+        String.format("Total actividades: %d", count)
+    }
+
+    val formattedActiveDate: LiveData<String> = _firstActivityDate.map { date ->
+        String.format("Activo desde: %s", date)
+    }
     
     /**
      * Configuración de observadores para actualizar estadísticas cuando
@@ -91,7 +113,17 @@ class ProfileViewModel(context: Context) : ViewModel() {
      * Alterna entre modo edición y modo visualización
      */
     fun toggleEditMode() {
-        _isEditMode.value = !(_isEditMode.value ?: false)
+        val newMode = !(_isEditMode.value ?: false)
+        _isEditMode.value = newMode
+        
+        // Actualizar icono y texto del botón según el modo
+        if (newMode) {
+            _editButtonText.value = R.string.save
+            _editButtonIcon.value = R.drawable.ic_save
+        } else {
+            _editButtonText.value = R.string.edit
+            _editButtonIcon.value = R.drawable.ic_edit
+        }
     }
     
     /**

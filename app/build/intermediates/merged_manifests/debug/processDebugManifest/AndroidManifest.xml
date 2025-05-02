@@ -8,40 +8,43 @@
         android:minSdkVersion="24"
         android:targetSdkVersion="35" />
 
-    <!-- Mark fine location as required -->
+    <!-- ************ PERMISOS DE UBICACIÓN ************ -->
+    <!-- Permiso de ubicación precisa (requerido para el tracking GPS) -->
     <uses-permission
         android:name="android.permission.ACCESS_FINE_LOCATION"
         android:required="true" />
 
-    <!-- Mark coarse location as optional (requested implicitly on some Android versions) -->
+    <!-- Permiso de ubicación aproximada (implícito en versiones recientes de Android) -->
     <uses-permission
         android:name="android.permission.ACCESS_COARSE_LOCATION"
         android:required="false" />
 
-    <!-- REQUIRED for background tracking -->
+    <!-- Permiso para tracking en segundo plano (Android 10+) -->
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
-    <!-- Add foreground service permission -->
+    <!-- ************ PERMISOS DE SERVICIO ************ -->
+    <!-- Permisos para servicios en primer plano -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
-    <!-- Opcional: Permiso para evitar que la app entre en modo doze -->
+    <!-- Opcional: Evitar que la app entre en modo doze -->
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
-    <uses-feature
-        android:name="android.hardware.sensor.barometer"
-        android:required="false" />
-
+    <!-- ************ PERMISOS DE ALMACENAMIENTO ************ -->
+    <!-- Para acceso a imágenes en Android < 13 -->
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
+    <!-- Para acceso a imágenes en Android 13+ -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
-    <!-- Añadir este permiso -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <!-- Asegúrate de tener estos permisos -->
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- ************ CARACTERÍSTICAS DE HARDWARE ************ -->
+    <!-- Sensor barómetro (opcional para elevación más precisa) -->
+    <uses-feature
+        android:name="android.hardware.sensor.barometer"
+        android:required="false" />
 
     <!-- Include required permissions for Google Maps API to run. -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -76,10 +79,14 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.StepByStep" >
+
+        <!-- ************ API KEYS ************ -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC89cI3IlWBK307V_qQ5CIsAr2q2Fm4e_o" />
 
+        <!-- ************ ACTIVIDADES ************ -->
+        <!-- Actividad principal (launcher) -->
         <activity
             android:name="com.example.stepbystep.ui.main.MainActivity"
             android:exported="true" >
@@ -89,21 +96,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.stepbystep.ui.newroute.NewRouteActivity" />
+
+        <!-- Actividad para crear nuevas rutas -->
+        <activity
+            android:name="com.example.stepbystep.ui.newroute.NewRouteActivity"
+            android:exported="false" />
+
+        <!-- Actividad para guardar rutas completadas -->
         <activity
             android:name="com.example.stepbystep.ui.saveroute.SaveRouteActivity"
             android:exported="false" />
+
+        <!-- Actividad para ver detalles de rutas -->
         <activity
             android:name="com.example.stepbystep.ui.routedetail.RouteDetailActivity"
             android:exported="false" />
+
+        <!-- Actividad de perfil de usuario -->
         <activity
             android:name="com.example.stepbystep.ui.profile.ProfileActivity"
             android:exported="false" />
+
+        <!-- Actividad para importar rutas GPX -->
         <activity
             android:name="com.example.stepbystep.ui.importroute.ImportRouteActivity"
             android:exported="true" >
 
-            <!-- Intent filter para archivos GPX con scheme=file -->
+            <!-- Intent filter para archivos GPX (scheme=file) -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -111,13 +130,12 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="*"
                     android:mimeType="*/*"
                     android:pathPattern=".*\\.gpx"
                     android:scheme="file" />
             </intent-filter>
 
-            <!-- Intent filter para archivos GPX con scheme=content y mimeType específico -->
+            <!-- Intent filter para archivos GPX (scheme=content) -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -140,18 +158,8 @@
                     android:mimeType="application/xml"
                     android:scheme="content" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:mimeType="text/xml"
-                    android:scheme="content" />
-            </intent-filter>
-
-            <!-- Para archivos con extensión .gpx pero sin mimeType conocido -->
+            <!-- Intent filter para archivos con extensión .gpx sin tipo MIME específico -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -165,6 +173,8 @@
             </intent-filter>
         </activity>
 
+        <!-- ************ PROVEEDORES ************ -->
+        <!-- Proveedor de archivos para compartir -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.stepbystep.fileprovider"
@@ -175,13 +185,17 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <!-- ************ SERVICIOS ************ -->
+        <!-- Servicio de tracking de ubicación -->
         <service
             android:name="com.example.stepbystep.service.LocationTrackingService"
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="location" />
-
-        <!-- Needs to be explicitly declared on P+ -->
+        <service
+            android:name="androidx.room.MultiInstanceInvalidationService"
+            android:directBootAware="true"
+            android:exported="false" /> <!-- Needs to be explicitly declared on P+ -->
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
@@ -209,11 +223,6 @@
                 android:name="androidx.profileinstaller.ProfileInstallerInitializer"
                 android:value="androidx.startup" />
         </provider>
-
-        <service
-            android:name="androidx.room.MultiInstanceInvalidationService"
-            android:directBootAware="true"
-            android:exported="false" />
 
         <receiver
             android:name="androidx.profileinstaller.ProfileInstallReceiver"

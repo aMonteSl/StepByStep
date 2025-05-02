@@ -93,7 +93,7 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@android:color/white"
                                     android:textStyle="bold"
-                                    android:text="@{StringFormatUtils.formatDistanceKm(viewModel.distance)}"
+                                    android:text="@{viewModel.formattedDistance}"
                                     tools:text="5.2 km" />
                             </LinearLayout>
 
@@ -118,7 +118,7 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@android:color/white"
                                     android:textStyle="bold"
-                                    android:text="@{StringFormatUtils.formatDuration(viewModel.duration)}"
+                                    android:text="@{viewModel.formattedDuration}"
                                     tools:text="45m 30s" />
                             </LinearLayout>
 
@@ -143,7 +143,7 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@android:color/white"
                                     android:textStyle="bold"
-                                    android:text="@{StringFormatUtils.formatElevation(viewModel.elevation)}"
+                                    android:text="@{viewModel.formattedElevation}"
                                     tools:text="698m" />
                             </LinearLayout>
 
@@ -168,7 +168,7 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@android:color/white"
                                     android:textStyle="bold"
-                                    android:text="@{StringFormatUtils.formatElevationGain(viewModel.elevationGain)}"
+                                    android:text="@{viewModel.formattedElevationGain}"
                                     tools:text="+120m" />
                             </LinearLayout>
                         </LinearLayout>
@@ -199,7 +199,7 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@{DateFormatUtils.formatDate(viewModel.date)}"
+                                android:text="@{viewModel.formattedDate}"
                                 android:enabled="false"
                                 tools:text="19 de abril, 2025" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -263,7 +263,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="200dp"
                                     android:scaleType="centerCrop"
-                                    android:visibility="gone"
+                                    android:visibility="@{viewModel.imagePreviewVisible}"
                                     android:contentDescription="Vista previa de la imagen" />
                                     
                                 <com.google.android.material.button.MaterialButton

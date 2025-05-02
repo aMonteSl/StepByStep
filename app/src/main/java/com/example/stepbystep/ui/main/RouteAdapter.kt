@@ -20,6 +20,9 @@ class RouteAdapter(
     private val onLongClick: (Route) -> Boolean = { _ -> false } // Parámetro opcional con valor por defecto
 ) : RecyclerView.Adapter<RouteAdapter.RouteViewHolder>() {
 
+    // Lista de modelos de presentación
+    private var displayModels: List<RouteDisplayModel> = routes.map { RouteDisplayModel.fromRoute(it) }
+
     /**
      * ViewHolder que contiene la vista de cada elemento de la lista.
      * Utiliza data binding para vincular los datos con el layout.
@@ -42,7 +45,8 @@ class RouteAdapter(
      */
     override fun onBindViewHolder(holder: RouteViewHolder, position: Int) {
         val route = routes[position]
-        holder.binding.route = route
+        val displayModel = displayModels[position]
+        holder.binding.displayModel = displayModel
         holder.binding.executePendingBindings()
         
         // Configurar evento de clic en todo el elemento
@@ -63,6 +67,7 @@ class RouteAdapter(
      */
     fun updateRoutes(newRoutes: List<Route>) {
         routes = newRoutes
+        displayModels = newRoutes.map { RouteDisplayModel.fromRoute(it) }
         notifyDataSetChanged()
     }
 }

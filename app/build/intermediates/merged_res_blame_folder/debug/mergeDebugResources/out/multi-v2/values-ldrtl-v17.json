@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.stepbystep.app-mergeDebugResources-48:/values-ldrtl-v17/values-ldrtl-v17.xml",
+            "outputFile": "com.example.stepbystep.app-mergeDebugResources-49:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
-                    "source": "/home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/68084e5fab74ae813011fcc9666805bf/transformed/material-1.12.0/res/values-ldrtl-v17/values-ldrtl-v17.xml",
+                    "source": "/home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/f22ec3610851156ede2831f9e754db3e/transformed/material-1.12.0/res/values-ldrtl-v17/values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

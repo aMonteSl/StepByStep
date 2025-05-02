@@ -88,7 +88,7 @@
                                     android:textAppearance="?attr/textAppearanceHeadlineSmall"
                                     android:enabled="@{viewModel.isEditMode}"
                                     android:inputType="textPersonName"
-                                    android:background="@{viewModel.isEditMode ? @android:color/transparent : @android:color/transparent}"
+                                    android:background="@{@android:color/transparent}"
                                     android:padding="4dp"/>
 
                                 <!-- Descripción del atleta (editable o texto fijo) -->
@@ -102,7 +102,7 @@
                                     android:enabled="@{viewModel.isEditMode}"
                                     android:inputType="textMultiLine"
                                     android:maxLines="3"
-                                    android:background="@{viewModel.isEditMode ? @android:color/transparent : @android:color/transparent}"
+                                    android:background="@{@android:color/transparent}"
                                     android:padding="4dp"/>
                             </LinearLayout>
 
@@ -112,6 +112,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:text="@{context.getString(viewModel.editButtonText)}"
+                                app:icon="@{viewModel.editButtonIcon}"
                                 app:iconTint="?attr/colorPrimary"/>
                         </LinearLayout>
 
@@ -119,7 +121,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@{@string/total_activities(viewModel.totalActivities)}"
+                            android:text="@{viewModel.formattedTotalActivities}"
                             android:textAppearance="?attr/textAppearanceBodyLarge"
                             android:layout_marginBottom="8dp"
                             tools:text="Total actividades: 24" />
@@ -128,7 +130,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@{@string/active_since(viewModel.firstActivityDate)}"
+                            android:text="@{viewModel.formattedActiveDate}"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             tools:text="Activo desde: 12 de marzo, 2025" />
                     </LinearLayout>

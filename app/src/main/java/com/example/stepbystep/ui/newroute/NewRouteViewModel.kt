@@ -6,13 +6,20 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.os.SystemClock
 import android.util.Log
-import androidx.lifecycle.*
+import android.view.View
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
+import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.SphericalUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import com.example.stepbystep.R
+import com.example.stepbystep.util.StringFormatUtils
 
 /**
  * ViewModel para la actividad NewRouteActivity.
@@ -50,14 +57,30 @@ class NewRouteViewModel : ViewModel() {
     private val _currentDistance = MutableLiveData(0.0)
     val currentDistance: LiveData<Double> = _currentDistance
 
+    val formattedDistance: LiveData<String> = _currentDistance.map { distance ->
+        StringFormatUtils.formatDistanceKm(distance)
+    }
+
     private val _elapsedTimeMs = MutableLiveData(0L)
     val elapsedTimeMs: LiveData<Long> = _elapsedTimeMs
+
+    val formattedTime: LiveData<String> = _elapsedTimeMs.map { timeMs ->
+        StringFormatUtils.formatDuration(timeMs)
+    }
 
     private val _currentElevation = MutableLiveData(0.0)
     val currentElevation: LiveData<Double> = _currentElevation
 
+    val formattedElevation: LiveData<String> = _currentElevation.map { elevation ->
+        StringFormatUtils.formatElevation(elevation)
+    }
+
     private val _elevationGain = MutableLiveData(0.0)
     val elevationGain: LiveData<Double> = _elevationGain
+
+    val formattedElevationGain: LiveData<String> = _elevationGain.map { gain ->
+        StringFormatUtils.formatElevationGain(gain)
+    }
 
     // Propiedades para la ruta de referencia
     private val _referenceRoute = MutableLiveData<List<LatLng>>(emptyList())
@@ -90,6 +113,26 @@ class NewRouteViewModel : ViewModel() {
     private var startTime = 0L                  // Tiempo de inicio
     private var pausedAccumulated = 0L          // Tiempo acumulado en pausas
     private var pauseStart = 0L                 // Tiempo cuando se pausó
+
+    // Para la visibilidad del chip de ruta de referencia
+    val referenceRouteVisible: LiveData<Int> = _referenceRoute.map { route ->
+        if (route.isEmpty()) View.GONE else View.VISIBLE
+    }
+
+    // Para el texto del botón start/stop
+    val startStopButtonText: LiveData<Int> = _isRecording.map { isRecording ->
+        if (isRecording) R.string.route_stop else R.string.route_start
+    }
+
+    // Para el texto del botón pause/resume
+    val pauseResumeButtonText: LiveData<Int> = _isPaused.map { isPaused ->
+        if (isPaused) R.string.route_resume else R.string.route_pause
+    }
+
+    // Para la visibilidad del botón pause/resume
+    val pauseResumeButtonVisible: LiveData<Int> = _isRecording.map { isRecording ->
+        if (isRecording) View.VISIBLE else View.GONE
+    }
 
     /**
      * Restaura completamente el estado de tracking con datos del servicio

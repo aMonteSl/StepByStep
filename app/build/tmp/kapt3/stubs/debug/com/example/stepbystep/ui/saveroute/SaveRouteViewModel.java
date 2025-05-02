@@ -11,7 +11,7 @@ package com.example.stepbystep.ui.saveroute;
  *
  * @param context Contexto necesario para acceder a la base de datos local
  */
-@kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u0000^\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\u0010\u0013\n\u0000\n\u0002\u0010\u000e\n\u0000\n\u0002\u0010\u0006\n\u0000\n\u0002\u0010\t\n\u0002\b\u0004\n\u0002\u0010 \n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\r\n\u0002\u0018\u0002\n\u0002\u0010\u000b\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\b\n\u0002\u0010\u0002\n\u0002\b\b\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\u0002\u0010\u0004J\u0006\u0010/\u001a\u000200J\u0010\u00101\u001a\u0002002\b\u00102\u001a\u0004\u0018\u00010\tJJ\u00103\u001a\u0002002\u0006\u0010\u0018\u001a\u00020\u000b2\u0006\u0010\u001a\u001a\u00020\r2\u0006\u0010\u001e\u001a\u00020\u000b2\u0006\u0010\u001c\u001a\u00020\u000b2\f\u00104\u001a\b\u0012\u0004\u0012\u00020\u00130\u00122\n\b\u0002\u00105\u001a\u0004\u0018\u00010\u00072\b\b\u0002\u00106\u001a\u00020$J\b\u00107\u001a\u000200H\u0002R\u0014\u0010\u0005\u001a\b\u0012\u0004\u0012\u00020\u00070\u0006X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0014\u0010\b\u001a\b\u0012\u0004\u0012\u00020\t0\u0006X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0014\u0010\n\u001a\b\u0012\u0004\u0012\u00020\u000b0\u0006X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0014\u0010\f\u001a\b\u0012\u0004\u0012\u00020\r0\u0006X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0014\u0010\u000e\u001a\b\u0012\u0004\u0012\u00020\u000b0\u0006X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0014\u0010\u000f\u001a\b\u0012\u0004\u0012\u00020\u000b0\u0006X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0016\u0010\u0010\u001a\n\u0012\u0006\u0012\u0004\u0018\u00010\t0\u0006X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u001a\u0010\u0011\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00130\u00120\u0006X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0017\u0010\u0014\u001a\b\u0012\u0004\u0012\u00020\t0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0016\u0010\u0017R\u0017\u0010\u0018\u001a\b\u0012\u0004\u0012\u00020\u000b0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0019\u0010\u0017R\u0017\u0010\u001a\u001a\b\u0012\u0004\u0012\u00020\r0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b\u001b\u0010\u0017R\u0017\u0010\u001c\u001a\b\u0012\u0004\u0012\u00020\u000b0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b\u001d\u0010\u0017R\u0017\u0010\u001e\u001a\b\u0012\u0004\u0012\u00020\u000b0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b\u001f\u0010\u0017R\u0019\u0010 \u001a\n\u0012\u0006\u0012\u0004\u0018\u00010\t0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b!\u0010\u0017R\u0017\u0010\"\u001a\b\u0012\u0004\u0012\u00020$0#\u00a2\u0006\b\n\u0000\u001a\u0004\b\"\u0010%R\u000e\u0010&\u001a\u00020\'X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0017\u0010(\u001a\b\u0012\u0004\u0012\u00020\t0\u0006\u00a2\u0006\b\n\u0000\u001a\u0004\b)\u0010*R\u0017\u0010+\u001a\b\u0012\u0004\u0012\u00020\t0\u0006\u00a2\u0006\b\n\u0000\u001a\u0004\b,\u0010*R\u001d\u0010-\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00130\u00120\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b.\u0010\u0017\u00a8\u00068"}, d2 = {"Lcom/example/stepbystep/ui/saveroute/SaveRouteViewModel;", "Landroidx/lifecycle/ViewModel;", "context", "Landroid/content/Context;", "(Landroid/content/Context;)V", "_altitudes", "Landroidx/lifecycle/MutableLiveData;", "", "_date", "", "_distance", "", "_duration", "", "_elevation", "_elevationGain", "_imagePath", "_routePoints", "", "Lcom/google/android/gms/maps/model/LatLng;", "date", "Landroidx/lifecycle/LiveData;", "getDate", "()Landroidx/lifecycle/LiveData;", "distance", "getDistance", "duration", "getDuration", "elevation", "getElevation", "elevationGain", "getElevationGain", "imagePath", "getImagePath", "isFormValid", "Landroidx/lifecycle/MediatorLiveData;", "", "()Landroidx/lifecycle/MediatorLiveData;", "repository", "Lcom/example/stepbystep/data/repository/RouteRepository;", "routeDescription", "getRouteDescription", "()Landroidx/lifecycle/MutableLiveData;", "routeName", "getRouteName", "routePoints", "getRoutePoints", "saveRoute", "", "setImagePath", "path", "setRouteData", "points", "altitudes", "isImported", "validateForm", "app_debug"})
+@kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u0000f\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\u0010\u0013\n\u0000\n\u0002\u0010\u000e\n\u0000\n\u0002\u0010\u0006\n\u0000\n\u0002\u0010\t\n\u0002\b\u0004\n\u0002\u0010 \n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0017\n\u0002\u0010\b\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\u0010\u000b\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\n\n\u0002\u0010\u0002\n\u0002\b\b\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\u0002\u0010\u0004J\u0006\u0010>\u001a\u00020?J\u0010\u0010@\u001a\u00020?2\b\u0010A\u001a\u0004\u0018\u00010\tJJ\u0010B\u001a\u00020?2\u0006\u0010\u0018\u001a\u00020\u000b2\u0006\u0010\u001a\u001a\u00020\r2\u0006\u0010\u001e\u001a\u00020\u000b2\u0006\u0010\u001c\u001a\u00020\u000b2\f\u0010C\u001a\b\u0012\u0004\u0012\u00020\u00130\u00122\n\b\u0002\u0010D\u001a\u0004\u0018\u00010\u00072\b\b\u0002\u0010E\u001a\u000201J\b\u0010F\u001a\u00020?H\u0002R\u0014\u0010\u0005\u001a\b\u0012\u0004\u0012\u00020\u00070\u0006X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0014\u0010\b\u001a\b\u0012\u0004\u0012\u00020\t0\u0006X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0014\u0010\n\u001a\b\u0012\u0004\u0012\u00020\u000b0\u0006X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0014\u0010\f\u001a\b\u0012\u0004\u0012\u00020\r0\u0006X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0014\u0010\u000e\u001a\b\u0012\u0004\u0012\u00020\u000b0\u0006X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0014\u0010\u000f\u001a\b\u0012\u0004\u0012\u00020\u000b0\u0006X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0016\u0010\u0010\u001a\n\u0012\u0006\u0012\u0004\u0018\u00010\t0\u0006X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u001a\u0010\u0011\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00130\u00120\u0006X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0017\u0010\u0014\u001a\b\u0012\u0004\u0012\u00020\t0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0016\u0010\u0017R\u0017\u0010\u0018\u001a\b\u0012\u0004\u0012\u00020\u000b0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0019\u0010\u0017R\u0017\u0010\u001a\u001a\b\u0012\u0004\u0012\u00020\r0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b\u001b\u0010\u0017R\u0017\u0010\u001c\u001a\b\u0012\u0004\u0012\u00020\u000b0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b\u001d\u0010\u0017R\u0017\u0010\u001e\u001a\b\u0012\u0004\u0012\u00020\u000b0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b\u001f\u0010\u0017R\u0017\u0010 \u001a\b\u0012\u0004\u0012\u00020\t0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b!\u0010\u0017R\u0017\u0010\"\u001a\b\u0012\u0004\u0012\u00020\t0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b#\u0010\u0017R\u0017\u0010$\u001a\b\u0012\u0004\u0012\u00020\t0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b%\u0010\u0017R\u0017\u0010&\u001a\b\u0012\u0004\u0012\u00020\t0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b\'\u0010\u0017R\u0017\u0010(\u001a\b\u0012\u0004\u0012\u00020\t0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b)\u0010\u0017R\u0019\u0010*\u001a\n\u0012\u0006\u0012\u0004\u0018\u00010\t0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b+\u0010\u0017R\u0017\u0010,\u001a\b\u0012\u0004\u0012\u00020-0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b.\u0010\u0017R\u0017\u0010/\u001a\b\u0012\u0004\u0012\u00020100\u00a2\u0006\b\n\u0000\u001a\u0004\b/\u00102R\u000e\u00103\u001a\u000204X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0017\u00105\u001a\b\u0012\u0004\u0012\u00020\t0\u0006\u00a2\u0006\b\n\u0000\u001a\u0004\b6\u00107R\u0017\u00108\u001a\b\u0012\u0004\u0012\u00020\t0\u0006\u00a2\u0006\b\n\u0000\u001a\u0004\b9\u00107R\u001d\u0010:\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00130\u00120\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b;\u0010\u0017R\u0017\u0010<\u001a\b\u0012\u0004\u0012\u00020-0\u0015\u00a2\u0006\b\n\u0000\u001a\u0004\b=\u0010\u0017\u00a8\u0006G"}, d2 = {"Lcom/example/stepbystep/ui/saveroute/SaveRouteViewModel;", "Landroidx/lifecycle/ViewModel;", "context", "Landroid/content/Context;", "(Landroid/content/Context;)V", "_altitudes", "Landroidx/lifecycle/MutableLiveData;", "", "_date", "", "_distance", "", "_duration", "", "_elevation", "_elevationGain", "_imagePath", "_routePoints", "", "Lcom/google/android/gms/maps/model/LatLng;", "date", "Landroidx/lifecycle/LiveData;", "getDate", "()Landroidx/lifecycle/LiveData;", "distance", "getDistance", "duration", "getDuration", "elevation", "getElevation", "elevationGain", "getElevationGain", "formattedDate", "getFormattedDate", "formattedDistance", "getFormattedDistance", "formattedDuration", "getFormattedDuration", "formattedElevation", "getFormattedElevation", "formattedElevationGain", "getFormattedElevationGain", "imagePath", "getImagePath", "imagePreviewVisible", "", "getImagePreviewVisible", "isFormValid", "Landroidx/lifecycle/MediatorLiveData;", "", "()Landroidx/lifecycle/MediatorLiveData;", "repository", "Lcom/example/stepbystep/data/repository/RouteRepository;", "routeDescription", "getRouteDescription", "()Landroidx/lifecycle/MutableLiveData;", "routeName", "getRouteName", "routePoints", "getRoutePoints", "selectImageButtonVisible", "getSelectImageButtonVisible", "saveRoute", "", "setImagePath", "path", "setRouteData", "points", "altitudes", "isImported", "validateForm", "app_debug"})
 public final class SaveRouteViewModel extends androidx.lifecycle.ViewModel {
     @org.jetbrains.annotations.NotNull()
     private final com.example.stepbystep.data.repository.RouteRepository repository = null;
@@ -56,6 +56,20 @@ public final class SaveRouteViewModel extends androidx.lifecycle.ViewModel {
      */
     @org.jetbrains.annotations.NotNull()
     private final androidx.lifecycle.MediatorLiveData<java.lang.Boolean> isFormValid = null;
+    @org.jetbrains.annotations.NotNull()
+    private final androidx.lifecycle.LiveData<java.lang.String> formattedDistance = null;
+    @org.jetbrains.annotations.NotNull()
+    private final androidx.lifecycle.LiveData<java.lang.String> formattedDuration = null;
+    @org.jetbrains.annotations.NotNull()
+    private final androidx.lifecycle.LiveData<java.lang.String> formattedElevation = null;
+    @org.jetbrains.annotations.NotNull()
+    private final androidx.lifecycle.LiveData<java.lang.String> formattedElevationGain = null;
+    @org.jetbrains.annotations.NotNull()
+    private final androidx.lifecycle.LiveData<java.lang.String> formattedDate = null;
+    @org.jetbrains.annotations.NotNull()
+    private final androidx.lifecycle.LiveData<java.lang.Integer> imagePreviewVisible = null;
+    @org.jetbrains.annotations.NotNull()
+    private final androidx.lifecycle.LiveData<java.lang.Integer> selectImageButtonVisible = null;
     
     public SaveRouteViewModel(@org.jetbrains.annotations.NotNull()
     android.content.Context context) {
@@ -113,6 +127,41 @@ public final class SaveRouteViewModel extends androidx.lifecycle.ViewModel {
      */
     @org.jetbrains.annotations.NotNull()
     public final androidx.lifecycle.MediatorLiveData<java.lang.Boolean> isFormValid() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final androidx.lifecycle.LiveData<java.lang.String> getFormattedDistance() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final androidx.lifecycle.LiveData<java.lang.String> getFormattedDuration() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final androidx.lifecycle.LiveData<java.lang.String> getFormattedElevation() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final androidx.lifecycle.LiveData<java.lang.String> getFormattedElevationGain() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final androidx.lifecycle.LiveData<java.lang.String> getFormattedDate() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final androidx.lifecycle.LiveData<java.lang.Integer> getImagePreviewVisible() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final androidx.lifecycle.LiveData<java.lang.Integer> getSelectImageButtonVisible() {
         return null;
     }
     

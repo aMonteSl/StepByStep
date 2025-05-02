@@ -497,9 +497,9 @@ class LocationTrackingService : Service() {
             acquireWakeLock()
         }
         
-        // Ajustar la frecuencia de actualizaciones según el modo
-        val updateInterval = if (inBackground) 15000L else 5000L  // 15s en segundo plano, 5s en primer plano
-        val minUpdateInterval = updateInterval / 2
+        // Usar el mismo intervalo de 2 segundos tanto en primer como en segundo plano
+        val updateInterval = 2000L  // 2 segundos en ambos modos
+        val minUpdateInterval = 1000L  // 1 segundo como intervalo mínimo
         
         try {
             // Cancelar solicitud actual
@@ -553,10 +553,10 @@ class LocationTrackingService : Service() {
      */
     private fun createLocationRequest() {
         // Usar el constructor con intervalo en milisegundos
-        locationRequest = LocationRequest.Builder(5000) // 5 segundos como intervalo base
+        locationRequest = LocationRequest.Builder(2000) // 2 segundos como intervalo base
             .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
-            .setMinUpdateIntervalMillis(3000) // Mínimo 3 segundos entre actualizaciones
-            .setMaxUpdateDelayMillis(10000)   // Máximo 10 segundos de retraso
+            .setMinUpdateIntervalMillis(1000) // Mínimo 1 segundo entre actualizaciones
+            .setMaxUpdateDelayMillis(3000)   // Máximo 3 segundos de retraso
             .build()
     }
 }

@@ -108,7 +108,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="@{StringFormatUtils.formatDistanceKm(viewModel.currentDistance)}"
+                            android:text="@{viewModel.formattedDistance}"
                             android:textAppearance="?attr/textAppearanceBodyLarge"
                             tools:text="0.0 km"/>
                     </LinearLayout>
@@ -140,7 +140,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="@{StringFormatUtils.formatDuration(viewModel.elapsedTimeMs)}"
+                            android:text="@{viewModel.formattedTime}"
                             android:textAppearance="?attr/textAppearanceBodyLarge"
                             tools:text="00m 00s"/>
                     </LinearLayout>
@@ -172,7 +172,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="@{StringFormatUtils.formatElevation(viewModel.currentElevation)}"
+                            android:text="@{viewModel.formattedElevation}"
                             android:textAppearance="?attr/textAppearanceBodyLarge"
                             tools:text="0 m"/>
                     </LinearLayout>
@@ -204,7 +204,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="@{StringFormatUtils.formatElevationGain(viewModel.elevationGain)}"
+                            android:text="@{viewModel.formattedElevationGain}"
                             android:textAppearance="?attr/textAppearanceBodyLarge"
                             tools:text="+0 m"/>
                     </LinearLayout>
@@ -218,7 +218,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:visibility="@{viewModel.referenceRoute == null || viewModel.referenceRoute.isEmpty() ? View.GONE : View.VISIBLE}"
+            android:visibility="@{viewModel.referenceRouteVisible}"
             android:text="@{viewModel.referenceRouteName}"
             app:closeIconVisible="true"
             style="@style/Widget.Material3.Chip.Filter"
@@ -242,7 +242,7 @@
                 android:id="@+id/btnStartStop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.isRecording ? @string/route_stop : @string/route_start}"
+                android:text="@{context.getString(viewModel.startStopButtonText)}"
                 android:textSize="16sp"
                 android:padding="16dp"
                 android:layout_marginEnd="12dp"
@@ -255,13 +255,13 @@
                 tools:text="@string/route_start"
                 tools:icon="@drawable/ic_play"/>
 
-            <!-- Pause/Resume Button - Visible only when recording -->
+            <!-- Pause/Resume Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPauseResume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.isPaused ? @string/route_resume : @string/route_pause}"
-                android:visibility="@{viewModel.isRecording ? android.view.View.VISIBLE : android.view.View.GONE}"
+                android:text="@{context.getString(viewModel.pauseResumeButtonText)}"
+                android:visibility="@{viewModel.pauseResumeButtonVisible}"
                 android:textSize="14sp"
                 android:padding="12dp"
                 app:cornerRadius="24dp"

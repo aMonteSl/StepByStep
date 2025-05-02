@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.stepbystep.app-mergeDebugResources-48:/values-en-rXC/values-en-rXC.xml",
+            "outputFile": "com.example.stepbystep.app-mergeDebugResources-49:/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
-                    "source": "/home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6ce3084c50cbce6a901767cb76951707/transformed/core-1.15.0/res/values-en-rXC/values-en-rXC.xml",
+                    "source": "/home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/214e2f421be1c6a004d7bfb4172e10c1/transformed/core-1.15.0/res/values-en-rXC/values-en-rXC.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6e948fa6abd1a57e7bf7465701299d87/transformed/appcompat-1.7.0/res/values-en-rXC/values-en-rXC.xml",
+                    "source": "/home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/8ef130dc1c342b730496c6367a0dbe47/transformed/appcompat-1.7.0/res/values-en-rXC/values-en-rXC.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

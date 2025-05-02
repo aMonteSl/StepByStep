@@ -108,7 +108,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:tag="binding_1"                                                        
+                            android:tag="binding_1"                      
                             android:textAppearance="?attr/textAppearanceBodyLarge"
                             tools:text="0.0 km"/>
                     </LinearLayout>
@@ -140,7 +140,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:tag="binding_2"                                                    
+                            android:tag="binding_2"                  
                             android:textAppearance="?attr/textAppearanceBodyLarge"
                             tools:text="00m 00s"/>
                     </LinearLayout>
@@ -172,7 +172,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:tag="binding_3"                                                        
+                            android:tag="binding_3"                       
                             android:textAppearance="?attr/textAppearanceBodyLarge"
                             tools:text="0 m"/>
                     </LinearLayout>
@@ -204,7 +204,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:tag="binding_4"                                                         
+                            android:tag="binding_4"                           
                             android:textAppearance="?attr/textAppearanceBodyLarge"
                             tools:text="+0 m"/>
                     </LinearLayout>
@@ -218,7 +218,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:tag="binding_5"                                                                                                  
+            android:tag="binding_5"                                
                                                           
             app:closeIconVisible="true"
             style="@style/Widget.Material3.Chip.Filter"
@@ -242,7 +242,7 @@
                 android:id="@+id/btnStartStop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="binding_6"                                                           
+                android:tag="binding_6"                                           
                 android:textSize="16sp"
                 android:padding="16dp"
                 android:layout_marginEnd="12dp"
@@ -255,13 +255,13 @@
                 tools:text="@string/route_start"
                 tools:icon="@drawable/ic_play"/>
 
-            <!-- Pause/Resume Button - Visible only when recording -->
+            <!-- Pause/Resume Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPauseResume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="binding_7"                                                          
-                                                                                                                  
+                android:tag="binding_7"                                             
+                                                                          
                 android:textSize="14sp"
                 android:padding="12dp"
                 app:cornerRadius="24dp"

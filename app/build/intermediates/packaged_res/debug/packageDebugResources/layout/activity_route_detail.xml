@@ -9,7 +9,7 @@
                                                                                 
                                                                        
                                                                      
-                                                                       
+                                           
            
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -95,7 +95,7 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@android:color/white"
                                     android:textStyle="bold"
-                                    android:tag="binding_2"                                                       
+                                    android:tag="binding_2"                      
                                     tools:text="5.2 km" />
                             </LinearLayout>
 
@@ -120,7 +120,7 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@android:color/white"
                                     android:textStyle="bold"
-                                    android:tag="binding_3"                                                     
+                                    android:tag="binding_3"                      
                                     tools:text="45m 30s" />
                             </LinearLayout>
 
@@ -145,7 +145,7 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@android:color/white"
                                     android:textStyle="bold"
-                                    android:tag="binding_4"                                                       
+                                    android:tag="binding_4"                       
                                     tools:text="698m" />
                             </LinearLayout>
 
@@ -170,7 +170,7 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@android:color/white"
                                     android:textStyle="bold"
-                                    android:tag="binding_5"                                                               
+                                    android:tag="binding_5"                           
                                     tools:text="+120m" />
                             </LinearLayout>
                         </LinearLayout>
@@ -183,7 +183,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:tag="binding_6"                                                             
+                    android:tag="binding_6"                               
                     style="?attr/materialCardViewStyle">
 
                     <LinearLayout
@@ -264,7 +264,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:tag="binding_7"                                           
+                                android:tag="binding_7"                  
                                 tools:text="19 de abril, 2025" />
                         </LinearLayout>
 

@@ -69,8 +69,8 @@ public class ItemRouteBindingImpl extends ItemRouteBinding  {
     @Override
     public boolean setVariable(int variableId, @Nullable Object variable)  {
         boolean variableSet = true;
-        if (BR.route == variableId) {
-            setRoute((com.example.stepbystep.domain.model.Route) variable);
+        if (BR.displayModel == variableId) {
+            setDisplayModel((com.example.stepbystep.ui.main.RouteDisplayModel) variable);
         }
         else {
             variableSet = false;
@@ -78,12 +78,12 @@ public class ItemRouteBindingImpl extends ItemRouteBinding  {
             return variableSet;
     }
 
-    public void setRoute(@Nullable com.example.stepbystep.domain.model.Route Route) {
-        this.mRoute = Route;
+    public void setDisplayModel(@Nullable com.example.stepbystep.ui.main.RouteDisplayModel DisplayModel) {
+        this.mDisplayModel = DisplayModel;
         synchronized(this) {
             mDirtyFlags |= 0x1L;
         }
-        notifyPropertyChanged(BR.route);
+        notifyPropertyChanged(BR.displayModel);
         super.requestRebind();
     }
 
@@ -101,60 +101,43 @@ public class ItemRouteBindingImpl extends ItemRouteBinding  {
             dirtyFlags = mDirtyFlags;
             mDirtyFlags = 0;
         }
-        java.lang.String dateFormatUtilsFormatDateRouteDate = null;
-        double routeElevation = 0.0;
-        java.lang.String routeDate = null;
-        long routeDuration = 0;
-        java.lang.String stringFormatUtilsFormatElevationRouteElevation = null;
-        double routeDistance = 0.0;
-        com.example.stepbystep.domain.model.Route route = mRoute;
-        java.lang.String stringFormatUtilsFormatDurationRouteDuration = null;
-        java.lang.String routeName = null;
-        java.lang.String stringFormatUtilsFormatElevationGainRouteElevationGain = null;
-        double routeElevationGain = 0.0;
-        java.lang.String stringFormatUtilsFormatDistanceKmRouteDistance = null;
+        java.lang.String displayModelFormattedDistance = null;
+        java.lang.String displayModelFormattedElevation = null;
+        com.example.stepbystep.ui.main.RouteDisplayModel displayModel = mDisplayModel;
+        java.lang.String displayModelFormattedDuration = null;
+        java.lang.String displayModelFormattedDate = null;
+        java.lang.String displayModelFormattedElevationGain = null;
+        java.lang.String displayModelName = null;
 
         if ((dirtyFlags & 0x3L) != 0) {
 
 
 
-                if (route != null) {
-                    // read route.elevation
-                    routeElevation = route.getElevation();
-                    // read route.date
-                    routeDate = route.getDate();
-                    // read route.duration
-                    routeDuration = route.getDuration();
-                    // read route.distance
-                    routeDistance = route.getDistance();
-                    // read route.name
-                    routeName = route.getName();
-                    // read route.elevationGain
-                    routeElevationGain = route.getElevationGain();
+                if (displayModel != null) {
+                    // read displayModel.formattedDistance
+                    displayModelFormattedDistance = displayModel.getFormattedDistance();
+                    // read displayModel.formattedElevation
+                    displayModelFormattedElevation = displayModel.getFormattedElevation();
+                    // read displayModel.formattedDuration
+                    displayModelFormattedDuration = displayModel.getFormattedDuration();
+                    // read displayModel.formattedDate
+                    displayModelFormattedDate = displayModel.getFormattedDate();
+                    // read displayModel.formattedElevationGain
+                    displayModelFormattedElevationGain = displayModel.getFormattedElevationGain();
+                    // read displayModel.name
+                    displayModelName = displayModel.getName();
                 }
-
-
-                // read StringFormatUtils.formatElevation(route.elevation)
-                stringFormatUtilsFormatElevationRouteElevation = com.example.stepbystep.util.StringFormatUtils.formatElevation(routeElevation);
-                // read DateFormatUtils.formatDate(route.date)
-                dateFormatUtilsFormatDateRouteDate = com.example.stepbystep.util.DateFormatUtils.formatDate(routeDate);
-                // read StringFormatUtils.formatDuration(route.duration)
-                stringFormatUtilsFormatDurationRouteDuration = com.example.stepbystep.util.StringFormatUtils.formatDuration(routeDuration);
-                // read StringFormatUtils.formatDistanceKm(route.distance)
-                stringFormatUtilsFormatDistanceKmRouteDistance = com.example.stepbystep.util.StringFormatUtils.formatDistanceKm(routeDistance);
-                // read StringFormatUtils.formatElevationGain(route.elevationGain)
-                stringFormatUtilsFormatElevationGainRouteElevationGain = com.example.stepbystep.util.StringFormatUtils.formatElevationGain(routeElevationGain);
         }
         // batch finished
         if ((dirtyFlags & 0x3L) != 0) {
             // api target 1
 
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvRouteDate, dateFormatUtilsFormatDateRouteDate);
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvRouteDistance, stringFormatUtilsFormatDistanceKmRouteDistance);
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvRouteDuration, stringFormatUtilsFormatDurationRouteDuration);
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvRouteElevation, stringFormatUtilsFormatElevationRouteElevation);
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvRouteElevationGain, stringFormatUtilsFormatElevationGainRouteElevationGain);
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvRouteName, routeName);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvRouteDate, displayModelFormattedDate);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvRouteDistance, displayModelFormattedDistance);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvRouteDuration, displayModelFormattedDuration);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvRouteElevation, displayModelFormattedElevation);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvRouteElevationGain, displayModelFormattedElevationGain);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.tvRouteName, displayModelName);
         }
     }
     // Listener Stub Implementations
@@ -162,7 +145,7 @@ public class ItemRouteBindingImpl extends ItemRouteBinding  {
     // dirty flag
     private  long mDirtyFlags = 0xffffffffffffffffL;
     /* flag mapping
-        flag 0 (0x1L): route
+        flag 0 (0x1L): displayModel
         flag 1 (0x2L): null
     flag mapping end*/
     //end

@@ -1,11 +1,14 @@
 package com.example.stepbystep.ui.routedetail
 
 import android.content.Context
+import android.view.View
 import androidx.lifecycle.*
 import com.example.stepbystep.data.local.RouteRoomDatabase
 import com.example.stepbystep.data.repository.RouteRepository
 import com.example.stepbystep.domain.model.Route
 import com.example.stepbystep.domain.model.Point
+import com.example.stepbystep.util.DateFormatUtils
+import com.example.stepbystep.util.StringFormatUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -43,6 +46,32 @@ class RouteDetailViewModel(private val context: Context) : ViewModel() {
     // LiveData para los datos del gráfico de elevación
     private val _chartData = MutableLiveData<List<Pair<Float, Float>>>()
     val chartData: LiveData<List<Pair<Float, Float>>> = _chartData
+
+    // Datos formateados para la UI usando la extensión map() en lugar de Transformations.map
+    val formattedDistance: LiveData<String> = _route.map { route ->
+        if (route != null) StringFormatUtils.formatDistanceKm(route.distance) else ""
+    }
+    
+    val formattedDuration: LiveData<String> = _route.map { route ->
+        if (route != null) StringFormatUtils.formatDuration(route.duration) else ""
+    }
+    
+    val formattedElevation: LiveData<String> = _route.map { route ->
+        if (route != null) StringFormatUtils.formatElevation(route.elevation) else ""
+    }
+    
+    val formattedElevationGain: LiveData<String> = _route.map { route ->
+        if (route != null) StringFormatUtils.formatElevationGain(route.elevationGain) else ""
+    }
+    
+    val formattedDate: LiveData<String> = _route.map { route ->
+        if (route != null) DateFormatUtils.formatDate(route.date) else ""
+    }
+    
+    // Control de visibilidad
+    val routeImageVisibility: LiveData<Int> = _route.map { route ->
+        if (route?.imagePath != null) View.VISIBLE else View.GONE
+    }
 
     /**
      * Carga la información de la ruta especificada desde el repositorio.

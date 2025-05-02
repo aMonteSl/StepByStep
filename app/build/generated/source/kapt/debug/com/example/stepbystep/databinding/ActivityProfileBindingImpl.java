@@ -14,9 +14,8 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
     static {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
-        sViewsWithIds.put(R.id.appBarLayout, 11);
-        sViewsWithIds.put(R.id.toolbar, 12);
-        sViewsWithIds.put(R.id.btnEditProfile, 13);
+        sViewsWithIds.put(R.id.appBarLayout, 12);
+        sViewsWithIds.put(R.id.toolbar, 13);
     }
     // views
     @NonNull
@@ -24,7 +23,7 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
     @NonNull
     private final android.widget.TextView mboundView10;
     @NonNull
-    private final android.widget.TextView mboundView3;
+    private final android.widget.TextView mboundView11;
     @NonNull
     private final android.widget.TextView mboundView4;
     @NonNull
@@ -46,21 +45,22 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
         this(bindingComponent, root, mapBindings(bindingComponent, root, 14, sIncludes, sViewsWithIds));
     }
     private ActivityProfileBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
-        super(bindingComponent, root, 11
-            , (com.google.android.material.appbar.AppBarLayout) bindings[11]
-            , (com.google.android.material.button.MaterialButton) bindings[13]
+        super(bindingComponent, root, 13
+            , (com.google.android.material.appbar.AppBarLayout) bindings[12]
+            , (com.google.android.material.button.MaterialButton) bindings[3]
             , (android.widget.EditText) bindings[2]
             , (android.widget.EditText) bindings[1]
-            , (com.google.android.material.appbar.MaterialToolbar) bindings[12]
+            , (com.google.android.material.appbar.MaterialToolbar) bindings[13]
             );
+        this.btnEditProfile.setTag(null);
         this.etAthleteDescription.setTag(null);
         this.etAthleteName.setTag(null);
         this.mboundView0 = (androidx.coordinatorlayout.widget.CoordinatorLayout) bindings[0];
         this.mboundView0.setTag(null);
         this.mboundView10 = (android.widget.TextView) bindings[10];
         this.mboundView10.setTag(null);
-        this.mboundView3 = (android.widget.TextView) bindings[3];
-        this.mboundView3.setTag(null);
+        this.mboundView11 = (android.widget.TextView) bindings[11];
+        this.mboundView11.setTag(null);
         this.mboundView4 = (android.widget.TextView) bindings[4];
         this.mboundView4.setTag(null);
         this.mboundView5 = (android.widget.TextView) bindings[5];
@@ -81,7 +81,7 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
     @Override
     public void invalidateAll() {
         synchronized(this) {
-                mDirtyFlags = 0x1000L;
+                mDirtyFlags = 0x4000L;
         }
         requestRebind();
     }
@@ -111,7 +111,7 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
     public void setViewModel(@Nullable com.example.stepbystep.ui.profile.ProfileViewModel ViewModel) {
         this.mViewModel = ViewModel;
         synchronized(this) {
-            mDirtyFlags |= 0x800L;
+            mDirtyFlags |= 0x2000L;
         }
         notifyPropertyChanged(BR.viewModel);
         super.requestRebind();
@@ -121,31 +121,35 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
     protected boolean onFieldChange(int localFieldId, Object object, int fieldId) {
         switch (localFieldId) {
             case 0 :
-                return onChangeViewModelAthleteDescription((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
+                return onChangeViewModelEditButtonText((androidx.lifecycle.LiveData<java.lang.Integer>) object, fieldId);
             case 1 :
-                return onChangeViewModelTotalDuration((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
+                return onChangeViewModelAthleteDescription((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
             case 2 :
-                return onChangeViewModelFirstActivityDate((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
+                return onChangeViewModelEditButtonIcon((androidx.lifecycle.LiveData<java.lang.Integer>) object, fieldId);
             case 3 :
-                return onChangeViewModelAthleteName((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
+                return onChangeViewModelTotalDuration((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
             case 4 :
-                return onChangeViewModelTotalActivities((androidx.lifecycle.LiveData<java.lang.Integer>) object, fieldId);
+                return onChangeViewModelAthleteName((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
             case 5 :
-                return onChangeViewModelTotalDistance((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
+                return onChangeViewModelFormattedActiveDate((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
             case 6 :
-                return onChangeViewModelAverageDistance((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
+                return onChangeViewModelTotalDistance((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
             case 7 :
-                return onChangeViewModelAveragePace((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
+                return onChangeViewModelAverageDistance((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
             case 8 :
-                return onChangeViewModelMaxDistance((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
+                return onChangeViewModelAveragePace((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
             case 9 :
-                return onChangeViewModelIsEditMode((androidx.lifecycle.LiveData<java.lang.Boolean>) object, fieldId);
+                return onChangeViewModelMaxDistance((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
             case 10 :
+                return onChangeViewModelIsEditMode((androidx.lifecycle.LiveData<java.lang.Boolean>) object, fieldId);
+            case 11 :
                 return onChangeViewModelTotalElevationGain((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
+            case 12 :
+                return onChangeViewModelFormattedTotalActivities((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
         }
         return false;
     }
-    private boolean onChangeViewModelAthleteDescription(androidx.lifecycle.LiveData<java.lang.String> ViewModelAthleteDescription, int fieldId) {
+    private boolean onChangeViewModelEditButtonText(androidx.lifecycle.LiveData<java.lang.Integer> ViewModelEditButtonText, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x1L;
@@ -154,7 +158,7 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelTotalDuration(androidx.lifecycle.LiveData<java.lang.String> ViewModelTotalDuration, int fieldId) {
+    private boolean onChangeViewModelAthleteDescription(androidx.lifecycle.LiveData<java.lang.String> ViewModelAthleteDescription, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x2L;
@@ -163,7 +167,7 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelFirstActivityDate(androidx.lifecycle.LiveData<java.lang.String> ViewModelFirstActivityDate, int fieldId) {
+    private boolean onChangeViewModelEditButtonIcon(androidx.lifecycle.LiveData<java.lang.Integer> ViewModelEditButtonIcon, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x4L;
@@ -172,7 +176,7 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelAthleteName(androidx.lifecycle.LiveData<java.lang.String> ViewModelAthleteName, int fieldId) {
+    private boolean onChangeViewModelTotalDuration(androidx.lifecycle.LiveData<java.lang.String> ViewModelTotalDuration, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x8L;
@@ -181,7 +185,7 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelTotalActivities(androidx.lifecycle.LiveData<java.lang.Integer> ViewModelTotalActivities, int fieldId) {
+    private boolean onChangeViewModelAthleteName(androidx.lifecycle.LiveData<java.lang.String> ViewModelAthleteName, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x10L;
@@ -190,7 +194,7 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelTotalDistance(androidx.lifecycle.LiveData<java.lang.String> ViewModelTotalDistance, int fieldId) {
+    private boolean onChangeViewModelFormattedActiveDate(androidx.lifecycle.LiveData<java.lang.String> ViewModelFormattedActiveDate, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x20L;
@@ -199,7 +203,7 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelAverageDistance(androidx.lifecycle.LiveData<java.lang.String> ViewModelAverageDistance, int fieldId) {
+    private boolean onChangeViewModelTotalDistance(androidx.lifecycle.LiveData<java.lang.String> ViewModelTotalDistance, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x40L;
@@ -208,7 +212,7 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelAveragePace(androidx.lifecycle.LiveData<java.lang.String> ViewModelAveragePace, int fieldId) {
+    private boolean onChangeViewModelAverageDistance(androidx.lifecycle.LiveData<java.lang.String> ViewModelAverageDistance, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x80L;
@@ -217,7 +221,7 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelMaxDistance(androidx.lifecycle.LiveData<java.lang.String> ViewModelMaxDistance, int fieldId) {
+    private boolean onChangeViewModelAveragePace(androidx.lifecycle.LiveData<java.lang.String> ViewModelAveragePace, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x100L;
@@ -226,7 +230,7 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelIsEditMode(androidx.lifecycle.LiveData<java.lang.Boolean> ViewModelIsEditMode, int fieldId) {
+    private boolean onChangeViewModelMaxDistance(androidx.lifecycle.LiveData<java.lang.String> ViewModelMaxDistance, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x200L;
@@ -235,10 +239,28 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelTotalElevationGain(androidx.lifecycle.LiveData<java.lang.String> ViewModelTotalElevationGain, int fieldId) {
+    private boolean onChangeViewModelIsEditMode(androidx.lifecycle.LiveData<java.lang.Boolean> ViewModelIsEditMode, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x400L;
+            }
+            return true;
+        }
+        return false;
+    }
+    private boolean onChangeViewModelTotalElevationGain(androidx.lifecycle.LiveData<java.lang.String> ViewModelTotalElevationGain, int fieldId) {
+        if (fieldId == BR._all) {
+            synchronized(this) {
+                    mDirtyFlags |= 0x800L;
+            }
+            return true;
+        }
+        return false;
+    }
+    private boolean onChangeViewModelFormattedTotalActivities(androidx.lifecycle.LiveData<java.lang.String> ViewModelFormattedTotalActivities, int fieldId) {
+        if (fieldId == BR._all) {
+            synchronized(this) {
+                    mDirtyFlags |= 0x1000L;
             }
             return true;
         }
@@ -252,45 +274,69 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
             dirtyFlags = mDirtyFlags;
             mDirtyFlags = 0;
         }
+        androidx.lifecycle.LiveData<java.lang.Integer> viewModelEditButtonText = null;
         java.lang.String viewModelTotalElevationGainGetValue = null;
         androidx.lifecycle.LiveData<java.lang.String> viewModelAthleteDescription = null;
+        java.lang.Integer viewModelEditButtonIconGetValue = null;
+        androidx.lifecycle.LiveData<java.lang.Integer> viewModelEditButtonIcon = null;
         androidx.lifecycle.LiveData<java.lang.String> viewModelTotalDuration = null;
-        int viewModelIsEditModeEtAthleteNameAndroidColorTransparentEtAthleteNameAndroidColorTransparent = 0;
-        androidx.lifecycle.LiveData<java.lang.String> viewModelFirstActivityDate = null;
-        java.lang.String viewModelFirstActivityDateGetValue = null;
+        java.lang.String viewModelFormattedTotalActivitiesGetValue = null;
         androidx.lifecycle.LiveData<java.lang.String> viewModelAthleteName = null;
-        androidx.lifecycle.LiveData<java.lang.Integer> viewModelTotalActivities = null;
+        androidx.lifecycle.LiveData<java.lang.String> viewModelFormattedActiveDate = null;
         java.lang.String viewModelAthleteDescriptionGetValue = null;
         androidx.lifecycle.LiveData<java.lang.String> viewModelTotalDistance = null;
         androidx.lifecycle.LiveData<java.lang.String> viewModelAverageDistance = null;
         androidx.lifecycle.LiveData<java.lang.String> viewModelAveragePace = null;
+        java.lang.String viewModelFormattedActiveDateGetValue = null;
         java.lang.String viewModelAveragePaceGetValue = null;
         boolean androidxDatabindingViewDataBindingSafeUnboxViewModelIsEditModeGetValue = false;
-        int viewModelIsEditModeEtAthleteDescriptionAndroidColorTransparentEtAthleteDescriptionAndroidColorTransparent = 0;
+        java.lang.Integer viewModelEditButtonTextGetValue = null;
         java.lang.String viewModelTotalDistanceGetValue = null;
         java.lang.Boolean viewModelIsEditModeGetValue = null;
         java.lang.String viewModelAthleteNameGetValue = null;
+        java.lang.String contextGetStringViewModelEditButtonText = null;
         androidx.lifecycle.LiveData<java.lang.String> viewModelMaxDistance = null;
         androidx.lifecycle.LiveData<java.lang.Boolean> viewModelIsEditMode = null;
-        java.lang.String mboundView3AndroidStringTotalActivitiesViewModelTotalActivities = null;
         java.lang.String viewModelAverageDistanceGetValue = null;
-        java.lang.String mboundView4AndroidStringActiveSinceViewModelFirstActivityDate = null;
-        java.lang.Integer viewModelTotalActivitiesGetValue = null;
         java.lang.String viewModelMaxDistanceGetValue = null;
+        int androidxDatabindingViewDataBindingSafeUnboxViewModelEditButtonTextGetValue = 0;
         com.example.stepbystep.ui.profile.ProfileViewModel viewModel = mViewModel;
         androidx.lifecycle.LiveData<java.lang.String> viewModelTotalElevationGain = null;
         java.lang.String viewModelTotalDurationGetValue = null;
+        androidx.lifecycle.LiveData<java.lang.String> viewModelFormattedTotalActivities = null;
 
-        if ((dirtyFlags & 0x1fffL) != 0) {
+        if ((dirtyFlags & 0x7fffL) != 0) {
 
 
-            if ((dirtyFlags & 0x1801L) != 0) {
+            if ((dirtyFlags & 0x6001L) != 0) {
+
+                    if (viewModel != null) {
+                        // read viewModel.editButtonText
+                        viewModelEditButtonText = viewModel.getEditButtonText();
+                    }
+                    updateLiveDataRegistration(0, viewModelEditButtonText);
+
+
+                    if (viewModelEditButtonText != null) {
+                        // read viewModel.editButtonText.getValue()
+                        viewModelEditButtonTextGetValue = viewModelEditButtonText.getValue();
+                    }
+
+
+                    // read androidx.databinding.ViewDataBinding.safeUnbox(viewModel.editButtonText.getValue())
+                    androidxDatabindingViewDataBindingSafeUnboxViewModelEditButtonTextGetValue = androidx.databinding.ViewDataBinding.safeUnbox(viewModelEditButtonTextGetValue);
+
+
+                    // read context.getString(androidx.databinding.ViewDataBinding.safeUnbox(viewModel.editButtonText.getValue()))
+                    contextGetStringViewModelEditButtonText = getRoot().getContext().getString(androidxDatabindingViewDataBindingSafeUnboxViewModelEditButtonTextGetValue);
+            }
+            if ((dirtyFlags & 0x6002L) != 0) {
 
                     if (viewModel != null) {
                         // read viewModel.athleteDescription
                         viewModelAthleteDescription = viewModel.getAthleteDescription();
                     }
-                    updateLiveDataRegistration(0, viewModelAthleteDescription);
+                    updateLiveDataRegistration(1, viewModelAthleteDescription);
 
 
                     if (viewModelAthleteDescription != null) {
@@ -298,13 +344,27 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
                         viewModelAthleteDescriptionGetValue = viewModelAthleteDescription.getValue();
                     }
             }
-            if ((dirtyFlags & 0x1802L) != 0) {
+            if ((dirtyFlags & 0x6004L) != 0) {
+
+                    if (viewModel != null) {
+                        // read viewModel.editButtonIcon
+                        viewModelEditButtonIcon = viewModel.getEditButtonIcon();
+                    }
+                    updateLiveDataRegistration(2, viewModelEditButtonIcon);
+
+
+                    if (viewModelEditButtonIcon != null) {
+                        // read viewModel.editButtonIcon.getValue()
+                        viewModelEditButtonIconGetValue = viewModelEditButtonIcon.getValue();
+                    }
+            }
+            if ((dirtyFlags & 0x6008L) != 0) {
 
                     if (viewModel != null) {
                         // read viewModel.totalDuration
                         viewModelTotalDuration = viewModel.getTotalDuration();
                     }
-                    updateLiveDataRegistration(1, viewModelTotalDuration);
+                    updateLiveDataRegistration(3, viewModelTotalDuration);
 
 
                     if (viewModelTotalDuration != null) {
@@ -312,31 +372,13 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
                         viewModelTotalDurationGetValue = viewModelTotalDuration.getValue();
                     }
             }
-            if ((dirtyFlags & 0x1804L) != 0) {
-
-                    if (viewModel != null) {
-                        // read viewModel.firstActivityDate
-                        viewModelFirstActivityDate = viewModel.getFirstActivityDate();
-                    }
-                    updateLiveDataRegistration(2, viewModelFirstActivityDate);
-
-
-                    if (viewModelFirstActivityDate != null) {
-                        // read viewModel.firstActivityDate.getValue()
-                        viewModelFirstActivityDateGetValue = viewModelFirstActivityDate.getValue();
-                    }
-
-
-                    // read @android:string/active_since
-                    mboundView4AndroidStringActiveSinceViewModelFirstActivityDate = mboundView4.getResources().getString(R.string.active_since, viewModelFirstActivityDateGetValue);
-            }
-            if ((dirtyFlags & 0x1808L) != 0) {
+            if ((dirtyFlags & 0x6010L) != 0) {
 
                     if (viewModel != null) {
                         // read viewModel.athleteName
                         viewModelAthleteName = viewModel.getAthleteName();
                     }
-                    updateLiveDataRegistration(3, viewModelAthleteName);
+                    updateLiveDataRegistration(4, viewModelAthleteName);
 
 
                     if (viewModelAthleteName != null) {
@@ -344,31 +386,27 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
                         viewModelAthleteNameGetValue = viewModelAthleteName.getValue();
                     }
             }
-            if ((dirtyFlags & 0x1810L) != 0) {
+            if ((dirtyFlags & 0x6020L) != 0) {
 
                     if (viewModel != null) {
-                        // read viewModel.totalActivities
-                        viewModelTotalActivities = viewModel.getTotalActivities();
+                        // read viewModel.formattedActiveDate
+                        viewModelFormattedActiveDate = viewModel.getFormattedActiveDate();
                     }
-                    updateLiveDataRegistration(4, viewModelTotalActivities);
+                    updateLiveDataRegistration(5, viewModelFormattedActiveDate);
 
 
-                    if (viewModelTotalActivities != null) {
-                        // read viewModel.totalActivities.getValue()
-                        viewModelTotalActivitiesGetValue = viewModelTotalActivities.getValue();
+                    if (viewModelFormattedActiveDate != null) {
+                        // read viewModel.formattedActiveDate.getValue()
+                        viewModelFormattedActiveDateGetValue = viewModelFormattedActiveDate.getValue();
                     }
-
-
-                    // read @android:string/total_activities
-                    mboundView3AndroidStringTotalActivitiesViewModelTotalActivities = mboundView3.getResources().getString(R.string.total_activities, viewModelTotalActivitiesGetValue);
             }
-            if ((dirtyFlags & 0x1820L) != 0) {
+            if ((dirtyFlags & 0x6040L) != 0) {
 
                     if (viewModel != null) {
                         // read viewModel.totalDistance
                         viewModelTotalDistance = viewModel.getTotalDistance();
                     }
-                    updateLiveDataRegistration(5, viewModelTotalDistance);
+                    updateLiveDataRegistration(6, viewModelTotalDistance);
 
 
                     if (viewModelTotalDistance != null) {
@@ -376,13 +414,13 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
                         viewModelTotalDistanceGetValue = viewModelTotalDistance.getValue();
                     }
             }
-            if ((dirtyFlags & 0x1840L) != 0) {
+            if ((dirtyFlags & 0x6080L) != 0) {
 
                     if (viewModel != null) {
                         // read viewModel.averageDistance
                         viewModelAverageDistance = viewModel.getAverageDistance();
                     }
-                    updateLiveDataRegistration(6, viewModelAverageDistance);
+                    updateLiveDataRegistration(7, viewModelAverageDistance);
 
 
                     if (viewModelAverageDistance != null) {
@@ -390,13 +428,13 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
                         viewModelAverageDistanceGetValue = viewModelAverageDistance.getValue();
                     }
             }
-            if ((dirtyFlags & 0x1880L) != 0) {
+            if ((dirtyFlags & 0x6100L) != 0) {
 
                     if (viewModel != null) {
                         // read viewModel.averagePace
                         viewModelAveragePace = viewModel.getAveragePace();
                     }
-                    updateLiveDataRegistration(7, viewModelAveragePace);
+                    updateLiveDataRegistration(8, viewModelAveragePace);
 
 
                     if (viewModelAveragePace != null) {
@@ -404,13 +442,13 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
                         viewModelAveragePaceGetValue = viewModelAveragePace.getValue();
                     }
             }
-            if ((dirtyFlags & 0x1900L) != 0) {
+            if ((dirtyFlags & 0x6200L) != 0) {
 
                     if (viewModel != null) {
                         // read viewModel.maxDistance
                         viewModelMaxDistance = viewModel.getMaxDistance();
                     }
-                    updateLiveDataRegistration(8, viewModelMaxDistance);
+                    updateLiveDataRegistration(9, viewModelMaxDistance);
 
 
                     if (viewModelMaxDistance != null) {
@@ -418,13 +456,13 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
                         viewModelMaxDistanceGetValue = viewModelMaxDistance.getValue();
                     }
             }
-            if ((dirtyFlags & 0x1a00L) != 0) {
+            if ((dirtyFlags & 0x6400L) != 0) {
 
                     if (viewModel != null) {
                         // read viewModel.isEditMode
                         viewModelIsEditMode = viewModel.isEditMode();
                     }
-                    updateLiveDataRegistration(9, viewModelIsEditMode);
+                    updateLiveDataRegistration(10, viewModelIsEditMode);
 
 
                     if (viewModelIsEditMode != null) {
@@ -435,30 +473,14 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
 
                     // read androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isEditMode.getValue())
                     androidxDatabindingViewDataBindingSafeUnboxViewModelIsEditModeGetValue = androidx.databinding.ViewDataBinding.safeUnbox(viewModelIsEditModeGetValue);
-                if((dirtyFlags & 0x1a00L) != 0) {
-                    if(androidxDatabindingViewDataBindingSafeUnboxViewModelIsEditModeGetValue) {
-                            dirtyFlags |= 0x4000L;
-                            dirtyFlags |= 0x10000L;
-                    }
-                    else {
-                            dirtyFlags |= 0x2000L;
-                            dirtyFlags |= 0x8000L;
-                    }
-                }
-
-
-                    // read androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isEditMode.getValue()) ? @android:color/transparent : @android:color/transparent
-                    viewModelIsEditModeEtAthleteNameAndroidColorTransparentEtAthleteNameAndroidColorTransparent = ((androidxDatabindingViewDataBindingSafeUnboxViewModelIsEditModeGetValue) ? (getColorFromResource(etAthleteName, android.R.color.transparent)) : (getColorFromResource(etAthleteName, android.R.color.transparent)));
-                    // read androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isEditMode.getValue()) ? @android:color/transparent : @android:color/transparent
-                    viewModelIsEditModeEtAthleteDescriptionAndroidColorTransparentEtAthleteDescriptionAndroidColorTransparent = ((androidxDatabindingViewDataBindingSafeUnboxViewModelIsEditModeGetValue) ? (getColorFromResource(etAthleteDescription, android.R.color.transparent)) : (getColorFromResource(etAthleteDescription, android.R.color.transparent)));
             }
-            if ((dirtyFlags & 0x1c00L) != 0) {
+            if ((dirtyFlags & 0x6800L) != 0) {
 
                     if (viewModel != null) {
                         // read viewModel.totalElevationGain
                         viewModelTotalElevationGain = viewModel.getTotalElevationGain();
                     }
-                    updateLiveDataRegistration(10, viewModelTotalElevationGain);
+                    updateLiveDataRegistration(11, viewModelTotalElevationGain);
 
 
                     if (viewModelTotalElevationGain != null) {
@@ -466,65 +488,93 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
                         viewModelTotalElevationGainGetValue = viewModelTotalElevationGain.getValue();
                     }
             }
+            if ((dirtyFlags & 0x7000L) != 0) {
+
+                    if (viewModel != null) {
+                        // read viewModel.formattedTotalActivities
+                        viewModelFormattedTotalActivities = viewModel.getFormattedTotalActivities();
+                    }
+                    updateLiveDataRegistration(12, viewModelFormattedTotalActivities);
+
+
+                    if (viewModelFormattedTotalActivities != null) {
+                        // read viewModel.formattedTotalActivities.getValue()
+                        viewModelFormattedTotalActivitiesGetValue = viewModelFormattedTotalActivities.getValue();
+                    }
+            }
         }
         // batch finished
-        if ((dirtyFlags & 0x1801L) != 0) {
+        if ((dirtyFlags & 0x6001L) != 0) {
+            // api target 1
+
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.btnEditProfile, contextGetStringViewModelEditButtonText);
+        }
+        if ((dirtyFlags & 0x6004L) != 0) {
+            // api target 1
+
+            this.btnEditProfile.setIcon(androidx.databinding.adapters.Converters.convertColorToDrawable(viewModelEditButtonIconGetValue));
+        }
+        if ((dirtyFlags & 0x6002L) != 0) {
             // api target 1
 
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.etAthleteDescription, viewModelAthleteDescriptionGetValue);
         }
-        if ((dirtyFlags & 0x1a00L) != 0) {
+        if ((dirtyFlags & 0x6400L) != 0) {
             // api target 1
 
             this.etAthleteDescription.setEnabled(androidxDatabindingViewDataBindingSafeUnboxViewModelIsEditModeGetValue);
-            androidx.databinding.adapters.ViewBindingAdapter.setBackground(this.etAthleteDescription, androidx.databinding.adapters.Converters.convertColorToDrawable(viewModelIsEditModeEtAthleteDescriptionAndroidColorTransparentEtAthleteDescriptionAndroidColorTransparent));
             this.etAthleteName.setEnabled(androidxDatabindingViewDataBindingSafeUnboxViewModelIsEditModeGetValue);
-            androidx.databinding.adapters.ViewBindingAdapter.setBackground(this.etAthleteName, androidx.databinding.adapters.Converters.convertColorToDrawable(viewModelIsEditModeEtAthleteNameAndroidColorTransparentEtAthleteNameAndroidColorTransparent));
         }
-        if ((dirtyFlags & 0x1808L) != 0) {
+        if ((dirtyFlags & 0x4000L) != 0) {
+            // api target 1
+
+            androidx.databinding.adapters.ViewBindingAdapter.setBackground(this.etAthleteDescription, androidx.databinding.adapters.Converters.convertColorToDrawable(getColorFromResource(etAthleteDescription, android.R.color.transparent)));
+            androidx.databinding.adapters.ViewBindingAdapter.setBackground(this.etAthleteName, androidx.databinding.adapters.Converters.convertColorToDrawable(getColorFromResource(etAthleteName, android.R.color.transparent)));
+        }
+        if ((dirtyFlags & 0x6010L) != 0) {
             // api target 1
 
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.etAthleteName, viewModelAthleteNameGetValue);
         }
-        if ((dirtyFlags & 0x1c00L) != 0) {
+        if ((dirtyFlags & 0x6100L) != 0) {
             // api target 1
 
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView10, viewModelTotalElevationGainGetValue);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView10, viewModelAveragePaceGetValue);
         }
-        if ((dirtyFlags & 0x1810L) != 0) {
+        if ((dirtyFlags & 0x6800L) != 0) {
             // api target 1
 
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView3, mboundView3AndroidStringTotalActivitiesViewModelTotalActivities);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView11, viewModelTotalElevationGainGetValue);
         }
-        if ((dirtyFlags & 0x1804L) != 0) {
+        if ((dirtyFlags & 0x7000L) != 0) {
             // api target 1
 
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView4, mboundView4AndroidStringActiveSinceViewModelFirstActivityDate);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView4, viewModelFormattedTotalActivitiesGetValue);
         }
-        if ((dirtyFlags & 0x1820L) != 0) {
+        if ((dirtyFlags & 0x6020L) != 0) {
             // api target 1
 
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView5, viewModelTotalDistanceGetValue);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView5, viewModelFormattedActiveDateGetValue);
         }
-        if ((dirtyFlags & 0x1840L) != 0) {
+        if ((dirtyFlags & 0x6040L) != 0) {
             // api target 1
 
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView6, viewModelAverageDistanceGetValue);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView6, viewModelTotalDistanceGetValue);
         }
-        if ((dirtyFlags & 0x1900L) != 0) {
+        if ((dirtyFlags & 0x6080L) != 0) {
             // api target 1
 
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView7, viewModelMaxDistanceGetValue);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView7, viewModelAverageDistanceGetValue);
         }
-        if ((dirtyFlags & 0x1802L) != 0) {
+        if ((dirtyFlags & 0x6200L) != 0) {
             // api target 1
 
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView8, viewModelTotalDurationGetValue);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView8, viewModelMaxDistanceGetValue);
         }
-        if ((dirtyFlags & 0x1880L) != 0) {
+        if ((dirtyFlags & 0x6008L) != 0) {
             // api target 1
 
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView9, viewModelAveragePaceGetValue);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView9, viewModelTotalDurationGetValue);
         }
     }
     // Listener Stub Implementations
@@ -532,23 +582,21 @@ public class ActivityProfileBindingImpl extends ActivityProfileBinding  {
     // dirty flag
     private  long mDirtyFlags = 0xffffffffffffffffL;
     /* flag mapping
-        flag 0 (0x1L): viewModel.athleteDescription
-        flag 1 (0x2L): viewModel.totalDuration
-        flag 2 (0x3L): viewModel.firstActivityDate
-        flag 3 (0x4L): viewModel.athleteName
-        flag 4 (0x5L): viewModel.totalActivities
-        flag 5 (0x6L): viewModel.totalDistance
-        flag 6 (0x7L): viewModel.averageDistance
-        flag 7 (0x8L): viewModel.averagePace
-        flag 8 (0x9L): viewModel.maxDistance
-        flag 9 (0xaL): viewModel.isEditMode
-        flag 10 (0xbL): viewModel.totalElevationGain
-        flag 11 (0xcL): viewModel
-        flag 12 (0xdL): null
-        flag 13 (0xeL): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isEditMode.getValue()) ? @android:color/transparent : @android:color/transparent
-        flag 14 (0xfL): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isEditMode.getValue()) ? @android:color/transparent : @android:color/transparent
-        flag 15 (0x10L): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isEditMode.getValue()) ? @android:color/transparent : @android:color/transparent
-        flag 16 (0x11L): androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isEditMode.getValue()) ? @android:color/transparent : @android:color/transparent
+        flag 0 (0x1L): viewModel.editButtonText
+        flag 1 (0x2L): viewModel.athleteDescription
+        flag 2 (0x3L): viewModel.editButtonIcon
+        flag 3 (0x4L): viewModel.totalDuration
+        flag 4 (0x5L): viewModel.athleteName
+        flag 5 (0x6L): viewModel.formattedActiveDate
+        flag 6 (0x7L): viewModel.totalDistance
+        flag 7 (0x8L): viewModel.averageDistance
+        flag 8 (0x9L): viewModel.averagePace
+        flag 9 (0xaL): viewModel.maxDistance
+        flag 10 (0xbL): viewModel.isEditMode
+        flag 11 (0xcL): viewModel.totalElevationGain
+        flag 12 (0xdL): viewModel.formattedTotalActivities
+        flag 13 (0xeL): viewModel
+        flag 14 (0xfL): null
     flag mapping end*/
     //end
 }

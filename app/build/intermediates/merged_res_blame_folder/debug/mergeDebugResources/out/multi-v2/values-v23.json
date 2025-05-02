@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.stepbystep.app-mergeDebugResources-48:/values-v23/values-v23.xml",
+            "outputFile": "com.example.stepbystep.app-mergeDebugResources-49:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "/home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6e948fa6abd1a57e7bf7465701299d87/transformed/appcompat-1.7.0/res/values-v23/values-v23.xml",
+                    "source": "/home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/8ef130dc1c342b730496c6367a0dbe47/transformed/appcompat-1.7.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -15,26 +15,7 @@
                     }
                 },
                 {
-                    "source": "/home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/5ab2d333fba291141b56d7d2891cc088/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "4",
-                        "endColumns": "12",
-                        "endOffsets": "200"
-                    },
-                    "to": {
-                        "startLines": "50",
-                        "startColumns": "4",
-                        "startOffsets": "3232",
-                        "endLines": "52",
-                        "endColumns": "12",
-                        "endOffsets": "3377"
-                    }
-                },
-                {
-                    "source": "/home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/68084e5fab74ae813011fcc9666805bf/transformed/material-1.12.0/res/values-v23/values-v23.xml",
+                    "source": "/home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/f22ec3610851156ede2831f9e754db3e/transformed/material-1.12.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,5,9,13,16,19,22,25,28,32",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -50,6 +31,25 @@
                         "endLines": "55,59,63,66,69,72,75,78,82,86",
                         "endColumns": "10,10,10,10,10,10,10,10,10,10",
                         "endOffsets": "3593,3735,3896,4106,4313,4520,4723,4925,5190,5463"
+                    }
+                },
+                {
+                    "source": "/home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/42dcdb3eccd1d9269bbf32eb9673985c/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "200"
+                    },
+                    "to": {
+                        "startLines": "50",
+                        "startColumns": "4",
+                        "startOffsets": "3232",
+                        "endLines": "52",
+                        "endColumns": "12",
+                        "endOffsets": "3377"
                     }
                 }
             ]

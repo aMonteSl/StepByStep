@@ -11,7 +11,7 @@ import androidx.databinding.Bindable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import com.example.stepbystep.R;
-import com.example.stepbystep.domain.model.Route;
+import com.example.stepbystep.ui.main.RouteDisplayModel;
 import java.lang.Deprecated;
 import java.lang.Object;
 
@@ -35,7 +35,7 @@ public abstract class ItemRouteBinding extends ViewDataBinding {
   public final TextView tvRouteName;
 
   @Bindable
-  protected Route mRoute;
+  protected RouteDisplayModel mDisplayModel;
 
   protected ItemRouteBinding(Object _bindingComponent, View _root, int _localFieldCount,
       TextView tvRouteDate, TextView tvRouteDistance, TextView tvRouteDuration,
@@ -49,11 +49,11 @@ public abstract class ItemRouteBinding extends ViewDataBinding {
     this.tvRouteName = tvRouteName;
   }
 
-  public abstract void setRoute(@Nullable Route route);
+  public abstract void setDisplayModel(@Nullable RouteDisplayModel displayModel);
 
   @Nullable
-  public Route getRoute() {
-    return mRoute;
+  public RouteDisplayModel getDisplayModel() {
+    return mDisplayModel;
   }
 
   @NonNull

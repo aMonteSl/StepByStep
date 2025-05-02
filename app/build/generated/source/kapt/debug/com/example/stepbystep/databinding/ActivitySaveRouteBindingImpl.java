@@ -14,10 +14,9 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
     static {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
-        sViewsWithIds.put(R.id.appBarLayout, 9);
-        sViewsWithIds.put(R.id.toolbar, 10);
-        sViewsWithIds.put(R.id.mapPreview, 11);
-        sViewsWithIds.put(R.id.routeImagePreview, 12);
+        sViewsWithIds.put(R.id.appBarLayout, 10);
+        sViewsWithIds.put(R.id.toolbar, 11);
+        sViewsWithIds.put(R.id.mapPreview, 12);
         sViewsWithIds.put(R.id.btnSelectImage, 13);
         sViewsWithIds.put(R.id.btnDiscard, 14);
     }
@@ -117,16 +116,16 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
         this(bindingComponent, root, mapBindings(bindingComponent, root, 15, sIncludes, sViewsWithIds));
     }
     private ActivitySaveRouteBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
-        super(bindingComponent, root, 8
-            , (com.google.android.material.appbar.AppBarLayout) bindings[9]
+        super(bindingComponent, root, 9
+            , (com.google.android.material.appbar.AppBarLayout) bindings[10]
             , (com.google.android.material.button.MaterialButton) bindings[14]
-            , (com.google.android.material.button.MaterialButton) bindings[8]
+            , (com.google.android.material.button.MaterialButton) bindings[9]
             , (com.google.android.material.button.MaterialButton) bindings[13]
             , (com.google.android.material.textfield.TextInputEditText) bindings[7]
             , (com.google.android.material.textfield.TextInputEditText) bindings[6]
-            , (com.google.android.gms.maps.MapView) bindings[11]
-            , (android.widget.ImageView) bindings[12]
-            , (com.google.android.material.appbar.MaterialToolbar) bindings[10]
+            , (com.google.android.gms.maps.MapView) bindings[12]
+            , (android.widget.ImageView) bindings[8]
+            , (com.google.android.material.appbar.MaterialToolbar) bindings[11]
             );
         this.btnSave.setTag(null);
         this.etRouteDescription.setTag(null);
@@ -143,6 +142,7 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
         this.mboundView4.setTag(null);
         this.mboundView5 = (com.google.android.material.textfield.TextInputEditText) bindings[5];
         this.mboundView5.setTag(null);
+        this.routeImagePreview.setTag(null);
         setRootTag(root);
         // listeners
         invalidateAll();
@@ -151,7 +151,7 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
     @Override
     public void invalidateAll() {
         synchronized(this) {
-                mDirtyFlags = 0x200L;
+                mDirtyFlags = 0x400L;
         }
         requestRebind();
     }
@@ -181,7 +181,7 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
     public void setViewModel(@Nullable com.example.stepbystep.ui.saveroute.SaveRouteViewModel ViewModel) {
         this.mViewModel = ViewModel;
         synchronized(this) {
-            mDirtyFlags |= 0x100L;
+            mDirtyFlags |= 0x200L;
         }
         notifyPropertyChanged(BR.viewModel);
         super.requestRebind();
@@ -191,25 +191,27 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
     protected boolean onFieldChange(int localFieldId, Object object, int fieldId) {
         switch (localFieldId) {
             case 0 :
-                return onChangeViewModelRouteDescription((androidx.lifecycle.MutableLiveData<java.lang.String>) object, fieldId);
+                return onChangeViewModelFormattedElevationGain((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
             case 1 :
-                return onChangeViewModelDistance((androidx.lifecycle.LiveData<java.lang.Double>) object, fieldId);
+                return onChangeViewModelRouteDescription((androidx.lifecycle.MutableLiveData<java.lang.String>) object, fieldId);
             case 2 :
-                return onChangeViewModelElevationGain((androidx.lifecycle.LiveData<java.lang.Double>) object, fieldId);
+                return onChangeViewModelFormattedDistance((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
             case 3 :
-                return onChangeViewModelRouteName((androidx.lifecycle.MutableLiveData<java.lang.String>) object, fieldId);
+                return onChangeViewModelFormattedElevation((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
             case 4 :
-                return onChangeViewModelDuration((androidx.lifecycle.LiveData<java.lang.Long>) object, fieldId);
+                return onChangeViewModelFormattedDuration((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
             case 5 :
-                return onChangeViewModelIsFormValid((androidx.lifecycle.MediatorLiveData<java.lang.Boolean>) object, fieldId);
+                return onChangeViewModelImagePreviewVisible((androidx.lifecycle.LiveData<java.lang.Integer>) object, fieldId);
             case 6 :
-                return onChangeViewModelDate((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
+                return onChangeViewModelRouteName((androidx.lifecycle.MutableLiveData<java.lang.String>) object, fieldId);
             case 7 :
-                return onChangeViewModelElevation((androidx.lifecycle.LiveData<java.lang.Double>) object, fieldId);
+                return onChangeViewModelFormattedDate((androidx.lifecycle.LiveData<java.lang.String>) object, fieldId);
+            case 8 :
+                return onChangeViewModelIsFormValid((androidx.lifecycle.MediatorLiveData<java.lang.Boolean>) object, fieldId);
         }
         return false;
     }
-    private boolean onChangeViewModelRouteDescription(androidx.lifecycle.MutableLiveData<java.lang.String> ViewModelRouteDescription, int fieldId) {
+    private boolean onChangeViewModelFormattedElevationGain(androidx.lifecycle.LiveData<java.lang.String> ViewModelFormattedElevationGain, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x1L;
@@ -218,7 +220,7 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelDistance(androidx.lifecycle.LiveData<java.lang.Double> ViewModelDistance, int fieldId) {
+    private boolean onChangeViewModelRouteDescription(androidx.lifecycle.MutableLiveData<java.lang.String> ViewModelRouteDescription, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x2L;
@@ -227,7 +229,7 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelElevationGain(androidx.lifecycle.LiveData<java.lang.Double> ViewModelElevationGain, int fieldId) {
+    private boolean onChangeViewModelFormattedDistance(androidx.lifecycle.LiveData<java.lang.String> ViewModelFormattedDistance, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x4L;
@@ -236,7 +238,7 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelRouteName(androidx.lifecycle.MutableLiveData<java.lang.String> ViewModelRouteName, int fieldId) {
+    private boolean onChangeViewModelFormattedElevation(androidx.lifecycle.LiveData<java.lang.String> ViewModelFormattedElevation, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x8L;
@@ -245,7 +247,7 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelDuration(androidx.lifecycle.LiveData<java.lang.Long> ViewModelDuration, int fieldId) {
+    private boolean onChangeViewModelFormattedDuration(androidx.lifecycle.LiveData<java.lang.String> ViewModelFormattedDuration, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x10L;
@@ -254,7 +256,7 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelIsFormValid(androidx.lifecycle.MediatorLiveData<java.lang.Boolean> ViewModelIsFormValid, int fieldId) {
+    private boolean onChangeViewModelImagePreviewVisible(androidx.lifecycle.LiveData<java.lang.Integer> ViewModelImagePreviewVisible, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x20L;
@@ -263,7 +265,7 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelDate(androidx.lifecycle.LiveData<java.lang.String> ViewModelDate, int fieldId) {
+    private boolean onChangeViewModelRouteName(androidx.lifecycle.MutableLiveData<java.lang.String> ViewModelRouteName, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x40L;
@@ -272,10 +274,19 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
         }
         return false;
     }
-    private boolean onChangeViewModelElevation(androidx.lifecycle.LiveData<java.lang.Double> ViewModelElevation, int fieldId) {
+    private boolean onChangeViewModelFormattedDate(androidx.lifecycle.LiveData<java.lang.String> ViewModelFormattedDate, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x80L;
+            }
+            return true;
+        }
+        return false;
+    }
+    private boolean onChangeViewModelIsFormValid(androidx.lifecycle.MediatorLiveData<java.lang.Boolean> ViewModelIsFormValid, int fieldId) {
+        if (fieldId == BR._all) {
+            synchronized(this) {
+                    mDirtyFlags |= 0x100L;
             }
             return true;
         }
@@ -289,44 +300,52 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
             dirtyFlags = mDirtyFlags;
             mDirtyFlags = 0;
         }
+        androidx.lifecycle.LiveData<java.lang.String> viewModelFormattedElevationGain = null;
         androidx.lifecycle.MutableLiveData<java.lang.String> viewModelRouteDescription = null;
-        double androidxDatabindingViewDataBindingSafeUnboxViewModelDistanceGetValue = 0.0;
-        double androidxDatabindingViewDataBindingSafeUnboxViewModelElevationGetValue = 0.0;
-        double androidxDatabindingViewDataBindingSafeUnboxViewModelElevationGainGetValue = 0.0;
-        java.lang.Double viewModelElevationGainGetValue = null;
+        androidx.lifecycle.LiveData<java.lang.String> viewModelFormattedDistance = null;
+        java.lang.String viewModelFormattedDistanceGetValue = null;
+        androidx.lifecycle.LiveData<java.lang.String> viewModelFormattedElevation = null;
+        androidx.lifecycle.LiveData<java.lang.String> viewModelFormattedDuration = null;
+        androidx.lifecycle.LiveData<java.lang.Integer> viewModelImagePreviewVisible = null;
         java.lang.String viewModelRouteDescriptionGetValue = null;
-        androidx.lifecycle.LiveData<java.lang.Double> viewModelDistance = null;
-        androidx.lifecycle.LiveData<java.lang.Double> viewModelElevationGain = null;
+        int androidxDatabindingViewDataBindingSafeUnboxViewModelImagePreviewVisibleGetValue = 0;
         androidx.lifecycle.MutableLiveData<java.lang.String> viewModelRouteName = null;
-        androidx.lifecycle.LiveData<java.lang.Long> viewModelDuration = null;
-        java.lang.String stringFormatUtilsFormatElevationGainViewModelElevationGain = null;
-        java.lang.String stringFormatUtilsFormatDurationViewModelDuration = null;
-        java.lang.Long viewModelDurationGetValue = null;
+        androidx.lifecycle.LiveData<java.lang.String> viewModelFormattedDate = null;
         androidx.lifecycle.MediatorLiveData<java.lang.Boolean> viewModelIsFormValid = null;
-        java.lang.String stringFormatUtilsFormatDistanceKmViewModelDistance = null;
-        androidx.lifecycle.LiveData<java.lang.String> viewModelDate = null;
+        java.lang.Integer viewModelImagePreviewVisibleGetValue = null;
+        java.lang.String viewModelFormattedDurationGetValue = null;
+        java.lang.String viewModelFormattedElevationGetValue = null;
         java.lang.String viewModelRouteNameGetValue = null;
-        java.lang.Double viewModelDistanceGetValue = null;
-        java.lang.String dateFormatUtilsFormatDateViewModelDate = null;
+        java.lang.String viewModelFormattedDateGetValue = null;
+        java.lang.String viewModelFormattedElevationGainGetValue = null;
         java.lang.Boolean viewModelIsFormValidGetValue = null;
-        long androidxDatabindingViewDataBindingSafeUnboxViewModelDurationGetValue = 0;
         com.example.stepbystep.ui.saveroute.SaveRouteViewModel viewModel = mViewModel;
-        java.lang.String stringFormatUtilsFormatElevationViewModelElevation = null;
         boolean androidxDatabindingViewDataBindingSafeUnboxViewModelIsFormValidGetValue = false;
-        java.lang.Double viewModelElevationGetValue = null;
-        java.lang.String viewModelDateGetValue = null;
-        androidx.lifecycle.LiveData<java.lang.Double> viewModelElevation = null;
 
-        if ((dirtyFlags & 0x3ffL) != 0) {
+        if ((dirtyFlags & 0x7ffL) != 0) {
 
 
-            if ((dirtyFlags & 0x301L) != 0) {
+            if ((dirtyFlags & 0x601L) != 0) {
+
+                    if (viewModel != null) {
+                        // read viewModel.formattedElevationGain
+                        viewModelFormattedElevationGain = viewModel.getFormattedElevationGain();
+                    }
+                    updateLiveDataRegistration(0, viewModelFormattedElevationGain);
+
+
+                    if (viewModelFormattedElevationGain != null) {
+                        // read viewModel.formattedElevationGain.getValue()
+                        viewModelFormattedElevationGainGetValue = viewModelFormattedElevationGain.getValue();
+                    }
+            }
+            if ((dirtyFlags & 0x602L) != 0) {
 
                     if (viewModel != null) {
                         // read viewModel.routeDescription
                         viewModelRouteDescription = viewModel.getRouteDescription();
                     }
-                    updateLiveDataRegistration(0, viewModelRouteDescription);
+                    updateLiveDataRegistration(1, viewModelRouteDescription);
 
 
                     if (viewModelRouteDescription != null) {
@@ -334,57 +353,73 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
                         viewModelRouteDescriptionGetValue = viewModelRouteDescription.getValue();
                     }
             }
-            if ((dirtyFlags & 0x302L) != 0) {
+            if ((dirtyFlags & 0x604L) != 0) {
 
                     if (viewModel != null) {
-                        // read viewModel.distance
-                        viewModelDistance = viewModel.getDistance();
+                        // read viewModel.formattedDistance
+                        viewModelFormattedDistance = viewModel.getFormattedDistance();
                     }
-                    updateLiveDataRegistration(1, viewModelDistance);
+                    updateLiveDataRegistration(2, viewModelFormattedDistance);
 
 
-                    if (viewModelDistance != null) {
-                        // read viewModel.distance.getValue()
-                        viewModelDistanceGetValue = viewModelDistance.getValue();
+                    if (viewModelFormattedDistance != null) {
+                        // read viewModel.formattedDistance.getValue()
+                        viewModelFormattedDistanceGetValue = viewModelFormattedDistance.getValue();
                     }
-
-
-                    // read androidx.databinding.ViewDataBinding.safeUnbox(viewModel.distance.getValue())
-                    androidxDatabindingViewDataBindingSafeUnboxViewModelDistanceGetValue = androidx.databinding.ViewDataBinding.safeUnbox(viewModelDistanceGetValue);
-
-
-                    // read StringFormatUtils.formatDistanceKm(androidx.databinding.ViewDataBinding.safeUnbox(viewModel.distance.getValue()))
-                    stringFormatUtilsFormatDistanceKmViewModelDistance = com.example.stepbystep.util.StringFormatUtils.formatDistanceKm(androidxDatabindingViewDataBindingSafeUnboxViewModelDistanceGetValue);
             }
-            if ((dirtyFlags & 0x304L) != 0) {
+            if ((dirtyFlags & 0x608L) != 0) {
 
                     if (viewModel != null) {
-                        // read viewModel.elevationGain
-                        viewModelElevationGain = viewModel.getElevationGain();
+                        // read viewModel.formattedElevation
+                        viewModelFormattedElevation = viewModel.getFormattedElevation();
                     }
-                    updateLiveDataRegistration(2, viewModelElevationGain);
+                    updateLiveDataRegistration(3, viewModelFormattedElevation);
 
 
-                    if (viewModelElevationGain != null) {
-                        // read viewModel.elevationGain.getValue()
-                        viewModelElevationGainGetValue = viewModelElevationGain.getValue();
+                    if (viewModelFormattedElevation != null) {
+                        // read viewModel.formattedElevation.getValue()
+                        viewModelFormattedElevationGetValue = viewModelFormattedElevation.getValue();
                     }
-
-
-                    // read androidx.databinding.ViewDataBinding.safeUnbox(viewModel.elevationGain.getValue())
-                    androidxDatabindingViewDataBindingSafeUnboxViewModelElevationGainGetValue = androidx.databinding.ViewDataBinding.safeUnbox(viewModelElevationGainGetValue);
-
-
-                    // read StringFormatUtils.formatElevationGain(androidx.databinding.ViewDataBinding.safeUnbox(viewModel.elevationGain.getValue()))
-                    stringFormatUtilsFormatElevationGainViewModelElevationGain = com.example.stepbystep.util.StringFormatUtils.formatElevationGain(androidxDatabindingViewDataBindingSafeUnboxViewModelElevationGainGetValue);
             }
-            if ((dirtyFlags & 0x308L) != 0) {
+            if ((dirtyFlags & 0x610L) != 0) {
+
+                    if (viewModel != null) {
+                        // read viewModel.formattedDuration
+                        viewModelFormattedDuration = viewModel.getFormattedDuration();
+                    }
+                    updateLiveDataRegistration(4, viewModelFormattedDuration);
+
+
+                    if (viewModelFormattedDuration != null) {
+                        // read viewModel.formattedDuration.getValue()
+                        viewModelFormattedDurationGetValue = viewModelFormattedDuration.getValue();
+                    }
+            }
+            if ((dirtyFlags & 0x620L) != 0) {
+
+                    if (viewModel != null) {
+                        // read viewModel.imagePreviewVisible
+                        viewModelImagePreviewVisible = viewModel.getImagePreviewVisible();
+                    }
+                    updateLiveDataRegistration(5, viewModelImagePreviewVisible);
+
+
+                    if (viewModelImagePreviewVisible != null) {
+                        // read viewModel.imagePreviewVisible.getValue()
+                        viewModelImagePreviewVisibleGetValue = viewModelImagePreviewVisible.getValue();
+                    }
+
+
+                    // read androidx.databinding.ViewDataBinding.safeUnbox(viewModel.imagePreviewVisible.getValue())
+                    androidxDatabindingViewDataBindingSafeUnboxViewModelImagePreviewVisibleGetValue = androidx.databinding.ViewDataBinding.safeUnbox(viewModelImagePreviewVisibleGetValue);
+            }
+            if ((dirtyFlags & 0x640L) != 0) {
 
                     if (viewModel != null) {
                         // read viewModel.routeName
                         viewModelRouteName = viewModel.getRouteName();
                     }
-                    updateLiveDataRegistration(3, viewModelRouteName);
+                    updateLiveDataRegistration(6, viewModelRouteName);
 
 
                     if (viewModelRouteName != null) {
@@ -392,35 +427,27 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
                         viewModelRouteNameGetValue = viewModelRouteName.getValue();
                     }
             }
-            if ((dirtyFlags & 0x310L) != 0) {
+            if ((dirtyFlags & 0x680L) != 0) {
 
                     if (viewModel != null) {
-                        // read viewModel.duration
-                        viewModelDuration = viewModel.getDuration();
+                        // read viewModel.formattedDate
+                        viewModelFormattedDate = viewModel.getFormattedDate();
                     }
-                    updateLiveDataRegistration(4, viewModelDuration);
+                    updateLiveDataRegistration(7, viewModelFormattedDate);
 
 
-                    if (viewModelDuration != null) {
-                        // read viewModel.duration.getValue()
-                        viewModelDurationGetValue = viewModelDuration.getValue();
+                    if (viewModelFormattedDate != null) {
+                        // read viewModel.formattedDate.getValue()
+                        viewModelFormattedDateGetValue = viewModelFormattedDate.getValue();
                     }
-
-
-                    // read androidx.databinding.ViewDataBinding.safeUnbox(viewModel.duration.getValue())
-                    androidxDatabindingViewDataBindingSafeUnboxViewModelDurationGetValue = androidx.databinding.ViewDataBinding.safeUnbox(viewModelDurationGetValue);
-
-
-                    // read StringFormatUtils.formatDuration(androidx.databinding.ViewDataBinding.safeUnbox(viewModel.duration.getValue()))
-                    stringFormatUtilsFormatDurationViewModelDuration = com.example.stepbystep.util.StringFormatUtils.formatDuration(androidxDatabindingViewDataBindingSafeUnboxViewModelDurationGetValue);
             }
-            if ((dirtyFlags & 0x320L) != 0) {
+            if ((dirtyFlags & 0x700L) != 0) {
 
                     if (viewModel != null) {
                         // read viewModel.isFormValid
                         viewModelIsFormValid = viewModel.isFormValid();
                     }
-                    updateLiveDataRegistration(5, viewModelIsFormValid);
+                    updateLiveDataRegistration(8, viewModelIsFormValid);
 
 
                     if (viewModelIsFormValid != null) {
@@ -432,93 +459,58 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
                     // read androidx.databinding.ViewDataBinding.safeUnbox(viewModel.isFormValid.getValue())
                     androidxDatabindingViewDataBindingSafeUnboxViewModelIsFormValidGetValue = androidx.databinding.ViewDataBinding.safeUnbox(viewModelIsFormValidGetValue);
             }
-            if ((dirtyFlags & 0x340L) != 0) {
-
-                    if (viewModel != null) {
-                        // read viewModel.date
-                        viewModelDate = viewModel.getDate();
-                    }
-                    updateLiveDataRegistration(6, viewModelDate);
-
-
-                    if (viewModelDate != null) {
-                        // read viewModel.date.getValue()
-                        viewModelDateGetValue = viewModelDate.getValue();
-                    }
-
-
-                    // read DateFormatUtils.formatDate(viewModel.date.getValue())
-                    dateFormatUtilsFormatDateViewModelDate = com.example.stepbystep.util.DateFormatUtils.formatDate(viewModelDateGetValue);
-            }
-            if ((dirtyFlags & 0x380L) != 0) {
-
-                    if (viewModel != null) {
-                        // read viewModel.elevation
-                        viewModelElevation = viewModel.getElevation();
-                    }
-                    updateLiveDataRegistration(7, viewModelElevation);
-
-
-                    if (viewModelElevation != null) {
-                        // read viewModel.elevation.getValue()
-                        viewModelElevationGetValue = viewModelElevation.getValue();
-                    }
-
-
-                    // read androidx.databinding.ViewDataBinding.safeUnbox(viewModel.elevation.getValue())
-                    androidxDatabindingViewDataBindingSafeUnboxViewModelElevationGetValue = androidx.databinding.ViewDataBinding.safeUnbox(viewModelElevationGetValue);
-
-
-                    // read StringFormatUtils.formatElevation(androidx.databinding.ViewDataBinding.safeUnbox(viewModel.elevation.getValue()))
-                    stringFormatUtilsFormatElevationViewModelElevation = com.example.stepbystep.util.StringFormatUtils.formatElevation(androidxDatabindingViewDataBindingSafeUnboxViewModelElevationGetValue);
-            }
         }
         // batch finished
-        if ((dirtyFlags & 0x320L) != 0) {
+        if ((dirtyFlags & 0x700L) != 0) {
             // api target 1
 
             this.btnSave.setEnabled(androidxDatabindingViewDataBindingSafeUnboxViewModelIsFormValidGetValue);
         }
-        if ((dirtyFlags & 0x301L) != 0) {
+        if ((dirtyFlags & 0x602L) != 0) {
             // api target 1
 
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.etRouteDescription, viewModelRouteDescriptionGetValue);
         }
-        if ((dirtyFlags & 0x200L) != 0) {
+        if ((dirtyFlags & 0x400L) != 0) {
             // api target 1
 
             androidx.databinding.adapters.TextViewBindingAdapter.setTextWatcher(this.etRouteDescription, (androidx.databinding.adapters.TextViewBindingAdapter.BeforeTextChanged)null, (androidx.databinding.adapters.TextViewBindingAdapter.OnTextChanged)null, (androidx.databinding.adapters.TextViewBindingAdapter.AfterTextChanged)null, etRouteDescriptionandroidTextAttrChanged);
             androidx.databinding.adapters.TextViewBindingAdapter.setTextWatcher(this.etRouteName, (androidx.databinding.adapters.TextViewBindingAdapter.BeforeTextChanged)null, (androidx.databinding.adapters.TextViewBindingAdapter.OnTextChanged)null, (androidx.databinding.adapters.TextViewBindingAdapter.AfterTextChanged)null, etRouteNameandroidTextAttrChanged);
         }
-        if ((dirtyFlags & 0x308L) != 0) {
+        if ((dirtyFlags & 0x640L) != 0) {
             // api target 1
 
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.etRouteName, viewModelRouteNameGetValue);
         }
-        if ((dirtyFlags & 0x302L) != 0) {
+        if ((dirtyFlags & 0x604L) != 0) {
             // api target 1
 
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView1, stringFormatUtilsFormatDistanceKmViewModelDistance);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView1, viewModelFormattedDistanceGetValue);
         }
-        if ((dirtyFlags & 0x310L) != 0) {
+        if ((dirtyFlags & 0x610L) != 0) {
             // api target 1
 
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView2, stringFormatUtilsFormatDurationViewModelDuration);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView2, viewModelFormattedDurationGetValue);
         }
-        if ((dirtyFlags & 0x380L) != 0) {
+        if ((dirtyFlags & 0x608L) != 0) {
             // api target 1
 
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView3, stringFormatUtilsFormatElevationViewModelElevation);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView3, viewModelFormattedElevationGetValue);
         }
-        if ((dirtyFlags & 0x304L) != 0) {
+        if ((dirtyFlags & 0x601L) != 0) {
             // api target 1
 
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView4, stringFormatUtilsFormatElevationGainViewModelElevationGain);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView4, viewModelFormattedElevationGainGetValue);
         }
-        if ((dirtyFlags & 0x340L) != 0) {
+        if ((dirtyFlags & 0x680L) != 0) {
             // api target 1
 
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView5, dateFormatUtilsFormatDateViewModelDate);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.mboundView5, viewModelFormattedDateGetValue);
+        }
+        if ((dirtyFlags & 0x620L) != 0) {
+            // api target 1
+
+            this.routeImagePreview.setVisibility(androidxDatabindingViewDataBindingSafeUnboxViewModelImagePreviewVisibleGetValue);
         }
     }
     // Listener Stub Implementations
@@ -526,16 +518,17 @@ public class ActivitySaveRouteBindingImpl extends ActivitySaveRouteBinding  {
     // dirty flag
     private  long mDirtyFlags = 0xffffffffffffffffL;
     /* flag mapping
-        flag 0 (0x1L): viewModel.routeDescription
-        flag 1 (0x2L): viewModel.distance
-        flag 2 (0x3L): viewModel.elevationGain
-        flag 3 (0x4L): viewModel.routeName
-        flag 4 (0x5L): viewModel.duration
-        flag 5 (0x6L): viewModel.isFormValid
-        flag 6 (0x7L): viewModel.date
-        flag 7 (0x8L): viewModel.elevation
-        flag 8 (0x9L): viewModel
-        flag 9 (0xaL): null
+        flag 0 (0x1L): viewModel.formattedElevationGain
+        flag 1 (0x2L): viewModel.routeDescription
+        flag 2 (0x3L): viewModel.formattedDistance
+        flag 3 (0x4L): viewModel.formattedElevation
+        flag 4 (0x5L): viewModel.formattedDuration
+        flag 5 (0x6L): viewModel.imagePreviewVisible
+        flag 6 (0x7L): viewModel.routeName
+        flag 7 (0x8L): viewModel.formattedDate
+        flag 8 (0x9L): viewModel.isFormValid
+        flag 9 (0xaL): viewModel
+        flag 10 (0xbL): null
     flag mapping end*/
     //end
 }

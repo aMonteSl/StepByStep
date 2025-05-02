@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.stepbystep.app-mergeDebugResources-48:/values-ldltr-v21/values-ldltr-v21.xml",
+            "outputFile": "com.example.stepbystep.app-mergeDebugResources-49:/values-ldltr-v21/values-ldltr-v21.xml",
             "map": [
                 {
-                    "source": "/home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/6e948fa6abd1a57e7bf7465701299d87/transformed/appcompat-1.7.0/res/values-ldltr-v21/values-ldltr-v21.xml",
+                    "source": "/home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/8ef130dc1c342b730496c6367a0dbe47/transformed/appcompat-1.7.0/res/values-ldltr-v21/values-ldltr-v21.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

@@ -3,24 +3,24 @@
 3    package="com.example.stepbystep.test" >
 4
 5    <uses-sdk
-5-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12372572448118754375.xml:5:5-74
+5-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest739787483755958930.xml:5:5-74
 6        android:minSdkVersion="24"
-6-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12372572448118754375.xml:5:15-41
+6-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest739787483755958930.xml:5:15-41
 7        android:targetSdkVersion="35" />
-7-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12372572448118754375.xml:5:42-71
+7-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest739787483755958930.xml:5:42-71
 8
 9    <instrumentation
-9-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12372572448118754375.xml:11:5-15:72
+9-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest739787483755958930.xml:11:5-15:72
 10        android:name="androidx.test.runner.AndroidJUnitRunner"
-10-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12372572448118754375.xml:11:22-76
+10-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest739787483755958930.xml:11:22-76
 11        android:functionalTest="false"
-11-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12372572448118754375.xml:14:22-52
+11-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest739787483755958930.xml:14:22-52
 12        android:handleProfiling="false"
-12-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12372572448118754375.xml:13:22-53
+12-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest739787483755958930.xml:13:22-53
 13        android:label="Tests for com.example.stepbystep"
-13-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12372572448118754375.xml:15:22-70
+13-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest739787483755958930.xml:15:22-70
 14        android:targetPackage="com.example.stepbystep" />
-14-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12372572448118754375.xml:12:22-68
+14-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest739787483755958930.xml:12:22-68
 15
 16    <queries>
 16-->[androidx.test:runner:1.6.1] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/e7da1a0f588a5421c058606901e43f65/transformed/runner-1.6.1/AndroidManifest.xml:24:5-28:15
@@ -40,12 +40,12 @@
 22-->[androidx.test:core:1.6.1] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/7e4c5524e73c022a9de99d7350be26ec/transformed/core-1.6.1/AndroidManifest.xml:24:22-69
 23
 24    <application
-24-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12372572448118754375.xml:7:5-9:19
+24-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest739787483755958930.xml:7:5-9:19
 25        android:debuggable="true"
 26        android:extractNativeLibs="false" >
 27        <uses-library android:name="android.test.runner" />
-27-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12372572448118754375.xml:8:9-60
-27-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest12372572448118754375.xml:8:23-57
+27-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest739787483755958930.xml:8:9-60
+27-->/home/adrian/Escritorio/StepByStep/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest739787483755958930.xml:8:23-57
 28
 29        <activity
 29-->[androidx.test:core:1.6.1] /home/adrian/Escritorio/Android/Practica5/caches/8.10.2/transforms/7e4c5524e73c022a9de99d7350be26ec/transformed/core-1.6.1/AndroidManifest.xml:27:9-34:20

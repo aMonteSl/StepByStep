@@ -150,7 +150,7 @@ public class DataBinderMapperImpl extends DataBinderMapper {
 
     static {
       sKeys.put(0, "_all");
-      sKeys.put(1, "route");
+      sKeys.put(1, "displayModel");
       sKeys.put(2, "viewModel");
     }
   }
